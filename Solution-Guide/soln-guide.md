@@ -86,7 +86,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ```
     AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=Replace with your deployment name
-    AZURE_OPENAI_ENDPOINT=Repl ace with your endpoint URL
+    AZURE_OPENAI_ENDPOINT=Replace with your endpoint URL
     AZURE_OPENAI_API_KEY=Replace with your API key
     ```
    ![](./Images/Image12.png)
@@ -108,14 +108,13 @@ In this challenge, you will create a multi-agent system that takes the user's re
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/push_to_github.sh
     ```
 
-1. // required commands to be added.//
-
-1. Interact with the Multi Agent by giving the below prompt :
-
-   ```
-    Build a Calculator App
-
-   ```
+1. Update the following env variables in `.env` file:
+    ```
+    GITHUB_REPO_URL=Replace with your Github Repo
+    GITHUB_PAT=Replace with your Github pat token
+    GIT_USER_EMAIL=Replace with your Github email
+    GITHUB_USERNAME=Replace with your Github username
+    ```
 
 1. Wait until the agents interact with themselves and provide a detailed output. Verify the output and differentiate the involvement of different agents in providing the result.   
 
