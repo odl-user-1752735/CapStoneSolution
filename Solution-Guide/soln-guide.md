@@ -102,7 +102,11 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ![](./Images/Image13.png)
 
 
-1. Click on the ellipses. Select Terminal and choose New Terminal. 
+1. Create a file named `push_to_github.sh` under the `src/ui` directory and paste the code from below link and save.
+
+    ```
+    https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/push_to_github.sh
+    ```
 
 1. // required commands to be added.//
 
