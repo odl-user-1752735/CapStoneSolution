@@ -73,11 +73,11 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](Images/Image9.png)
 
-1. Navigate to the path `C:\LabFiles\ai-developer`, select **Python** and click on **Select Folder**.
+1. Navigate to the path `C:\LabFiles\`, select **Capstone-Project** and click on **Select Folder**.
 
    ![](Images/Image10.png)
 
-1. Expand the src folder, rename the file from .env_template to .env.
+1. Expand the src folder, rename the file from **Sample.env** to **.env**.
 
    ![](Images/Image11.png)
 
@@ -85,16 +85,19 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ```
     AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=Replace with your deployment name
-    AZURE_OPENAI_ENDPOINT=Replace with your endpoint URL
+    AZURE_OPENAI_ENDPOINT=Repl ace with your endpoint URL
     AZURE_OPENAI_API_KEY=Replace with your API key
-    AZURE_OPENAI_API_VERSION=Replace with your API version
+    GITHUB_REPO_URL=
+    GITHUB_PAT=
+    GIT_USER_EMAIL=
+    GITHUB_USERNAME=
     ```
    ![](Images/Image12.png)
 
 ## Task 2 - Define Agent Personas and Configure Multi-Agent Chat
 
 1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
-
+  
 1. We shall create three **ChatCompletionAgent** personas - Business Analyst, Software Engineer, and Product Owner, each with defined instructions, a unique name, and a Kernel reference. These agents will be linked in an **AgentGroupChat** with an ApprovalTerminationStrategy that terminates the chat when the Product Owner replies with %APPR%.
 
 1. Replace the code in the **multi_agent.py** file with the below mentioned code and save.
