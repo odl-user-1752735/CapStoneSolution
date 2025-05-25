@@ -58,9 +58,9 @@ In this challenge, you will create a multi-agent system that takes the user's re
 1. Click on **Customize** and provide the following details to deploy a gpt-4o model:
 
     - Deployment name: gpt4-o
-    - Deployment type: Standard
+    - Deployment type: Global Standard
     - Model Version: 2024-11-20
-    - Set the **Tokens per Minute Rate Limit** to 20k.
+    - Set the **Tokens per Minute Rate Limit** to 200k.
     - Leave the other values to default and click on **Deploy**.
 
    ![](Images/Image7.png)
