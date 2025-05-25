@@ -136,9 +136,10 @@ In this challenge, you will create a multi-agent system that takes the user's re
 ## Success Criteria
 
 - You have implemented the Multi-Agent Chat system that produces:
-  - Software Development Plan and Requirements
-  - Source Code in HTML and JavaScript
-  - Code Review and Approval
+    - Generation of complete source code in HTML and JavaScript for the requested application
+    - Thorough code review and approval process by User
+    - Automated deployment of the application to Azure
+    - Automated code push to a Git repository upon user approval
 
 ---
 
