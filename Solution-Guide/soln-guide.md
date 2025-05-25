@@ -132,6 +132,16 @@ In this challenge, you will create a multi-agent system that takes the user's re
     azd up
     ```
 
+## Task 3 - 
+
+1. Navigate to azure portal, and select the newly created rg.
+1. open the container app with prefix **dev-ui-** and click on the application url
+1. the app will start, try running the following prompt
+    ```
+    Create code for simple calculator
+    ```
+1. once it runs , type approved to approve the code and push to github.
+1. the code will be pushed to github.
 
 ## Success Criteria
 
