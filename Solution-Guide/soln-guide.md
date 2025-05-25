@@ -1,4 +1,5 @@
-## Solution Guide# Multi-Agent Systems - Solution Guide
+## Solution Guide
+# Multi-Agent Systems - Solution Guide
 
 ## Introduction
 
