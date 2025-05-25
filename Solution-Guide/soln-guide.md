@@ -17,11 +17,11 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Search and Select Open AI. 
 
-   ![](Images/Image1.png)
+   ![](./Images/Image1.png)
 
 1. On the Open AI content page, click on + create. 
 
-   ![](Images/Image2.png)
+   ![](./Images/Image2.png)
 
 1. Provide the following details and click on Next (7):
 
@@ -35,7 +35,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     - Pricing Tier: Standard (5)
 
-   ![](Images/Image3.png)
+   ![](./Images/Image3.png)
 
 1. Click on Next twice and click on **Review + Submit**.
 
@@ -45,15 +45,15 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. In the Azure OpenAI resource pane, click on Go to Azure AI Foundry portal, it will navaigate to Azure AI Foundry portal.
 
-   ![](Images/Image4.png)
+   ![](./Images/Image4.png)
 
 1. On the left panel select , select **Deployments**. Click on **+Deploy Model** and select **Deploy Base Model**.
 
-   ![](Images/Image5.png)
+   ![](./Images/Image5.png)
 
 1. Search for **gpt-4o**, select it and click on **Confirm**.
 
-   ![](Images/Image6.png)
+   ![](./Images/Image6.png)
 
 1. Click on **Customize** and provide the following details to deploy a gpt-4o model:
 
@@ -63,23 +63,23 @@ In this challenge, you will create a multi-agent system that takes the user's re
     - Set the **Tokens per Minute Rate Limit** to 200k.
     - Leave the other values to default and click on **Deploy**.
 
-   ![](Images/Image7.png)
+   ![](./Images/Image7.png)
 
 1. Once the gpt-4o deployment gets completed, copy the Target URI and Key. Paste these values in a notepad for further use. 
 
-   ![](Images/Image8.png)
+   ![](./Images/Image8.png)
 
 1. Open VS Code from the desktop. Click on **File** and select **Open Folder**.
 
-   ![](Images/Image9.png)
+   ![](./Images/Image9.png)
 
 1. Navigate to the path `C:\LabFiles\`, select **Capstone-Project** and click on **Select Folder**.
 
-   ![](Images/Image10.png)
+   ![](./Images/Image10.png)
 
 1. Expand the src folder, rename the file from **Sample.env** to **.env**.
 
-   ![](Images/Image11.png)
+   ![](./Images/Image11.png)
 
 1. Update the `.env` file with the Azure AI Foundry deployment details and save the file:
 
@@ -92,7 +92,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
     GIT_USER_EMAIL=
     GITHUB_USERNAME=
     ```
-   ![](Images/Image12.png)
+   ![](./Images/Image12.png)
 
 ## Task 2 - Define Agent Personas and Configure Multi-Agent Chat
 
@@ -254,7 +254,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
         }   
    ```
 
-   ![](Images/Image13.png)
+   ![](./Images/Image13.png)
 
 1. Click on the ellipses. Select Terminal and choose New Terminal. 
 
