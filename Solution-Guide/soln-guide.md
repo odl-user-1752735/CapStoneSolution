@@ -116,7 +116,21 @@ In this challenge, you will create a multi-agent system that takes the user's re
     GITHUB_USERNAME=Replace with your Github username
     ```
 
-1. Wait until the agents interact with themselves and provide a detailed output. Verify the output and differentiate the involvement of different agents in providing the result.   
+1. Click on **Terminal>New Terminal** and run the following command:-
+
+    ```
+    azd auth login
+    ```
+
+1. Sign in using the following credentials:-
+    - **Email/Username**: <inject key="AzureAdUserEmail"></inject>
+    - **Password**: <inject key="AzureAdUserPassword"></inject>
+
+1. Run the following command to provision the web app and required resources to azure:-
+
+    ```
+    azd up
+    ```
 
 
 ## Success Criteria
