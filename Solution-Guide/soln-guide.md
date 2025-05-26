@@ -143,7 +143,8 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
    
-1. Replace the code in the **multi_agent.py** file with code from the below link and save.
+1. Replace the code in the **multi_agent.py** file with the code from the link below and save the file.
+
     ```
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/multi_agent.py
     ```
