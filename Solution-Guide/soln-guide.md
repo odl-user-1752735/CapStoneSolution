@@ -123,7 +123,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image20.png)
 
-1. Scroll down and under **Repository Access**, click on **Only select repositories (1)**. Search for the `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` repository **(2)** and **select it (3)**.
+1. Scroll down and under **Repository Access**, click on **Only select repositories (1)**. Search for the **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/> repository** **(2)** and **select it (3)**.
 
    ![](./Images/Image21.png)  
 
