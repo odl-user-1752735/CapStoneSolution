@@ -103,32 +103,46 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image16.png)
 
-2. Click your profile picture at the top-right corner and select **Settings** from the dropdown menu.  
+1. Once the new Repository gets created, **copy the URL** of your repo and paste it in a notepad for further use. 
 
-   ![](./Images/Image.png)
+   ![](./Images/Image25.png)
 
-4. In the left sidebar, click **Developer settings**.  
-5. Click **Personal access tokens**.  
-6. Click **Tokens (classic)**.  
-7. Click **Generate new token (classic)**.  
-8. Enter a name for your token (e.g., `MyToken`).  
-9. Set an expiration date for the token.  
-10. Select the required scopes (e.g., check `repo` and `workflow`).  
-11. Scroll down and click **Generate token**.  
-12. Copy the generated token now. You won’t see it again.  
+1. Click your **profile picture (1)** at the top-right corner and select **Settings (2)** from the dropdown menu.  
 
----
+   ![](./Images/Image17.png)
 
-## Important
+1. In the left sidebar, click **<> Developer settings**.  
 
-- Use this token instead of your password when authenticating GitHub.  
-- Keep your token safe and do not share it.  
-- Revoke the token immediately if you suspect it is compromised.
+   ![](./Images/Image18.png)
 
+1. Expand **Personal access tokens** from the left panel. Select **Fine-grained tokens(1)** and click on **Generate new token (2)**.
 
+   ![](./Images/Image19.png)
+  
+1. Enter `<inject key="Deployment ID" enableCopy="false"/>-PAT-RepoAccess` **(1)** as the name for your token. Set an expiration date to **30 days (2)**.  
+
+   ![](./Images/Image20.png)
+
+1. Scroll down and under **Repository Access**, click on **Only select repositories (1)**. Search for `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` **(2)** Repository and **select it (3)**.
+
+   ![](./Images/Image21.png)  
+
+1. Under **Permissions**, expand **Repository Permissions (1)**. Provide **Read and Write (3)** access for **Contents (2)** under Repository permissions.
+
+   ![](./Images/Image22.png)  
+
+1. Scroll down to the bottom of the page, click on **Generate token (1)** and on the pop up review the permissions and click on **Generate token (2)**.
+
+   ![](./Images/Image23.png)  
+
+1. **Copy (1)** the generated token and **Paste** it in a notepad for further use.  
+
+   ![](./Images/Image24.png)
+   
 ## Task 3 - Define Agent Personas and Configure Multi-Agent Chat
 
 1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
+   
 1. Replace the code in the **multi_agent.py** file with code from the below link and save.
     ```
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/multi_agent.py
@@ -145,19 +159,27 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ![](./Images/Image15.png)
 
-1. Update the following env variables in `.env` file:
+1. Update the following env variables in `.env` file with the values you copied in Task 2 and save the file.
     ```
     GITHUB_REPO_URL=Replace with your Github Repo
     GITHUB_PAT=Replace with your Github pat token
     GIT_USER_EMAIL=Replace with your Github email
     GITHUB_USERNAME=Replace with your Github username
     ```
+    ![](./Images/Image27.png)
 
-1. Click on **Terminal>New Terminal** and run the following command:-
+
+1. Click on the **ellipses(1)**. Select **Terminal(2)** and choose **New Terminal(3)**.
+
+    ![](./Images/Image26.png)
+
+1.  Run the following command:-
 
     ```
     azd auth login
     ```
+
+    ![](./Images/Image28.png)
 
 1. Sign in using the following credentials:-
     - **Email/Username**: <inject key="AzureAdUserEmail"></inject>
@@ -168,17 +190,38 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
     azd up
     ```
+1. When prompted for a unique Environment name, enter `CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>` **(1)**. For Subscription, select and enter the **default subscription (2)** that appears and select **East US 2 (3)** for the location.
 
-## Task 3 - 
+    ![](./Images/Image29.png)
 
-1. Navigate to azure portal, and select the newly created rg.
-1. open the container app with prefix **dev-ui-** and click on the application url
-1. the app will start, try running the following prompt
+   - **Note:** Wait for 5 minutes until the command runs completely. 
+
+## Task 4 - 
+
+1. Navigate to azure portal, and select the newly created Resource group named **rg-CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>**.
+
+1. Open the container app with prefix **dev-ui-**.
+
+    ![](./Images/Image30.png)
+
+1. Click on the Application URL present on the Overview page of the Container app.
+
+    ![](./Images/Image31.png)
+
+1. The Streamlit chat application will open. Try providing the **below prompt (1)** in the chat and click on **send**.
+
     ```
     Create code for simple calculator
     ```
-1. once it runs , type approved to approve the code and push to github.
-1. the code will be pushed to github.
+   - **Note:** Wait until the agents are collaborating and provide a reply.
+
+1. Once it runs and provides the code and other details, type **approved (1)** and select **send (2)** to approve the code. At the end of the chat, you can observe that the code is being pushed to the repo after approval. 
+
+    ![](./Images/Image32.png)
+
+    ![](./Images/Image33.png)
+
+1. Navigate to the Repo **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>**, 
 
 ## Success Criteria
 
