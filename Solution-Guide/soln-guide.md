@@ -28,13 +28,13 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     - Subscription: Keep the default subscription **(1)**.
 
-    - Resource Group: Click on Create new (2), provide the name as **openaiagents** and click on OK.
+    - Resource Group: Click on **Create new (2)**, provide the name as **openaiagents** and click on OK.
 
-    - Region: East US 2 (3)
+    - Region: **East US 2 (3)**
 
-    - Name: **OpenAI-<inject key="Deployment ID" enableCopy="false"/>** (4)
+    - Name: **OpenAI-<inject key="Deployment ID" enableCopy="false"/>** **(4)**
 
-    - Pricing Tier: Standard (5)
+    - Pricing Tier: **Standard SO (5)**
 
    ![](./Images/Image3.png)
 
@@ -70,7 +70,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image8.png)
 
-1. Open VS Code from the desktop. Click on **File (1)** and select **Open Folder (2)**.
+1. Open VS Code on your Lab VM. Click on **File (1)** and select **Open Folder (2)**.
 
    ![](./Images/Image9.png)
 
