@@ -215,13 +215,17 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
    - **Note:** Wait until the agents are collaborating and provide a reply.
 
-1. Once it runs and provides the code and other details, type **approved (1)** and select **send (2)** to approve the code. At the end of the chat, you can observe that the code is being pushed to the repo after approval. 
-
     ![](./Images/Image32.png)
+
+1. Once it runs and provides the code and other details, type **approved (1)** and select **send (2)** to approve the code. At the end of the chat, you can observe that the code is being pushed to the repo after approval. 
 
     ![](./Images/Image33.png)
 
-1. Navigate to the Repo **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>**, 
+    ![](./Images/Image34.png)
+
+1. Navigate to the Repo **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>**, and observe that the generated_app.html file is created in which the code for you simple calculator is stored.
+
+    ![](./Images/Image37.png)
 
 ## Success Criteria
 
