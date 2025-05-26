@@ -44,15 +44,15 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Once the deployment is complete, click on **Go to resource**
 
-1. In the Azure OpenAI resource pane, click on Go to Azure AI Foundry portal, it will navaigate to Azure AI Foundry portal.
+1. In the Azure OpenAI resource pane, click on **Go to Azure AI Foundry portal**, it will navaigate to Azure AI Foundry portal.
 
    ![](./Images/Image4.png)
 
-1. On the left panel select **Deployments**. Click on **+ Deploy Model** and select **Deploy Base Model**.
+1. On the left panel select **Deployments (1)**. Click on **+ Deploy Model (2)** and select **Deploy Base Model (3)**.
 
    ![](./Images/Image5.png)
 
-1. Search for **gpt-4o**, select it and click on **Confirm**.
+1. Search for **gpt-4o (1)**, **select it (2)**, and click on **Confirm (3)**.
 
    ![](./Images/Image6.png)
 
@@ -66,19 +66,19 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image7a.png)
 
-1. Once the gpt-4o deployment gets completed, copy the **Target URI** and **Key**. **Paste** these values in a notepad for further use. 
+1. Once the gpt-4o deployment gets completed, copy the **Target URI (1)** and **Key (2)**. **Paste** these values in a notepad for further use. 
 
    ![](./Images/Image8.png)
 
-1. Open VS Code from the desktop. Click on **File** and select **Open Folder**.
+1. Open VS Code from the desktop. Click on **File (1)** and select **Open Folder (2)**.
 
    ![](./Images/Image9.png)
 
-1. Navigate to the path `C:\LabFiles\`, select **Capstone-Project** and click on **Select Folder**.
+1. Navigate to the path `C:\LabFiles\` **(1)**, select **Capstone-Project (2)** and click on **Select Folder (3)**.
 
    ![](./Images/Image10a.png)
 
-1. Select the **checkbox** and click **'I trust the authors'** to proceed.
+1. Select the **checkbox (1)** and click **Yes,I trust the authors(2)** to proceed.
 
    ![](./Images/Image11a.png)
 
@@ -99,16 +99,16 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Sign in to GitHub at [https://github.com](https://github.com).  
 
-1. Create a New Repository with the name `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` **(1)**. Let the repo be set to **Public (2)** and click on **Create Repository (3)**.
+1. Create a new repository named `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` **(1)**. Set the repository visibility to **Public (2)**, then click **Create Repository (3)**.
 
    ![](./Images/Image16.png)
 
-1. Once the new Repository gets created, **copy the URL** of your repo and paste it in a notepad for further use. 
-
+1.Once the new repository is created, **copy the URL** of your repo and paste it into a notepad for future use.
+ 
    ![](./Images/Image25.png)
 
-1. Click your **profile picture (1)** at the top-right corner and select **Settings (2)** from the dropdown menu.  
-
+1. Click your **profile picture (1)** at the top-right corner and select **Settings (2)** from the dropdown menu.
+ 
    ![](./Images/Image17.png)
 
 1. In the left sidebar, click **<> Developer settings**.  
@@ -123,7 +123,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image20.png)
 
-1. Scroll down and under **Repository Access**, click on **Only select repositories (1)**. Search for `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` **(2)** Repository and **select it (3)**.
+1. Scroll down and under **Repository Access**, click on **Only select repositories (1)**. Search for the `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` repository **(2)** and **select it (3)**.
 
    ![](./Images/Image21.png)  
 
@@ -131,11 +131,11 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image22.png)  
 
-1. Scroll down to the bottom of the page, click on **Generate token (1)** and on the pop up review the permissions and click on **Generate token (2)**.
+1. Scroll down to the bottom of the page, click **Generate token (1)**, and in the popup, review the permissions and click **Generate token (2)**.
 
    ![](./Images/Image23.png)  
 
-1. **Copy (1)** the generated token and **Paste** it in a notepad for further use.  
+1. **Copy (1)** the generated token and **paste** it into a notepad for future use.
 
    ![](./Images/Image24.png)
    
@@ -150,8 +150,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ![](./Images/Image14a.png)
 
-
-1. Create a file named `push_to_github.sh` under the `src/ui` directory and paste the code from below link and save.
+1. Create a file named `push_to_github.sh` under the `src/ui` directory. Paste the code from the link below and save the file.
 
     ```
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/push_to_github.sh
@@ -176,7 +175,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ![](./Images/Image36.png)
 
-1. Click on the **ellipses(1)**. Select **Terminal(2)** and choose **New Terminal(3)**.
+1. Click on the **ellipses (1)**. Select **Terminal (2)** and choose **New Terminal (3)**.
 
     ![](./Images/Image26.png)
 
@@ -197,7 +196,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
     azd up
     ```
-1. When prompted for a unique Environment name, enter `CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>` **(1)**. For Subscription, select and enter the **default subscription (2)** that appears and select **East US 2 (3)** for the location.
+1. When prompted for a unique Environment name, enter `CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>` **(1)**. For Subscription, select the **default subscription (2)** that appears, and choose **East US 2 (3)** for the location.
 
     ![](./Images/Image29.png)
 
@@ -211,7 +210,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ![](./Images/Image30.png)
 
-1. Click on the Application URL present on the Overview page of the Container app.
+1. Click on the **Application URL** present on the Overview page of the Container app.
 
     ![](./Images/Image31.png)
 
@@ -220,17 +219,17 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
     Create code for simple calculator
     ```
-   - **Note:** Wait until the agents are collaborating and provide a reply.
+   - **Note:** Wait until the agents collaborate and provide a reply.
 
     ![](./Images/Image32.png)
 
-1. Once it runs and provides the code and other details, type **approved (1)** and select **send (2)** to approve the code. At the end of the chat, you can observe that the code is being pushed to the repo after approval. 
+1. Once it runs and provides the code and other details, type **approved (1)** and select **send (2)** to approve the code. At the end of the chat, you can observe that the code is being pushed to the repository after approval.
 
     ![](./Images/Image33.png)
 
     ![](./Images/Image34.png)
 
-1. Navigate to the Repo **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>**, and observe that the generated_app.html file is created in which the code for you simple calculator is stored.
+1. Navigate to the repository **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>** and verify that the `generated_app.html` file has been created, containing the code for your simple calculator.
 
     ![](./Images/Image37.png)
 
