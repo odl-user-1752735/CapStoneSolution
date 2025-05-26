@@ -99,7 +99,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Sign in to GitHub at [https://github.com](https://github.com).  
 
-1. Create a new repository named `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` **(1)**. Set the repository visibility to **Public (2)**, then click **Create Repository (3)**.
+1. Create a new repository named **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>** **(1)**. Set the repository visibility to **Public (2)**, then click **Create Repository (3)**.
 
    ![](./Images/Image16.png)
 
@@ -119,7 +119,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image19.png)
   
-1. Enter `<inject key="Deployment ID" enableCopy="false"/>-PAT-RepoAccess` **(1)** as the name for your token. Set an expiration date to **30 days (2)**.  
+1. Enter **<inject key="Deployment ID" enableCopy="false"/>-PAT-RepoAccess** **(1)** as the name for your token. Set an expiration date to **30 days (2)**.  
 
    ![](./Images/Image20.png)
 
@@ -241,7 +241,6 @@ In this challenge, you will create a multi-agent system that takes the user's re
     - Automated deployment of the application to Azure
     - Automated code push to a Git repository upon user approval
 
----
 
 ## Bonus
 
@@ -251,7 +250,6 @@ In this challenge, you will create a multi-agent system that takes the user's re
 - Enhance the app by asking the AI to make it responsive or add new features.
 - Experiment with modifying personas to improve results or functionality.
 
----
 
 ## Learning Resources
 
@@ -260,8 +258,8 @@ In this challenge, you will create a multi-agent system that takes the user's re
 - [AutoGen Multi-Agent Conversational Framework](https://microsoft.github.io/autogen/docs/Use-Cases/agent_chat/)
 - [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 
----
-
 ## Conclusion
 
 This challenge demonstrated how to build and coordinate a Multi-Agent System using Azure AI Foundry and Semantic Kernel. By designing distinct personas for Business Analyst, Software Engineer, and Product Owner, and configuring a group chat environment with a termination strategy, you created a collaborative AI workflow capable of gathering requirements, developing code, and performing code reviews. The task structure allows for scalable, decentralized handling of complex problems using autonomous, interactive agents.
+
+# You have successfully completed the Lab !!
