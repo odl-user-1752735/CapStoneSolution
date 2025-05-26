@@ -58,15 +58,15 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Click on **Customize** and provide the following details to deploy a gpt-4o model:
 
-    - Deployment name: gpt4-o
-    - Deployment type: Global Standard
-    - Model Version: 2024-11-20
-    - Set the **Tokens per Minute Rate Limit** to 200k.
+    - Deployment name: **gpt4-o**
+    - Deployment type: **Global Standard**
+    - Model Version: **2024-11-20**
+    - Set the **Tokens per Minute Rate Limit** to **200k**.
     - Leave the other values to default and click on **Deploy**.
 
-   ![](./Images/Image7.png)
+   ![](./Images/Image7a.png)
 
-1. Once the gpt-4o deployment gets completed, copy the Target URI and Key. Paste these values in a notepad for further use. 
+1. Once the gpt-4o deployment gets completed, copy the **Target URI** and **Key**. **Paste** these values in a notepad for further use. 
 
    ![](./Images/Image8.png)
 
@@ -76,11 +76,15 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Navigate to the path `C:\LabFiles\`, select **Capstone-Project** and click on **Select Folder**.
 
-   ![](./Images/Image10.png)
+   ![](./Images/Image10a.png)
+
+1. Select the **checkbox** and click **'I trust the authors'** to proceed.
+
+   ![](./Images/Image11a.png)
 
 1. Expand the src folder, rename the file from **Sample.env** to **.env**.
 
-   ![](./Images/Image11.png)
+   ![](./Images/Image12a.png)
 
 1. Update the `.env` file with the Azure AI Foundry deployment details and save the file:
 
@@ -89,9 +93,40 @@ In this challenge, you will create a multi-agent system that takes the user's re
     AZURE_OPENAI_ENDPOINT=Replace with your endpoint URL
     AZURE_OPENAI_API_KEY=Replace with your API key
     ```
-   ![](./Images/Image12.png)
+   ![](./Images/Image13a.png)
 
-## Task 2 - Define Agent Personas and Configure Multi-Agent Chat
+## Task 2 - Create a GitHub Repository and Generate a PAT Token
+
+1. Sign in to GitHub at [https://github.com](https://github.com).  
+
+1. Create a New Repository with the name `Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>` **(1)**. Let the repo be set to **Public (2)** and click on **Create Repository (3)**.
+
+   ![](./Images/Image16.png)
+
+2. Click your profile picture at the top-right corner and select **Settings** from the dropdown menu.  
+
+   ![](./Images/Image.png)
+
+4. In the left sidebar, click **Developer settings**.  
+5. Click **Personal access tokens**.  
+6. Click **Tokens (classic)**.  
+7. Click **Generate new token (classic)**.  
+8. Enter a name for your token (e.g., `MyToken`).  
+9. Set an expiration date for the token.  
+10. Select the required scopes (e.g., check `repo` and `workflow`).  
+11. Scroll down and click **Generate token**.  
+12. Copy the generated token now. You won’t see it again.  
+
+---
+
+## Important
+
+- Use this token instead of your password when authenticating GitHub.  
+- Keep your token safe and do not share it.  
+- Revoke the token immediately if you suspect it is compromised.
+
+
+## Task 3 - Define Agent Personas and Configure Multi-Agent Chat
 
 1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
 1. Replace the code in the **multi_agent.py** file with code from the below link and save.
@@ -99,7 +134,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/multi_agent.py
     ```
 
-    ![](./Images/Image13.png)
+    ![](./Images/Image14a.png)
 
 
 1. Create a file named `push_to_github.sh` under the `src/ui` directory and paste the code from below link and save.
@@ -107,6 +142,8 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/push_to_github.sh
     ```
+
+    ![](./Images/Image15.png)
 
 1. Update the following env variables in `.env` file:
     ```
