@@ -74,7 +74,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image9.png)
 
-1. Navigate to the path `C:\LabFiles\` **(1)**, select **Capstone-Project (2)** and click on **Select Folder (3)**.
+1. Navigate to the path `C:\LabFiles\` **(1)**, select **CAPSTONE-PROJECT (2)** and click on **Select Folder (3)**.
 
    ![](./Images/Image10a.png)
 
@@ -82,7 +82,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image11a.png)
 
-1. Expand the src folder, rename the file from **Sample.env** to **.env**.
+1. Expand the **src/ui** folder, rename the file from **Sample.env** to **.env**.
 
    ![](./Images/Image12a.png)
 
