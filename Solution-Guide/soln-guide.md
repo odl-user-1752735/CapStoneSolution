@@ -20,7 +20,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image1.png)
 
-1. On the **Azure Open AI** content page, click on + create. 
+1. On the **Azure Open AI (1)** content page, click on **+ create(2)**.
 
    ![](./Images/Image2.png)
 
