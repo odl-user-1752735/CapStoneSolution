@@ -48,7 +48,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image4.png)
 
-1. On the left panel select , select **Deployments**. Click on **+Deploy Model** and select **Deploy Base Model**.
+1. On the left panel select **Deployments**. Click on **+ Deploy Model** and select **Deploy Base Model**.
 
    ![](./Images/Image5.png)
 
