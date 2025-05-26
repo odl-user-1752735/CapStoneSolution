@@ -103,7 +103,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image16.png)
 
-1.Once the new repository is created, **copy the URL** of your repo and paste it into a notepad for future use.
+1. Once the new repository is created, **copy the URL** of your repo and paste it into a notepad for future use.
  
    ![](./Images/Image25.png)
 
