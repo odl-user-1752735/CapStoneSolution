@@ -197,7 +197,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
     azd up
     ```
-1. When prompted for a unique Environment name, enter `CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>` **(1)**. For Subscription, select the **default subscription (2)** that appears, and choose **East US 2 (3)** for the location.
+1. When prompted for a unique Environment name, enter **CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>** **(1)**. For Subscription, select the **default subscription (2)** that appears, and choose **East US 2 (3)** for the location.
 
     ![](./Images/Image29.png)
 
