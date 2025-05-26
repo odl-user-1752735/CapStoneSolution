@@ -24,11 +24,11 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    ![](./Images/Image2.png)
 
-1. Provide the following details and click on Next (7):
+1. Provide the following details and click on **Next**:
 
-    - Subscription: Keep the default subscription
+    - Subscription: Keep the default subscription **(1)**.
 
-    - Resource Group: Click on Create new (1), provide the name as **openaiagents** and click on OK.
+    - Resource Group: Click on Create new (2), provide the name as **openaiagents** and click on OK.
 
     - Region: East US 2 (3)
 
@@ -58,11 +58,11 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
 1. Click on **Customize** and provide the following details to deploy a gpt-4o model:
 
-    - Deployment name: **gpt4-o**
-    - Deployment type: **Global Standard**
-    - Model Version: **2024-11-20**
-    - Set the **Tokens per Minute Rate Limit** to **200k**.
-    - Leave the other values to default and click on **Deploy**.
+    - Deployment name: **gpt4-o (1)**
+    - Deployment type: **Global Standard (2)**
+    - Model Version: **2024-11-20 (3)**
+    - Set the **Tokens per Minute Rate Limit** to **200k (4)**.
+    - Leave the other values to default and click on **Deploy (5)**.
 
    ![](./Images/Image7a.png)
 
