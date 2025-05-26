@@ -168,6 +168,13 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
     ![](./Images/Image27.png)
 
+1. In the .env file, click on **CRLF (1)** in the bottom Status Bar and change it to **LF (2)** by selecting it. Save the file after making this change.
+
+    ![](./Images/Image35.png)
+
+1. Verify that **LF** is selected in the push_to_github.sh file as well.
+
+    ![](./Images/Image36.png)
 
 1. Click on the **ellipses(1)**. Select **Terminal(2)** and choose **New Terminal(3)**.
 
@@ -196,9 +203,9 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
    - **Note:** Wait for 5 minutes until the command runs completely. 
 
-## Task 4 - 
+## Task 4 - Multi-Agent Code Generation and Repository Integration
 
-1. Navigate to azure portal, and select the newly created Resource group named **rg-CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>**.
+1. Navigate to the azure portal, and select the newly created Resource group named **rg-CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>**.
 
 1. Open the container app with prefix **dev-ui-**.
 
