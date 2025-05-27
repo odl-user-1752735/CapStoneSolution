@@ -1,41 +1,41 @@
-# Challenge - Multi-Agent Systems
+# 課題 - マルチエージェントシステム
 
-## Introduction
+## 紹介
 
-Multi-Agent Systems (MAS) consist of multiple autonomous agents, each with distinct goals, behaviors, and areas of responsibility. These agents operate independently, making decisions based on their local knowledge and environment. However, they can also communicate and share information with one another, either cooperating or competing depending on their objectives. MAS is typically used in scenarios where tasks are distributed across multiple entities and the system benefits from decentralization. Common applications include traffic management, robotic teams, distributed AI, and networked systems where coordination is required without relying on a central controller.
+マルチエージェントシステム(MAS)は、それぞれが異なる目標、動作、および責任範囲を持つ複数の自律エージェントで構成されています。これらのエージェントは独立して動作し、地域の知識と環境に基づいて意思決定を行います。しかし、彼らはまた、彼らの目的に応じて協力したり競争したりして、互いにコミュニケーションを取り、情報を共有することもできます。MAS は通常、タスクが複数のエンティティに分散され、システムが分散化の恩恵を受けるシナリオで使用されます。一般的なアプリケーションには、トラフィック管理、ロボットチーム、分散型AI、中央コントローラーに依存しない調整が必要なネットワークシステムなどがあります。
 
-In this challenge, you will create a Multi-Agent System that accepts a user’s request and processes it through a collection of agents, each designed with a specific persona and area of expertise. The agents will individually analyze the request and contribute their responses based on their defined responsibilities. The final output will be a consolidated collection of answers from all agents, collaboratively addressing the user’s query in a way that reflects the unique perspective of each persona.
+この課題では、ユーザーのリクエストを受け入れ、それぞれが特定のペルソナと専門分野で設計されたエージェントのコレクションを通じて処理するマルチエージェントシステムを作成します。エージェントは個別にリクエストを分析し、定義された責任に基づいて応答を提供します。最終的な出力は、すべてのエージェントからの回答の統合コレクションであり、各ペルソナの独自の視点を反映する方法でユーザーのクエリに協力して対処します。
 
 
-## Challenge Objectives:
+## チャレンジ目標:
 
-1. **Azure OpenAI Service Deployment:**
+1. **Azure OpenAI Service のデプロイ:**
 
-    - Set up an Azure OpenAI Service instance with SKU size Standard `S0`.
+    - SKU サイズ Standard S0 の Azure OpenAI Service インスタンスを設定します。
 
-        > **Note:** Ensure the region is set to **East US**.
+        > **手記:** リージョンが [米国東部] に設定されていることを確認します。
 
-    - Deploy it in resource group prefixed with `openaiagents`.
+    - `openaiagents` というプレフィックスが付いたリソース グループにデプロイします。
 
-    - Obtain the Azure OpenAI Key and Endpoint. 
+    - Azure OpenAI キーとエンドポイントを取得します。
 
-1. **Deploy Azure OpenAI Models:**
+1. **Azure OpenAI モデルをデプロイします。**
    
-    - Azure OpenAI provides a web-based portal named **Azure AI Foundry Portal** that you can use to deploy, manage, and explore models. You'll start your exploration of Azure OpenAI by using Azure AI Foundry to deploy a model.
+    - Azure OpenAI には、モデルのデプロイ、管理、探索に使用できる Azure AI Foundry Portal という名前の Web ベースのポータルが用意されています。Azure OpenAI の調査を開始するには、Azure AI Foundry を使用してモデルをデプロイします。
     
-    - Launch Azure AI Foundry Portal from the overview pane and deploy an Azure OpenAI Model, i.e., `gpt-4o`.
+    - 概要ウィンドウから Azure AI Foundry ポータルを起動し、Azure OpenAI モデル (gpt-4o) をデプロイします。
 
-        >- **Note:** Make sure the deployments are named **gpt-4o**.
-        >- **Note:** Ensure the Deployment Type is set to **Global Standard** and use **2024-11-20** for the model version.
+        >- **手記:** デプロイの名前が gpt-4o であることを確認します。
+        >- **手記:** [デプロイの種類] が [グローバル標準] に設定されていることを確認し、モデル バージョンに 2024-11-20 を使用します。
 
-    - Fetch the **Deployment name** and the **API version** of the model.
+    - モデルのデプロイ名と API バージョンをフェッチします。
 
-        >- **Hint:** API version can be fetched from the Target URI.
+        >- **ヒント:** API バージョンは、ターゲット URI から取得できます。
 
 
-## Task 1 - Azure AI Foundry Model Deployment & Environment Configuration
+## タスク 1 - Azure AI Foundry モデルのデプロイと環境の構成
 
-1. Update the `.env` file with the Azure AI Foundry deployment details:
+1. Azure AI Foundry デプロイの詳細で .env ファイルを更新します。
 
     ```
     AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=Replace with your deployment name
@@ -46,50 +46,50 @@ In this challenge, you will create a Multi-Agent System that accepts a user’s 
 
 ---
 
-## Task 2 - Define Agent Personas and Configure Multi-Agent Chat
+## タスク 2 - エージェントのペルソナの定義とマルチエージェント チャットの構成
 
-1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
+1. `multi_agent.py` ファイルを開きます。ここで、このチャレンジに必要なすべてのコードを実装します。
 
-1. Create personas for the three agents with the following instructions:
+1. 次の手順で、3 人のエージェントのペルソナを作成します。
 
-    - **Business Analyst Persona**
+    - **ビジネスアナリストのペルソナ**
 
         ```
         You are a Business Analyst which will take the requirements from the user (also known as a 'customer') and create a project plan for creating the requested app. The Business Analyst understands the user requirements and creates detailed documents with requirements and costing. The documents should be usable by the SoftwareEngineer as a reference for implementing the required features, and by the Product Owner for reference to determine if the application delivered by the Software Engineer meets all of the user's requirements.
         ```
 
-    - **Software Engineer Persona**
+    - **ソフトウェアエンジニアのペルソナ**
 
         ```
         You are a Software Engineer, and your goal is create a web app using HTML and JavaScript by taking into consideration all the requirements given by the Business Analyst. The application should implement all the requested features. Deliver the code to the Product Owner for review when completed. You can also ask questions of the BusinessAnalyst to clarify any requirements that are unclear.
         ```
 
-    - **Product Owner Persona**
+    - **プロダクトオーナーペルソナ**
 
         ```
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-1. Create a `ChatCompletionAgent` for each of the above personas. Each agent should have:
-    - Instructions (the persona prompt)
-    - A unique Name (letters only, no spaces or special characters)
-    - A reference to a `Kernel` object
+1. 上記の各ペルソナに対して `ChatCompletionAgent` を作成します。各エージェントには、次のものが必要です。
+    - 指示 (ペルソナ プロンプト)
+    - 意の名前 (文字のみ、スペースや特殊文字は使用不可)
+    - `Kernel` オブジェクトへの参照
 
-1. Create an `AgentGroupChat` object to tie together the three agents. Pass:
-    - An array of the three agents
-    - `ExecutionSettings` with a `TerminationStrategy` set to an instance of `ApprovalTerminationStrategy`
-1. Implement the `should_agent_terminate` method in the `ApprovalTerminationStrategy` class. The agents should terminate when the Users returns "APPROVED" in the chat history.
+1. `AgentGroupChat` オブジェクトを作成して、3 人のエージェントを結び付けます。通る：
+    - 3 つのエージェントの配列
+    - `ExecutionSettings` と `TerminationStrategy` のインスタンスに設定された `TerminationStrategy`
+1. `should_agent_terminate` メソッドを `ApprovalTerminationStrategy` クラスに実装します。エージェントは、ユーザーがチャット履歴で `APPROVED` を返したときに終了する必要があります。
 
-## Task 3 - Triggering Git Push on User Approval
+## タスク 3 - ユーザー承認時の Git プッシュのトリガー
 
-Add logic so that when the user sends "APPROVED" in the chat, a Bash script is triggered to push the code written by the Software Engineer agent to a Git repository.
+ユーザーがチャットで「APPROVED」を送信すると、Bashスクリプトがトリガーされ、ソフトウェアエンジニアエージェントが記述したコードをGitリポジトリにプッシュするロジックを追加します。
 
-1. After implementing the `should_agent_terminate` method to detect "APPROVED", add a callback or post-processing step that executes when this condition is met.
-2. Extract the HTML code provided by the Software Engineer agent from the chat history.
-3. Save the extracted code to a file (e.g., `index.html`).
-4. Create a Bash script (e.g., `push_to_git.sh`) that stages, commits, and pushes the file to your desired Git repository:
-5. In your Python code, use the `subprocess` module to call this script when "APPROVED" is detected:
-6. Ensure your environment has the necessary Git credentials configured for non-interactive pushes.
+1. `APPROVED` を検出する `should_agent_terminate` メソッドを実装した後、この条件が満たされたときに実行されるコールバックまたは後処理ステップを追加します。
+2. ソフトウェアエンジニアエージェントから提供されたHTMLコードをチャット履歴から抽出します。
+3. 抽出したコードをファイル(index.htmlなど)に保存します。
+4. Bashスクリプト(push_to_git.shなど)を作成し、ファイルをステージング、コミット、目的のGitリポジトリにプッシュします。
+5. Python コードで、subprocess モジュールを使用して、"APPROVED" が検出されたときにこのスクリプトを呼び出します。
+6. お使いの環境で、非対話型プッシュに必要な Git 資格情報が構成されていることを確認します。
 
 This automation ensures that once the Product Owner (or user) sends "APPROVED", the latest code is automatically pushed to your Git repository.
 
