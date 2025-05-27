@@ -197,9 +197,16 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
     azd up
     ```
-1. When prompted for a unique Environment name, enter **CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>** **(1)**. For Subscription, select the **default subscription (2)** that appears, and choose **East US 2 (3)** for the location.
+1. When running the **azd up** command, you'll be asked to provide configuration details interactively. Provide the following values when prompted:
 
-    ![](./Images/Image29.png)
+   - **Unique Environment Name**: Enter **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)**.
+   - **Azure Subscription to use**: Choose the default subscription **(2)** that appears and press **Enter**.
+   - **Location Infrastructure Parameter**: Select **East US 2** **(3)** from the options and press **Enter**.
+   - **ResourceGroupName Infrastructure Parameter**: Type **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)** and press **Enter**.
+   - **Resource Group to use**: Select **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** from the options and press **Enter**.
+
+
+    ![](./Images/Image38.png)
 
    - **Note:** Wait for 5 minutes until the command runs completely. 
 
