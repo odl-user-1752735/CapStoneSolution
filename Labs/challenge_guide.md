@@ -91,73 +91,73 @@
 5. Python コードで、subprocess モジュールを使用して、"APPROVED" が検出されたときにこのスクリプトを呼び出します。
 6. お使いの環境で、非対話型プッシュに必要な Git 資格情報が構成されていることを確認します。
 
-This automation ensures that once the Product Owner (or user) sends "APPROVED", the latest code is automatically pushed to your Git repository.
+この自動化により、ユーザーが `APPROVED` を送信すると、最新のコードが自動的にGitリポジトリにプッシュされます。
 
-## Task 4 - Run the Multi-Agent Conversation and Validate Workflow
+## タスク 4 - マルチエージェントの会話の実行とワークフローの検証
 
-1. Implement the code to send a user message to the agent group using `add_chat_message` on the `AgentGroupChat` object. The message should include:
-    - `AuthorRole.User` as the author
-    - The chat message contents from the user's input
+1. `AgentGroupChat` オブジェクトの `add_chat_message` を使用して、エージェント グループにユーザー メッセージを送信するコードを実装します。メッセージには、次のものを含める必要があります。
+    - 著者としての `AuthorRole.User`
+    - ユーザーの入力からのチャット メッセージの内容
 
-1. Iterate through the responses from the `AgentGroupChat` using an asynchronous loop, and print each message as it arrives:
+1. 非同期ループを使用して `AgentGroupChat` からの応答を反復処理し、各メッセージが到着したときに出力します。
 
     ```python
     async for content in chat.invoke():
         print(f"# {content.role} - {content.name or '*'}: '{content.content}'")
     ```
 
-1. Run your application and provide a request to build a calculator app. Observe how the Business Analyst, Software Engineer, and Product Owner collaborate to plan, build, and approve the solution.
+1. アプリケーションを実行し、電卓アプリの構築要求を提供します。ビジネス アナリスト、ソフトウェア エンジニア、およびプロダクト オーナーが協力してソリューションを計画、構築、承認する方法を観察します。
 
-## Task 5 - Deploy the app to Azure
-### Deploying the App to Azure Using Container Registry and Azure App Service
+## Task 5 - タスク 5 - アプリを Azure にデプロイする
+### Container Registry と Azure App Service を使用した Azure へのアプリのデプロイ
 
-To host your app online using Azure, follow these steps to containerize your application, push it to Azure Container Registry (ACR), and deploy it using Azure App Service:
+Azure を使用してアプリをオンラインでホストするには、次の手順に従ってアプリケーションをコンテナー化し、Azure Container Registry (ACR) にプッシュして、Azure App Service を使用してデプロイします。
 
-1. Open a terminal and sign in to the Azure Developer CLI using the following command:
+1. ターミナルを開き、次のコマンドを使用して Azure Developer CLI にサインインします。
 
     ```bash
     azd auth login
     ```
 
-1. Deploy the required resources to Azure by running:
+1. 次のコマンドを実行して、必要なリソースを Azure にデプロイします。
 
     ```bash
     azd up
     ```
 
-1. When running the **azd up** command, you'll be asked to provide configuration details interactively. Provide the following values when prompted:
+1. コマンドを azd up 実行すると、構成の詳細を対話形式で提供するように求められます。プロンプトが表示されたら、次の値を指定します。
 
-   - **Unique Environment Name**: Enter **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)**.
+   - **Unique Environment Name**: Enter **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)** .
    - **Azure Subscription to use**: Choose the default subscription **(2)** that appears and press **Enter**.
    - **Location Infrastructure Parameter**: Select **East US 2** **(3)** from the options and press **Enter**.
    - **ResourceGroupName Infrastructure Parameter**: Type **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)** and press **Enter**.
    - **Resource Group to use**: Select **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** from the options and press **Enter**.
 
-1. Open the Azure portal and navigate to the resource group **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>**.
-2. Locate the deployed container app resource.
-3. Copy the endpoint URL of the container app.
-4. Access the web app by visiting this endpoint in your browser and verify that the application functions as expected.
+1. Azure portal を開き、リソース グループ **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** に移動します。.
+2. デプロイされたコンテナ アプリ リソースを見つけます。
+3. コンテナアプリのエンドポイントURLをコピーします。
+4. ブラウザでこのエンドポイントにアクセスして Web アプリにアクセスし、アプリケーションが期待どおりに機能することを確認します。
 ## Success Criteria
 
-- You have implemented the Multi-Agent Chat system that produces:
-    - Generation of complete source code in HTML and JavaScript for the requested application
-    - Thorough code review and approval process by User
-    - Automated deployment of the application to Azure
-    - Automated code push to a Git repository upon user approval
+- マルチエージェントチャットシステムを実装し、以下を実現しました。
+    - 要求されたアプリケーションのHTMLおよび `JavaScript` による完全なソースコードの生成
+    - ユーザーによる徹底的なコードレビューと承認プロセス
+    - Azure へのアプリケーションの自動デプロイ
+    - ユーザーの承認時に Git リポジトリにコードを自動的にプッシュ
 
 ---
 
-## Bonus
+## ボーナス
 
-- Copy the code from the chat history markdown into matching files on your file system.
-- Save HTML content as `index.html` and launch it in your web browser.
-- Test if the application functions as the AI described.
-- Enhance the app by asking the AI to make it responsive or add new features.
-- Experiment with modifying personas to improve results or functionality.
+- チャット履歴のマークダウンから、ファイル システム上の一致するファイルにコードをコピーします。
+- HTMLコンテンツを `index.html` として保存し、Webブラウザで起動します。
+- アプリケーションが AI で説明されているとおりに機能するかどうかをテストします。
+- AI に応答性を持たせたり、新機能を追加したりするように依頼して、アプリを強化します。
+- ペルソナを変更して、結果や機能を改善してみてください。
 
 ---
 
-## Learning Resources
+## 学習リソース
 
 - [Agent Group Chat with Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-chat?pivots=programming-language-python)
 - [MetaGPT](https://github.com/geekan/MetaGPT)
@@ -167,6 +167,6 @@ To host your app online using Azure, follow these steps to containerize your app
 
 ---
 
-## Conclusion
+## 結論
 
-This challenge demonstrated how to build and coordinate a Multi-Agent System using Azure AI Foundry and Semantic Kernel. By designing distinct personas for Business Analyst, Software Engineer, and Product Owner, and configuring a group chat environment with a termination strategy, you created a collaborative AI workflow capable of gathering requirements, developing code, and performing code reviews. The task structure allows for scalable, decentralized handling of complex problems using autonomous, interactive agents.
+この課題では、Azure AI Foundry とセマンティック カーネルを使用してマルチエージェント システムを構築し、調整する方法を示しました。ビジネス アナリスト、ソフトウェア エンジニア、プロダクト オーナーの個別のペルソナを設計し、終了戦略を使用してグループ チャット環境を構成することで、要件の収集、コードの開発、コード レビューの実行が可能な協調的な AI ワークフローを作成しました。タスク構造により、自律的でインタラクティブなエージェントを使用して、複雑な問題をスケーラブルかつ分散的に処理できます。
