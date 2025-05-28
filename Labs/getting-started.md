@@ -1,146 +1,141 @@
-# Challenge Lab
+# Laboratorio de Desafío
 
-# Capstone Project 
+# Proyecto Final
 
-### Overall Estimated Duration: 4 Hours
+### Duración Estimada Total: 4 Horas
 
-## Overview
+## Descripción General
 
-In this challenge, you will work with a Chainlit-based conversational application that utilizes Dapr’s publish-subscribe (pub/sub) messaging model to orchestrate customer service escalations through intelligent AI agents. The solution seamlessly integrates several Azure services—including Azure OpenAI for natural language processing, Cosmos DB for data persistence, and Azure Service Bus for reliable messaging. When AI agents reach their resolution limits, the system intelligently escalates the case to a human support agent by triggering a Logic Apps workflow that sends an approval request via email. This hands-on lab offers valuable insight into how AI-driven conversational interfaces, event-driven architecture, and workflow automation can be combined to create responsive, scalable, and human-aware customer support systems.
+En este desafío, trabajarás con una aplicación conversacional basada en Chainlit que utiliza el modelo de mensajería de publicación-suscripción (pub/sub) de Dapr para orquestar las escaladas de atención al cliente mediante agentes inteligentes de IA. La solución integra sin problemas varios servicios de Azure —incluyendo Azure OpenAI para procesamiento de lenguaje natural, Cosmos DB para persistencia de datos y Azure Service Bus para mensajería confiable. Cuando los agentes de IA alcanzan sus límites de resolución, el sistema escala de forma inteligente el caso a un agente de soporte humano, activando un flujo de trabajo de Logic Apps que envía una solicitud de aprobación por correo electrónico. Este laboratorio práctico ofrece una valiosa visión sobre cómo las interfaces conversacionales impulsadas por IA, la arquitectura orientada a eventos y la automatización de flujos de trabajo pueden combinarse para crear sistemas de soporte al cliente receptivos, escalables y conscientes del factor humano.
 
-## Objective 
+## Objetivo
 
-By the end of this lab, you will be able to:
+Al finalizar este laboratorio, podrás:
 
-- **Smart Escalation System for Conversational Support**: Set up and test an AI-powered escalation system using Azure OpenAI, Dapr, and Logic Apps to route unresolved queries from a chat interface to a human agent.
+- **Flujo de Trabajo de Persona Empresarial Multi-Agente**: Experimentar un flujo de trabajo colaborativo que involucra tres personas distintas: Software Engineer, Product Owner y User. El Software Engineer escribe y envía código, el Product Owner revisa y aprueba los cambios, y tras la aprobación, la solución se envía automáticamente a GitHub para su despliegue y control de versiones.
 
-## Prerequisites
+## Requisitos Previos
 
-Participants should have:
+Los participantes deben tener:
 
-- Basic understanding of Azure services such as Azure OpenAI, Cosmos DB, and Service Bus.
-- Familiarity with Dapr and the pub/sub messaging pattern.
-- Experience with deploying applications using Azure Developer CLI (AZD).
-- Knowledge of Logic Apps and workflow automation.
-- Exposure to conversational AI tools like Chainlit or similar frameworks.
-- Basic proficiency in working with APIs and cloud-based integrations.
-
-## Explanation of Components
-
-- **Azure AI Foundry**: A cloud-based platform for developing, deploying, and managing AI models. It allows users to configure AI projects, deploy Large Language Models (LLMs), and integrate embedding models to enhance AI applications.
-- **Azure Cosmos DB**: A globally distributed, multi-model NoSQL database service designed for high availability, low latency, and scalability.
-- **Azure Service Bus**: A fully managed message broker that enables reliable communication between distributed applications using queues and topics.
-- **Azure Container Apps**: A serverless container hosting service that allows you to deploy and scale microservices and containerized applications without managing infrastructure.
-- **Azure Logic Apps**: A cloud-based workflow automation service that enables you to integrate apps, data, and services using prebuilt connectors and triggers.
+- Comprensión básica de los servicios de Azure, como Azure OpenAI y los modelos.
+- Experiencia desplegando aplicaciones utilizando Azure Developer CLI (`AZD`).
+- Conocimiento de herramientas de IA conversacional como Streamlit o frameworks similares.
 
 
-## Getting Started with the lab
+## Explicación de los Componentes
 
-Welcome to your Azure Agentic AI Workshop, Let's begin by making the most of this experience:
+- **Azure OpenAI**: Un servicio basado en la nube que proporciona acceso a modelos de lenguaje avanzados, permitiendo procesamiento de lenguaje natural, generación de contenido y capacidades de IA conversacional. Permite integrar potentes funciones impulsadas por IA en tus aplicaciones de manera segura y a escala.
+- **Azure Container Apps**: Un servicio de alojamiento de contenedores sin servidor que permite implementar y escalar microservicios y aplicaciones contenerizadas sin necesidad de administrar la infraestructura.
 
-## Accessing Your Lab Environment
+## Comenzando con el laboratorio
 
-Once you're ready to dive in, your virtual machine and **lab guide** will be right at your fingertips within your web browser.
+Bienvenido a tu Azure Agentic AI Workshop. Comencemos aprovechando al máximo esta experiencia:
+
+## Accediendo a tu Entorno de Laboratorio
+
+Una vez que estés listo para empezar, tu máquina virtual y la **lab guide** estarán a tu alcance desde tu navegador web.
 
 ![Access Your VM and Lab Guide](./media/agg1.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
-To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+Para ajustar el nivel de zoom de la página del entorno, haz clic en el icono **A↕ : 100%** ubicado junto al temporizador en el entorno del laboratorio.
 
 ![](./media/agg2.png)
 
 ## Virtual Machine & Lab Guide
 
-Your virtual machine is your workhorse throughout the workshop. The lab guide is your roadmap to success.
+Tu máquina virtual es tu herramienta de trabajo durante todo el workshop. La **lab guide** es tu hoja de ruta hacia el éxito.
 
-## Exploring Your Lab Resources
+## Explorando Tus Recursos de Laboratorio
 
-To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
+Para entender mejor tus recursos y credenciales del laboratorio, navega a la pestaña **Environment**.
 
 ![Explore Lab Resources](./media/agg3.png)
 
-## Utilizing the Split Window Feature
+## Utilizando la Función de Ventana Dividida
 
-For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
+Para mayor comodidad, puedes abrir la **lab guide** en una ventana separada seleccionando el botón **Split Window** en la esquina superior derecha.
 
 ![Use the Split Window Feature](./media/agg4.png)
 
-## Managing Your Virtual Machine
+## Gestión de Tu Máquina Virtual
 
-Feel free to **start, stop, or restart (2)** your virtual machine as needed from the **Resources (1)** tab. Your experience is in your hands!
+Siéntete libre de **start, stop, or restart (2)** tu máquina virtual según sea necesario desde la pestaña **Resources (1)**. ¡Tu experiencia está en tus manos!
 
 ![Manage Your Virtual Machine](./media/agg5.png)
 
-<!-- ## Lab Duration Extension
+<!-- ## Extensión de la Duración del Laboratorio
 
-1. To extend the duration of the lab, kindly click the **Hourglass** icon in the top right corner of the lab environment.
+1. Para extender la duración del laboratorio, haz clic en el icono **Hourglass** en la esquina superior derecha del entorno del laboratorio.
 
     ![Manage Your Virtual Machine](./media/media/gext.png)
 
-    >**Note:** You will get the **Hourglass** icon when 10 minutes are remaining in the lab.
+    >**Nota:** El icono **Hourglass** aparecerá cuando queden 10 minutos del laboratorio.
 
-2. Click **OK** to extend your lab duration.
+2. Haz clic en **OK** para extender la duración del laboratorio.
 
    ![Manage Your Virtual Machine](./media/media/gext2.png)
 
-3. If you have not extended the duration prior to when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed. -->
+3. Si no has extendido la duración antes de que el laboratorio esté por finalizar, aparecerá una ventana emergente con la opción de extender. Haz clic en **OK** para continuar. -->
 
-> **Note:** Please ensure the script continues to run and is not terminated after accessing the environment.
+> **Nota:** Por favor asegúrate de que el script siga ejecutándose y no sea terminado después de acceder al entorno.
 
-## Let's Get Started with Azure Portal
+## Comencemos con el Azure Portal
 
-1. On your virtual machine, click on the Azure Portal icon.
-2. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
+1. En tu máquina virtual, haz clic en el ícono de Azure Portal.
+2. Verás la pestaña **Sign into Microsoft Azure**. Aquí, ingresa tus credenciales:
 
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
      ![Enter Your Username](./media/gt-5.png)
 
-3. Next, provide your password:
+3. Luego, proporciona tu contraseña:
 
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
      ![Enter Your Password](./media/gt-4.png)
 
-4. If **Action required** pop-up window appears, click on **Ask later**.
-5. If prompted to **stay signed in**, you can click **No**.
-6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **"Cancel"** to skip the tour.
+4. Si aparece una ventana emergente de **Action required**, haz clic en **Ask later**.
+5. Si te preguntan si deseas **stay signed in**, puedes hacer clic en **No**.
+6. Si aparece una ventana emergente de **Welcome to Microsoft Azure**, simplemente haz clic en **"Cancel"** para saltarte el recorrido.
 
-## Steps to Proceed with MFA Setup if "Ask Later" Option is Not Visible
+## Pasos para continuar con la configuración de MFA si la opción "Ask Later" no está visible
 
-1. At the **"More information required"** prompt, select **Next**.
+1. En el aviso **"More information required"**, selecciona **Next**.
 
-1. On the **"Keep your account secure"** page, select **Next** twice.
+2. En la página **"Keep your account secure"**, selecciona **Next** dos veces.
 
-1. **Note:** If you don’t have the Microsoft Authenticator app installed on your mobile device:
+3. **Nota:** Si no tienes la aplicación Microsoft Authenticator instalada en tu dispositivo móvil:
 
-   - Open **Google Play Store** (Android) or **App Store** (iOS).
-   - Search for **Microsoft Authenticator** and tap **Install**.
-   - Open the **Microsoft Authenticator** app, select **Add account**, then choose **Work or school account**.
+   - Abre **Google Play Store** (Android) o **App Store** (iOS).
+   - Busca **Microsoft Authenticator** y toca **Install**.
+   - Abre la aplicación **Microsoft Authenticator**, selecciona **Add account**, luego elige **Work or school account**.
 
-1. A **QR code** will be displayed on your computer screen.
+4. Se mostrará un **QR code** en la pantalla de tu computadora.
 
-1. In the Authenticator app, select **Scan a QR code** and scan the code displayed on your screen.
+5. En la aplicación Authenticator, selecciona **Scan a QR code** y escanea el código que aparece en tu pantalla.
 
-1. After scanning, click **Next** to proceed.
+6. Después de escanear, haz clic en **Next** para continuar.
 
-1. On your phone, enter the number shown on your computer screen in the Authenticator app and select **Next**.
-1. If prompted to stay signed in, you can click "No."
+7. En tu teléfono, ingresa el número que se muestra en la pantalla de tu computadora dentro de la aplicación Authenticator y selecciona **Next**.
 
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
+8. Si te preguntan si deseas mantener la sesión iniciada, puedes hacer clic en "No".
 
-## Support Contact
+9. Si aparece una ventana emergente de **Welcome to Microsoft Azure**, simplemente haz clic en "Maybe Later" para saltarte el recorrido.
 
-The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
+## Contacto de Soporte
 
-Learner Support Contacts:
+El equipo de soporte de CloudLabs está disponible 24/7, 365 días al año, vía correo electrónico y chat en vivo para garantizar asistencia continua en cualquier momento. Ofrecemos canales de soporte dedicados, diseñados específicamente para estudiantes e instructores, asegurando que todas tus necesidades sean atendidas de manera rápida y eficiente.
 
-- Email Support: [cloudlabs-support@spektrasystems.com](mailto:cloudlabs-support@spektrasystems.com)
-- Live Chat Support: https://cloudlabs.ai/labs-support
+Contactos de soporte para estudiantes:
 
-Click **Next** from the bottom right corner to embark on your Lab journey!
+- Soporte por correo electrónico: [cloudlabs-support@spektrasystems.com](mailto:cloudlabs-support@spektrasystems.com)
+- Soporte por chat en vivo: https://cloudlabs.ai/labs-support
+
+Haz clic en **Next** en la esquina inferior derecha para comenzar tu recorrido en el Lab.
 
 ![Start Your Azure Journey](./media/agg6.png)
 
-Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
+Ahora estás listo para explorar el poderoso mundo de la tecnología. No dudes en comunicarte si tienes alguna pregunta en el camino. ¡Disfruta tu taller!
