@@ -7,35 +7,35 @@
 在此挑戰中，你將建立一個多代理系統，該系統接收使用者的請求並透過一組各具特定角色與專長領域的代理來處理。各代理會獨立分析請求，並根據其責任範圍提供回應。最終輸出將是所有代理回應的綜合集合，協同回答使用者的問題，並反映每個角色獨特的觀點。
 
 
-## Challenge Objectives:
+## 挑戰目標：
 
-1. **Azure OpenAI Service Deployment:**
+1. **Azure OpenAI 服務部署：**
 
-    - Set up an Azure OpenAI Service instance with SKU size Standard `S0`.
+    - 建立一個 Azure OpenAI 服務實例，SKU 大小設定為 Standard `S0`。
 
-        > **Note:** Ensure the region is set to **East US**.
+        > **注意：** 請確保區域設定為 **East US**。
 
-    - Deploy it in resource group prefixed with `openaiagents`.
+    - 部署於名稱前綴為 `openaiagents` 的資源群組中。
 
-    - Obtain the Azure OpenAI Key and Endpoint. 
+    - 取得 Azure OpenAI 金鑰與端點（Endpoint）。
 
-1. **Deploy Azure OpenAI Models:**
-   
-    - Azure OpenAI provides a web-based portal named **Azure AI Foundry Portal** that you can use to deploy, manage, and explore models. You'll start your exploration of Azure OpenAI by using Azure AI Foundry to deploy a model.
-    
-    - Launch Azure AI Foundry Portal from the overview pane and deploy an Azure OpenAI Model, i.e., `gpt-4o`.
+2. **部署 Azure OpenAI 模型：**
 
-        >- **Note:** Make sure the deployments are named **gpt-4o**.
-        >- **Note:** Ensure the Deployment Type is set to **Global Standard** and use **2024-11-20** for the model version.
+    - Azure OpenAI 提供一個名為 **Azure AI Foundry Portal** 的網頁入口，供你部署、管理與探索模型。你將從使用 Azure AI Foundry 部署模型開始探索 Azure OpenAI。
 
-    - Fetch the **Deployment name** and the **API version** of the model.
+    - 從總覽面板啟動 Azure AI Foundry Portal，部署一個 Azure OpenAI 模型，例如 `gpt-4o`。
 
-        >- **Hint:** API version can be fetched from the Target URI.
+        >- **注意：** 確保部署名稱為 **gpt-4o**。
+        >- **注意：** 確保部署類型（Deployment Type）設定為 **Global Standard**，且模型版本使用 **2024-11-20**。
+
+    - 取得模型的 **部署名稱（Deployment name）** 與 **API 版本（API version）**。
+
+        >- **提示：** API 版本可從目標 URI 中擷取。
 
 
-## Task 1 - Azure AI Foundry Model Deployment & Environment Configuration
+## 任務 1 - Azure AI Foundry 模型部署與環境設定
 
-1. Update the `.env` file with the Azure AI Foundry deployment details:
+1. 更新 `.env` 檔案，填入 Azure AI Foundry 部署資訊：
 
     ```
     AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=Replace with your deployment name
@@ -44,129 +44,148 @@
     AZURE_OPENAI_API_VERSION=Replace with your API version
     ```
 
----
+## 任務 2 - 定義代理人角色並設定多代理人聊天
 
-## Task 2 - Define Agent Personas and Configure Multi-Agent Chat
+1. 打開 `multi_agent.py` 檔案。在此檔案中你將實作本挑戰所需的所有程式碼。
 
-1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
+2. 為三個代理人建立角色，並依照以下指示設定：
 
-1. Create personas for the three agents with the following instructions:
-
-    - **Business Analyst Persona**
+    - **業務分析師角色**
 
         ```
         You are a Business Analyst which will take the requirements from the user (also known as a 'customer') and create a project plan for creating the requested app. The Business Analyst understands the user requirements and creates detailed documents with requirements and costing. The documents should be usable by the SoftwareEngineer as a reference for implementing the required features, and by the Product Owner for reference to determine if the application delivered by the Software Engineer meets all of the user's requirements.
         ```
 
-    - **Software Engineer Persona**
+    - **軟體工程師 Persona**
 
         ```
         You are a Software Engineer, and your goal is create a web app using HTML and JavaScript by taking into consideration all the requirements given by the Business Analyst. The application should implement all the requested features. Deliver the code to the Product Owner for review when completed. You can also ask questions of the BusinessAnalyst to clarify any requirements that are unclear.
         ```
 
-    - **Product Owner Persona**
+    - **產品擁有者角色**
 
         ```
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-1. Create a `ChatCompletionAgent` for each of the above personas. Each agent should have:
-    - Instructions (the persona prompt)
-    - A unique Name (letters only, no spaces or special characters)
-    - A reference to a `Kernel` object
+1. 為上述三個角色各建立一個 `ChatCompletionAgent`。每個代理人應包含：
+    - 指示內容（即角色提示語）
+    - 唯一名稱（僅限英文字母，無空白或特殊字元）
+    - 指向一個 `Kernel` 物件的參考
 
-1. Create an `AgentGroupChat` object to tie together the three agents. Pass:
-    - An array of the three agents
-    - `ExecutionSettings` with a `TerminationStrategy` set to an instance of `ApprovalTerminationStrategy`
-1. Implement the `should_agent_terminate` method in the `ApprovalTerminationStrategy` class. The agents should terminate when the Users returns "APPROVED" in the chat history.
+2. 建立一個 `AgentGroupChat` 物件，將三個代理人串接起來。傳入：
+    - 三個代理人的陣列
+    - `ExecutionSettings`，其中 `TerminationStrategy` 設為 `ApprovalTerminationStrategy` 的實例
 
-## Task 3 - Triggering Git Push on User Approval
+3. 在 `ApprovalTerminationStrategy` 類別中實作 `should_agent_terminate` 方法。當使用者在聊天歷史中回傳 "APPROVED" 時，代理人應該終止運行。
 
-Add logic so that when the user sends "APPROVED" in the chat, a Bash script is triggered to push the code written by the Software Engineer agent to a Git repository.
 
-1. After implementing the `should_agent_terminate` method to detect "APPROVED", add a callback or post-processing step that executes when this condition is met.
-2. Extract the HTML code provided by the Software Engineer agent from the chat history.
-3. Save the extracted code to a file (e.g., `index.html`).
-4. Create a Bash script (e.g., `push_to_git.sh`) that stages, commits, and pushes the file to your desired Git repository:
-5. In your Python code, use the `subprocess` module to call this script when "APPROVED" is detected:
-6. Ensure your environment has the necessary Git credentials configured for non-interactive pushes.
+## 任務 3 - 使用者核准後觸發 Git 推送
 
-This automation ensures that once the Product Owner (or user) sends "APPROVED", the latest code is automatically pushed to your Git repository.
+加入邏輯，使當使用者在聊天中輸入 "APPROVED" 時，觸發一個 Bash 腳本，將軟體工程師代理人所撰寫的程式碼推送到 Git 儲存庫。
 
-## Task 4 - Run the Multi-Agent Conversation and Validate Workflow
+1. 在實作 `should_agent_terminate` 方法以偵測 "APPROVED" 後，新增一個回呼或後處理步驟，在條件達成時執行。
 
-1. Implement the code to send a user message to the agent group using `add_chat_message` on the `AgentGroupChat` object. The message should include:
-    - `AuthorRole.User` as the author
-    - The chat message contents from the user's input
+2. 從聊天歷史中擷取軟體工程師代理人提供的 HTML 程式碼。
 
-1. Iterate through the responses from the `AgentGroupChat` using an asynchronous loop, and print each message as it arrives:
+3. 將擷取出的程式碼保存至檔案（例如 `index.html`）。
+
+4. 建立一個 Bash 腳本（例如 `push_to_git.sh`），用以將檔案加入暫存區、提交並推送到指定的 Git 儲存庫：
+
+    ```bash
+    #!/bin/bash
+    git add index.html
+    git commit -m "Auto-commit: update from Software Engineer agent"
+    git push origin main
+    ```
+
+5. 在 Python 程式碼中，使用 `subprocess` 模組呼叫此腳本，當偵測到 "APPROVED" 時執行。
+
+6. 確保執行環境已配置必要的 Git 憑證，以支援非互動式推送。
+
+此自動化流程確保當產品負責人（或使用者）傳送 "APPROVED" 後，最新程式碼能自動推送至你的 Git 儲存庫。
+
+
+## 任務 4 - 執行多代理人對話並驗證工作流程
+
+1. 實作程式碼，使用 `AgentGroupChat` 物件的 `add_chat_message` 方法將使用者訊息傳送給代理人群組。訊息應包含：
+    - 作者角色為 `AuthorRole.User`
+    - 使用者輸入的聊天內容
+
+2. 使用非同步迴圈遍歷 `AgentGroupChat` 回應，並在每則訊息抵達時印出：
 
     ```python
     async for content in chat.invoke():
         print(f"# {content.role} - {content.name or '*'}: '{content.content}'")
     ```
 
-1. Run your application and provide a request to build a calculator app. Observe how the Business Analyst, Software Engineer, and Product Owner collaborate to plan, build, and approve the solution.
+3. 執行你的應用程式，並輸入一個建立計算機應用程式的請求。觀察商業分析師、軟體工程師與產品負責人如何協作規劃、開發並核准解決方案。
 
-## Task 5 - Deploy the app to Azure
-### Deploying the App to Azure Using Container Registry and Azure App Service
 
-To host your app online using Azure, follow these steps to containerize your application, push it to Azure Container Registry (ACR), and deploy it using Azure App Service:
+## 任務 5 - 部署應用程式到 Azure
 
-1. Open a terminal and sign in to the Azure Developer CLI using the following command:
+### 使用容器登錄與 Azure App Service 部署應用程式
+
+為了在線上託管你的應用程式，請依照以下步驟將應用程式容器化，推送至 Azure 容器登錄服務 (ACR)，並使用 Azure App Service 進行部署：
+
+1. 開啟終端機，使用以下指令登入 Azure Developer CLI：
 
     ```bash
     azd auth login
     ```
 
-1. Deploy the required resources to Azure by running:
+2. 執行以下指令以部署所需資源到 Azure：
 
     ```bash
     azd up
     ```
 
-1. When running the **azd up** command, you'll be asked to provide configuration details interactively. Provide the following values when prompted:
+1. 執行 **azd up** 指令時，系統會互動式要求你輸入設定值。請依提示提供以下資訊：
 
-   - **Unique Environment Name**: Enter **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)**.
-   - **Azure Subscription to use**: Choose the default subscription **(2)** that appears and press **Enter**.
-   - **Location Infrastructure Parameter**: Select **East US 2** **(3)** from the options and press **Enter**.
-   - **ResourceGroupName Infrastructure Parameter**: Type **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)** and press **Enter**.
-   - **Resource Group to use**: Select **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** from the options and press **Enter**.
+   - **唯一環境名稱**：輸入 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)**。
+   - **使用的 Azure 訂閱**：選擇預設訂閱 **(2)**，然後按下 **Enter**。
+   - **位置基礎設施參數**：從選項中選擇 **East US 2** **(3)**，然後按下 **Enter**。
+   - **資源群組名稱基礎設施參數**：輸入 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)**，然後按下 **Enter**。
+   - **使用的資源群組**：從選項中選擇 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)**，然後按下 **Enter**。
 
-1. Open the Azure portal and navigate to the resource group **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>**.
-2. Locate the deployed container app resource.
-3. Copy the endpoint URL of the container app.
-4. Access the web app by visiting this endpoint in your browser and verify that the application functions as expected.
+2. 開啟 Azure 入口網站，導覽至資源群組 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>**。
+3. 找到已部署的容器應用程式資源。
+4. 複製該容器應用程式的端點 URL。
+5. 在瀏覽器中開啟此端點，確認應用程式正常運作。
+
+
 ## Success Criteria
 
-- You have implemented the Multi-Agent Chat system that produces:
-    - Generation of complete source code in HTML and JavaScript for the requested application
-    - Thorough code review and approval process by User
-    - Automated deployment of the application to Azure
-    - Automated code push to a Git repository upon user approval
+- 你已成功實作多代理聊天系統，具備以下功能：
+    - 生成完整的 HTML 和 JavaScript 應用程式原始碼。
+    - 由使用者進行完整的程式碼審查與核准流程。
+    - 完成應用程式自動化部署至 Azure。
+    - 使用者核准後，自動將程式碼推送至 Git 儲存庫。
 
 ---
 
-## Bonus
+## 額外挑戰 (Bonus)
 
-- Copy the code from the chat history markdown into matching files on your file system.
-- Save HTML content as `index.html` and launch it in your web browser.
-- Test if the application functions as the AI described.
-- Enhance the app by asking the AI to make it responsive or add new features.
-- Experiment with modifying personas to improve results or functionality.
+- 將聊天歷史中的 Markdown 格式程式碼複製並存成對應的檔案。
+- 將 HTML 內容存為 `index.html`，並在瀏覽器中開啟測試。
+- 檢查應用程式是否如 AI 所描述般正常運作。
+- 向 AI 要求讓應用程式具備響應式設計或加入新功能，提升應用體驗。
+- 嘗試調整不同代理人的角色設定，以優化結果或增加功能性。
 
 ---
 
-## Learning Resources
+
+## 学习资源
 
 - [Agent Group Chat with Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-chat?pivots=programming-language-python)
 - [MetaGPT](https://github.com/geekan/MetaGPT)
 - [AutoGen Multi-Agent Conversational Framework](https://microsoft.github.io/autogen/docs/Use-Cases/agent_chat/)
 - [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
-- [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+- [管理你的个人访问令牌](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 ---
 
-## Conclusion
+## 结论
 
-This challenge demonstrated how to build and coordinate a Multi-Agent System using Azure AI Foundry and Semantic Kernel. By designing distinct personas for Business Analyst, Software Engineer, and Product Owner, and configuring a group chat environment with a termination strategy, you created a collaborative AI workflow capable of gathering requirements, developing code, and performing code reviews. The task structure allows for scalable, decentralized handling of complex problems using autonomous, interactive agents.
+本挑战展示了如何利用 Azure AI Foundry 和 Semantic Kernel 构建和协调多代理系统。通过为业务分析师、软件工程师和产品负责人设计不同的角色，并配置具备终止策略的群组聊天环境，你创建了一个协作式 AI 工作流程，能够收集需求、开发代码并执行代码审查。该任务结构允许使用自治且互动的代理，进行复杂问题的可扩展、去中心化处理。
+
