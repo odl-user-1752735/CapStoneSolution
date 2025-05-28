@@ -12,24 +12,20 @@
 
 このラボを修了すると、次のことができるようになります。
 
-- **Smart Escalation System for Conversational Support**: Set up and test an AI-powered escalation system using Azure OpenAI, Dapr, and Logic Apps to route unresolved queries from a chat interface to a human agent.
+- **マルチエージェント ビジネス ペルソナ ワークフロー**: ソフトウェア エンジニア、プロダクト オーナー、ユーザーの 3 つの異なるペルソナが関与するコラボレーション ワークフローを体験してください。ソフトウェア エンジニアがコードを記述して送信し、プロダクト オーナーが変更を確認して承認し、承認されると、ソリューションはデプロイとバージョン管理のために自動的に GitHub にプッシュされます。
 
 ## Prerequisites
 
-Participants should have:
+前提 条件
 
-- Basic understanding of Azure services such as Azure OpenAI, Cosmos DB, and Service Bus.
-- Familiarity with Dapr and the pub/sub messaging pattern.
-- Experience with deploying applications using Azure Developer CLI (AZD).
-- Knowledge of Logic Apps and workflow automation.
-- Exposure to conversational AI tools like Chainlit or similar frameworks.
-- Basic proficiency in working with APIs and cloud-based integrations.
+- Azure OpenAI などの Azure サービスとモデルに関する基本的な理解。
+- Azure Developer CLI (AZD) を使用したアプリケーションのデプロイの経験。
+- Streamlit や同様のフレームワークなどの会話型AIツールに触れる。
 
-## Explanation of Components
+## コンポーネントの説明
 
-- **Azure OpenAI**: A cloud-based platform for developing, deploying, and managing AI models. It allows users to configure AI projects, deploy Large Language Models (LLMs), and integrate embedding models to enhance AI applications.
+- **Azure OpenAI**: 高度な言語モデルへのアクセスを提供し、自然言語処理、コンテンツ生成、会話型 AI 機能を実現するクラウドベースのサービス。これにより、強力な AI 駆動型機能をアプリケーションに安全かつ大規模に統合できます。
 - **Azure Container Apps**: インフラストラクチャを管理せずに、マイクロサービスとコンテナー化されたアプリケーションをデプロイおよびスケーリングできるサーバーレス コンテナー ホスティング サービス。
-- **Azure Logic Apps**: 事前構築済みのコネクタとトリガーを使用してアプリ、データ、サービスを統合できるクラウドベースのワークフロー自動化サービス。
 
 
 ## ラボの使用を開始する
