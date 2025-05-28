@@ -1,10 +1,10 @@
-# Challenge - Multi-Agent Systems
+# 挑戰 - 多代理系統
 
-## Introduction
+## 介紹
 
-Multi-Agent Systems (MAS) consist of multiple autonomous agents, each with distinct goals, behaviors, and areas of responsibility. These agents operate independently, making decisions based on their local knowledge and environment. However, they can also communicate and share information with one another, either cooperating or competing depending on their objectives. MAS is typically used in scenarios where tasks are distributed across multiple entities and the system benefits from decentralization. Common applications include traffic management, robotic teams, distributed AI, and networked systems where coordination is required without relying on a central controller.
+多代理系統（Multi-Agent Systems，簡稱 MAS）由多個自主代理組成，每個代理都有不同的目標、行為和責任範圍。這些代理能獨立運作，根據自身的本地知識與環境做出決策。然而，它們也能彼此溝通與分享資訊，根據各自的目標進行合作或競爭。MAS 通常用於任務分散在多個實體，且系統透過去中心化運作能獲得效益的場景。常見應用包含交通管理、機器人團隊、分散式 AI 以及需要協調但不依賴中央控制器的網路系統。
 
-In this challenge, you will create a Multi-Agent System that accepts a user’s request and processes it through a collection of agents, each designed with a specific persona and area of expertise. The agents will individually analyze the request and contribute their responses based on their defined responsibilities. The final output will be a consolidated collection of answers from all agents, collaboratively addressing the user’s query in a way that reflects the unique perspective of each persona.
+在此挑戰中，你將建立一個多代理系統，該系統接收使用者的請求並透過一組各具特定角色與專長領域的代理來處理。各代理會獨立分析請求，並根據其責任範圍提供回應。最終輸出將是所有代理回應的綜合集合，協同回答使用者的問題，並反映每個角色獨特的觀點。
 
 
 ## Challenge Objectives:
