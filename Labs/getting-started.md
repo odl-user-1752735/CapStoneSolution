@@ -24,118 +24,107 @@
 - 接触过对话式 AI 工具，如 Streamlit 或类似框架。
 
 
-## Explanation of Components
+## 组件说明
 
-- **Azure OpenAI**: A cloud-based service that provides access to advanced language models, enabling natural language processing, content generation, and conversational AI capabilities. It allows you to integrate powerful AI-driven features into your applications securely and at scale.
-- **Azure Container Apps**: A serverless container hosting service that allows you to deploy and scale microservices and containerized applications without managing infrastructure.
+- **Azure OpenAI**：基于云的服务，提供高级语言模型访问，支持自然语言处理、内容生成和对话式 AI 功能。它使你能够将强大的 AI 驱动功能安全且可扩展地集成到应用程序中。
+- **Azure Container Apps**：无服务器容器托管服务，允许你部署和扩展微服务及容器化应用程序，而无需管理基础设施。
 
-## Getting Started with the lab
+## 实验入门
 
-Welcome to your Azure Agentic AI Workshop, Let's begin by making the most of this experience:
+欢迎参加你的 Azure Agentic AI Workshop，让我们充分利用这次体验，开始吧：
 
-## Accessing Your Lab Environment
+## 访问你的实验环境
 
-Once you're ready to dive in, your virtual machine and **lab guide** will be right at your fingertips within your web browser.
+当你准备好开始时，你的虚拟机和 **lab guide** 将通过网页浏览器随时可用。
 
-![Access Your VM and Lab Guide](./media/agg1.png)
+![访问你的虚拟机和实验指南](./media/agg1.png)
 
-## Lab Guide Zoom In/Zoom Out
+## 实验指南缩放
 
-To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+要调整环境页面的缩放级别，请点击实验环境中计时器旁边的 **A↕ : 100%** 图标。
 
 ![](./media/agg2.png)
 
-## Virtual Machine & Lab Guide
+## 虚拟机与实验指南
 
-Your virtual machine is your workhorse throughout the workshop. The lab guide is your roadmap to success.
+你的虚拟机将是整个 workshop 中的工作平台，而实验指南则是你成功的路线图。
 
-## Exploring Your Lab Resources
+## 查看你的实验资源
 
-To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
+为了更好地了解实验资源和凭据，导航到 **Environment** 选项卡。
 
-![Explore Lab Resources](./media/agg3.png)
+![查看实验资源](./media/agg3.png)
 
-## Utilizing the Split Window Feature
+## 使用分屏窗口功能
 
-For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
+为了方便起见，你可以通过点击右上角的 **Split Window** 按钮，将实验指南在单独窗口中打开。
 
-![Use the Split Window Feature](./media/agg4.png)
+![使用分屏窗口功能](./media/agg4.png)
 
-## Managing Your Virtual Machine
 
-Feel free to **start, stop, or restart (2)** your virtual machine as needed from the **Resources (1)** tab. Your experience is in your hands!
+## 管理你的虚拟机
 
-![Manage Your Virtual Machine](./media/agg5.png)
+你可以根据需要，在 **Resources (1)** 选项卡中**启动、停止或重启 (2)** 虚拟机。整个体验由你掌控！
 
-<!-- ## Lab Duration Extension
+![管理你的虚拟机](./media/agg5.png)
 
-1. To extend the duration of the lab, kindly click the **Hourglass** icon in the top right corner of the lab environment.
+> **注意：** 请确保在访问环境后脚本持续运行，且未被终止。
 
-    ![Manage Your Virtual Machine](./media/media/gext.png)
 
-    >**Note:** You will get the **Hourglass** icon when 10 minutes are remaining in the lab.
+## 开始使用 Azure 门户
 
-2. Click **OK** to extend your lab duration.
+1. 在你的虚拟机上，点击 Azure Portal 图标。  
+2. 你会看到 **Sign into Microsoft Azure** 标签。在这里输入你的凭据：
 
-   ![Manage Your Virtual Machine](./media/media/gext2.png)
+   - **电子邮件/用户名：** <inject key="AzureAdUserEmail"></inject>
 
-3. If you have not extended the duration prior to when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed. -->
+     ![输入你的用户名](./media/gt-5.png)
 
-> **Note:** Please ensure the script continues to run and is not terminated after accessing the environment.
+3. 接下来，输入你的密码：
 
-## Let's Get Started with Azure Portal
+   - **密码：** <inject key="AzureAdUserPassword"></inject>
 
-1. On your virtual machine, click on the Azure Portal icon.
-2. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
+     ![输入你的密码](./media/gt-4.png)
 
-   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
+4. 如果出现 **Action required** 弹窗，点击 **Ask later**。  
+5. 如果提示是否 **stay signed in**，你可以点击 **No**。  
+6. 如果出现 **Welcome to Microsoft Azure** 弹窗，直接点击 **"Cancel"** 跳过介绍。
 
-     ![Enter Your Username](./media/gt-5.png)
+## 如果没有看到“稍后提醒”选项，进行 MFA 设置的步骤
 
-3. Next, provide your password:
+1. 在 **"需要更多信息"** 提示时，选择 **Next**。
 
-   - **Password:** <inject key="AzureAdUserPassword"></inject>
+2. 在 **"保护你的账户安全"** 页面上，连续选择两次 **Next**。
 
-     ![Enter Your Password](./media/gt-4.png)
+3. **注意：** 如果你的手机上没有安装 Microsoft Authenticator 应用：
 
-4. If **Action required** pop-up window appears, click on **Ask later**.
-5. If prompted to **stay signed in**, you can click **No**.
-6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **"Cancel"** to skip the tour.
+   - 打开 **Google Play 商店**（Android）或 **App Store**（iOS）。  
+   - 搜索 **Microsoft Authenticator** 并点击 **安装**。  
+   - 打开 **Microsoft Authenticator** 应用，选择 **添加账户**，然后选择 **工作或学校账户**。
 
-## Steps to Proceed with MFA Setup if "Ask Later" Option is Not Visible
+4. 电脑屏幕上会显示一个 **二维码**。
 
-1. At the **"More information required"** prompt, select **Next**.
+5. 在 Authenticator 应用中，选择 **扫描二维码** 并扫描屏幕上的二维码。
 
-1. On the **"Keep your account secure"** page, select **Next** twice.
+6. 扫描完成后，点击 **Next** 继续。
 
-1. **Note:** If you don’t have the Microsoft Authenticator app installed on your mobile device:
+7. 在手机上，在 Authenticator 应用中输入电脑屏幕显示的数字，然后选择 **Next**。  
+8. 如果提示是否保持登录状态，可以点击 **No**。
 
-   - Open **Google Play Store** (Android) or **App Store** (iOS).
-   - Search for **Microsoft Authenticator** and tap **Install**.
-   - Open the **Microsoft Authenticator** app, select **Add account**, then choose **Work or school account**.
+9. 如果出现 **Welcome to Microsoft Azure** 弹窗，点击 **Maybe Later** 跳过介绍。
 
-1. A **QR code** will be displayed on your computer screen.
 
-1. In the Authenticator app, select **Scan a QR code** and scan the code displayed on your screen.
+## 支持联系方式
 
-1. After scanning, click **Next** to proceed.
+CloudLabs 支持团队全年无休 24/7 全天候通过电子邮件和实时聊天为你提供无缝帮助。我们为学习者和讲师分别设立了专门的支持渠道，确保你的所有需求都能得到及时高效的处理。
 
-1. On your phone, enter the number shown on your computer screen in the Authenticator app and select **Next**.
-1. If prompted to stay signed in, you can click "No."
+学习者支持联系方式：
 
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
+- 邮件支持：[cloudlabs-support@spektrasystems.com](mailto:cloudlabs-support@spektrasystems.com)  
+- 实时聊天支持：https://cloudlabs.ai/labs-support
 
-## Support Contact
+点击右下角的 **Next**，开启你的实验之旅！
 
-The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
+![开始你的 Azure 之旅](./media/agg6.png)
 
-Learner Support Contacts:
-
-- Email Support: [cloudlabs-support@spektrasystems.com](mailto:cloudlabs-support@spektrasystems.com)
-- Live Chat Support: https://cloudlabs.ai/labs-support
-
-Click **Next** from the bottom right corner to embark on your Lab journey!
-
-![Start Your Azure Journey](./media/agg6.png)
-
-Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
+现在你已经准备好探索强大的技术世界。如果过程中有任何疑问，随时联系我们。祝你工作坊愉快！
