@@ -1,38 +1,33 @@
-# Challenge Lab
+# 挑战实验
 
-# Capstone Project 
+# 毕业项目
 
-### Overall Estimated Duration: 4 Hours
+### 总预计时长：4小时
 
-## Overview
+## 概述
 
-In this challenge, you will work with a Chainlit-based conversational application that utilizes Dapr’s publish-subscribe (pub/sub) messaging model to orchestrate customer service escalations through intelligent AI agents. The solution seamlessly integrates several Azure services—including Azure OpenAI for natural language processing, Cosmos DB for data persistence, and Azure Service Bus for reliable messaging. When AI agents reach their resolution limits, the system intelligently escalates the case to a human support agent by triggering a Logic Apps workflow that sends an approval request via email. This hands-on lab offers valuable insight into how AI-driven conversational interfaces, event-driven architecture, and workflow automation can be combined to create responsive, scalable, and human-aware customer support systems.
+在本次挑战中，你将使用基于 Chainlit 的对话应用程序，该应用程序利用 Dapr 的发布-订阅（pub/sub）消息模型，通过智能 AI 代理协调客户服务升级。该解决方案无缝集成了多个 Azure 服务——包括用于自然语言处理的 Azure OpenAI、用于数据持久化的 Cosmos DB，以及用于可靠消息传递的 Azure Service Bus。当 AI 代理达到解决上限时，系统会智能地将案例升级到人工支持代理，通过触发一个 Logic Apps 工作流，发送电子邮件审批请求。本动手实验将为你提供宝贵的见解，了解如何将 AI 驱动的对话界面、事件驱动架构和工作流自动化相结合，构建响应迅速、可扩展且具备人性化感知的客户支持系统。
 
-## Objective 
 
-By the end of this lab, you will be able to:
+## 目标
 
-- **Smart Escalation System for Conversational Support**: Set up and test an AI-powered escalation system using Azure OpenAI, Dapr, and Logic Apps to route unresolved queries from a chat interface to a human agent.
+在本实验结束时，你将能够：
 
-## Prerequisites
+- **多代理业务角色工作流**：体验涉及三种不同角色的协作工作流——Software Engineer、Product Owner 和 User。Software Engineer 编写并提交代码，Product Owner 审核并批准更改，批准后，解决方案将自动推送到 GitHub 进行部署和版本控制。
 
-Participants should have:
+## 前提条件
 
-- Basic understanding of Azure services such as Azure OpenAI, Cosmos DB, and Service Bus.
-- Familiarity with Dapr and the pub/sub messaging pattern.
-- Experience with deploying applications using Azure Developer CLI (AZD).
-- Knowledge of Logic Apps and workflow automation.
-- Exposure to conversational AI tools like Chainlit or similar frameworks.
-- Basic proficiency in working with APIs and cloud-based integrations.
+参与者应具备：
+
+- 对 Azure 服务（如 Azure OpenAI 和模型）的基本了解。
+- 使用 Azure Developer CLI (AZD) 部署应用程序的经验。
+- 接触过对话式 AI 工具，如 Streamlit 或类似框架。
+
 
 ## Explanation of Components
 
-- **Azure AI Foundry**: A cloud-based platform for developing, deploying, and managing AI models. It allows users to configure AI projects, deploy Large Language Models (LLMs), and integrate embedding models to enhance AI applications.
-- **Azure Cosmos DB**: A globally distributed, multi-model NoSQL database service designed for high availability, low latency, and scalability.
-- **Azure Service Bus**: A fully managed message broker that enables reliable communication between distributed applications using queues and topics.
+- **Azure OpenAI**: A cloud-based service that provides access to advanced language models, enabling natural language processing, content generation, and conversational AI capabilities. It allows you to integrate powerful AI-driven features into your applications securely and at scale.
 - **Azure Container Apps**: A serverless container hosting service that allows you to deploy and scale microservices and containerized applications without managing infrastructure.
-- **Azure Logic Apps**: A cloud-based workflow automation service that enables you to integrate apps, data, and services using prebuilt connectors and triggers.
-
 
 ## Getting Started with the lab
 
