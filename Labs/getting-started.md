@@ -1,3 +1,4 @@
+
 # Challenge Lab
 
 # Capstone Project 
@@ -12,27 +13,20 @@ In this challenge, you will work with a Chainlit-based conversational applicatio
 
 By the end of this lab, you will be able to:
 
-- **Smart Escalation System for Conversational Support**: Set up and test an AI-powered escalation system using Azure OpenAI, Dapr, and Logic Apps to route unresolved queries from a chat interface to a human agent.
+- **Multi-Agent Business Persona Workflow**: Experience a collaborative workflow involving three distinct personas—Software Engineer, Product Owner, and User. The Software Engineer writes and submits code, the Product Owner reviews and approves the changes, and upon approval, the solution is automatically pushed to GitHub for deployment and version control.
 
 ## Prerequisites
 
 Participants should have:
 
-- Basic understanding of Azure services such as Azure OpenAI, Cosmos DB, and Service Bus.
-- Familiarity with Dapr and the pub/sub messaging pattern.
+- Basic understanding of Azure services such as Azure OpenAI, and models.
 - Experience with deploying applications using Azure Developer CLI (AZD).
-- Knowledge of Logic Apps and workflow automation.
-- Exposure to conversational AI tools like Chainlit or similar frameworks.
-- Basic proficiency in working with APIs and cloud-based integrations.
+- Exposure to conversational AI tools like Streamlit or similar frameworks.
 
 ## Explanation of Components
 
-- **Azure AI Foundry**: A cloud-based platform for developing, deploying, and managing AI models. It allows users to configure AI projects, deploy Large Language Models (LLMs), and integrate embedding models to enhance AI applications.
-- **Azure Cosmos DB**: A globally distributed, multi-model NoSQL database service designed for high availability, low latency, and scalability.
-- **Azure Service Bus**: A fully managed message broker that enables reliable communication between distributed applications using queues and topics.
+- **Azure OpenAI**: A cloud-based service that provides access to advanced language models, enabling natural language processing, content generation, and conversational AI capabilities. It allows you to integrate powerful AI-driven features into your applications securely and at scale.
 - **Azure Container Apps**: A serverless container hosting service that allows you to deploy and scale microservices and containerized applications without managing infrastructure.
-- **Azure Logic Apps**: A cloud-based workflow automation service that enables you to integrate apps, data, and services using prebuilt connectors and triggers.
-
 
 ## Getting Started with the lab
 
@@ -40,9 +34,9 @@ Welcome to your Azure Agentic AI Workshop, Let's begin by making the most of thi
 
 ## Accessing Your Lab Environment
 
-Once you're ready to dive in, your virtual machine and **lab guide** will be right at your fingertips within your web browser.
+Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
 
-![Access Your VM and Lab Guide](./media/agg1.png)
+![Access Your VM and Lab Guide](./media/VmImage.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
