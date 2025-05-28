@@ -1,16 +1,16 @@
-# Challenge Lab
+# チャレンジラボ
 
-# Capstone Project 
+# キャップストーンプロジェクト
 
-### Overall Estimated Duration: 4 Hours
+### 全体の推定所要時間: 4 時間
 
-## Overview
+## 概要
 
-In this challenge, you will work with a Chainlit-based conversational application that utilizes Dapr’s publish-subscribe (pub/sub) messaging model to orchestrate customer service escalations through intelligent AI agents. The solution seamlessly integrates several Azure services—including Azure OpenAI for natural language processing, Cosmos DB for data persistence, and Azure Service Bus for reliable messaging. When AI agents reach their resolution limits, the system intelligently escalates the case to a human support agent by triggering a Logic Apps workflow that sends an approval request via email. This hands-on lab offers valuable insight into how AI-driven conversational interfaces, event-driven architecture, and workflow automation can be combined to create responsive, scalable, and human-aware customer support systems.
+この課題では、Dapr のパブリッシュ/サブスクライブ (pub/sub) メッセージング モデルを利用する Chainlit ベースの会話型アプリケーションを使用して、インテリジェントな AI エージェントを通じてカスタマー サービスのエスカレーションを調整します。このソリューションは、自然言語処理のための Azure OpenAI、データ永続化のための Cosmos DB、信頼性の高いメッセージングのための Azure Service Bus など、いくつかの Azure サービスをシームレスに統合します。AI エージェントが解決限界に達すると、システムは、承認要求を電子メールで送信する Logic Apps ワークフローをトリガーすることで、ケースを人間のサポート エージェントにインテリジェントにエスカレーションします。このハンズオン ラボでは、AI 主導の会話型インターフェイス、イベント駆動型アーキテクチャ、ワークフローの自動化を組み合わせて、応答性が高く、スケーラブルで、人間を意識したカスタマー サポート システムを作成する方法について、貴重な洞察を得ることができます。
 
-## Objective 
+## 目的
 
-By the end of this lab, you will be able to:
+このラボを修了すると、次のことができるようになります。
 
 - **Smart Escalation System for Conversational Support**: Set up and test an AI-powered escalation system using Azure OpenAI, Dapr, and Logic Apps to route unresolved queries from a chat interface to a human agent.
 
@@ -27,49 +27,46 @@ Participants should have:
 
 ## Explanation of Components
 
-- **Azure AI Foundry**: A cloud-based platform for developing, deploying, and managing AI models. It allows users to configure AI projects, deploy Large Language Models (LLMs), and integrate embedding models to enhance AI applications.
-- **Azure Cosmos DB**: A globally distributed, multi-model NoSQL database service designed for high availability, low latency, and scalability.
-- **Azure Service Bus**: A fully managed message broker that enables reliable communication between distributed applications using queues and topics.
-- **Azure Container Apps**: A serverless container hosting service that allows you to deploy and scale microservices and containerized applications without managing infrastructure.
-- **Azure Logic Apps**: A cloud-based workflow automation service that enables you to integrate apps, data, and services using prebuilt connectors and triggers.
+- **Azure OpenAI**: A cloud-based platform for developing, deploying, and managing AI models. It allows users to configure AI projects, deploy Large Language Models (LLMs), and integrate embedding models to enhance AI applications.
+- **Azure Container Apps**: インフラストラクチャを管理せずに、マイクロサービスとコンテナー化されたアプリケーションをデプロイおよびスケーリングできるサーバーレス コンテナー ホスティング サービス。
+- **Azure Logic Apps**: 事前構築済みのコネクタとトリガーを使用してアプリ、データ、サービスを統合できるクラウドベースのワークフロー自動化サービス。
 
 
-## Getting Started with the lab
+## ラボの使用を開始する
 
-Welcome to your Azure Agentic AI Workshop, Let's begin by making the most of this experience:
+Azure Agentic AI ワークショップへようこそ、このエクスペリエンスを最大限に活用することから始めましょう。
 
-## Accessing Your Lab Environment
+## ラボ環境へのアクセス
 
-Once you're ready to dive in, your virtual machine and **lab guide** will be right at your fingertips within your web browser.
+すぐにプレイする準備ができたら、仮想マシンとラボガイドがWebブラウザ内ですぐに利用できます。
 
 ![Access Your VM and Lab Guide](./media/agg1.png)
 
-## Lab Guide Zoom In/Zoom Out
+## ラボガイドズームイン/ズームアウト
 
-To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+環境ページのズーム レベルを調整するには、ラボ環境のタイマーの横にある [A↕: 100%] アイコンをクリックします。
 
 ![](./media/agg2.png)
 
-## Virtual Machine & Lab Guide
+## 仮想マシンとラボ ガイド
 
-Your virtual machine is your workhorse throughout the workshop. The lab guide is your roadmap to success.
+仮想マシンは、ワークショップ全体を通してあなたの主力製品です。ラボガイドは、成功へのロードマップです。
 
-## Exploring Your Lab Resources
+## ラボのリソースを探索する
 
-To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
+ラボのリソースと資格情報について理解を深めるには、[環境] タブに移動します
 
 ![Explore Lab Resources](./media/agg3.png)
 
-## Utilizing the Split Window Feature
+## 分割ウィンドウ機能の利用
 
-For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
+便宜上、右上隅の[ウィンドウの分割]ボタンを選択して、ラボガイドを別のウィンドウで開くことができます。
 
 ![Use the Split Window Feature](./media/agg4.png)
 
-## Managing Your Virtual Machine
+## 仮想マシンの管理
 
-Feel free to **start, stop, or restart (2)** your virtual machine as needed from the **Resources (1)** tab. Your experience is in your hands!
-
+必要に応じて、[リソース] (1) タブから、仮想マシンを自由に開始、停止、または再起動 (2) してください。あなたの経験はあなたの手の中にあります!
 ![Manage Your Virtual Machine](./media/agg5.png)
 
 <!-- ## Lab Duration Extension
@@ -86,61 +83,61 @@ Feel free to **start, stop, or restart (2)** your virtual machine as needed from
 
 3. If you have not extended the duration prior to when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed. -->
 
-> **Note:** Please ensure the script continues to run and is not terminated after accessing the environment.
+> **手記:** スクリプトが引き続き実行され、環境にアクセスした後に終了しないことを確認してください。
 
-## Let's Get Started with Azure Portal
+## Azure Portal の使用を開始しましょう
 
-1. On your virtual machine, click on the Azure Portal icon.
-2. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
+1. 仮想マシンで、Azure ポータル アイコンをクリックします。
+2. [Microsoft Azure にサインイン] タブが表示されます。ここで、資格情報を入力します。
 
-   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
+   - **メールアドレス/ユーザー名:** <inject key="AzureAdUserEmail"></inject>
 
      ![Enter Your Username](./media/gt-5.png)
 
-3. Next, provide your password:
+3. 次に、パスワードを入力します。
 
-   - **Password:** <inject key="AzureAdUserPassword"></inject>
+   - **パスワード：** <inject key="AzureAdUserPassword"></inject>
 
      ![Enter Your Password](./media/gt-4.png)
 
-4. If **Action required** pop-up window appears, click on **Ask later**.
-5. If prompted to **stay signed in**, you can click **No**.
-6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **"Cancel"** to skip the tour.
+4. `Action required` ポップアップウィンドウが表示されたら、「Ask later」をクリックします。
+5. サインインしたままにするように求められた場合は、[いいえ] をクリックできます。
+6. `Microsoft Azureへようこそ` ポップアップウィンドウが表示された場合は、`キャンセル`をクリックしてツアーをスキップしてください。
 
-## Steps to Proceed with MFA Setup if "Ask Later" Option is Not Visible
+## `後で確認` オプションが表示されない場合にMFA設定を続行する手順
 
-1. At the **"More information required"** prompt, select **Next**.
+1. `詳細情報が必要` プロンプトで、「次へ」を選択します。
 
-1. On the **"Keep your account secure"** page, select **Next** twice.
+1. [アカウントを安全に保つ] ページで、[次へ] を 2 回選択します。
 
-1. **Note:** If you don’t have the Microsoft Authenticator app installed on your mobile device:
+1. **手記**：Microsoft Authenticator アプリがモバイル デバイスにインストールされていない場合:
 
-   - Open **Google Play Store** (Android) or **App Store** (iOS).
-   - Search for **Microsoft Authenticator** and tap **Install**.
-   - Open the **Microsoft Authenticator** app, select **Add account**, then choose **Work or school account**.
+   - Google Play ストア (Android) または App Store (iOS) を開きます。
+   - Microsoft Authenticator を検索し、[インストール] をタップします。
+   - Microsoft Authenticator アプリを開き、[アカウントの追加] を選択し、[職場または学校アカウント] を選択します。
 
-1. A **QR code** will be displayed on your computer screen.
+1. パソコンの画面にQRコードが表示されます。
 
-1. In the Authenticator app, select **Scan a QR code** and scan the code displayed on your screen.
+1. `Authenticator` アプリで、[QRコードをスキャン]を選択し、画面に表示されているコードをスキャンします。
 
-1. After scanning, click **Next** to proceed.
+1. スキャン後、[次へ]をクリックして続行します。
 
-1. On your phone, enter the number shown on your computer screen in the Authenticator app and select **Next**.
-1. If prompted to stay signed in, you can click "No."
+1. 電話で、Authenticatorアプリのコンピューター画面に表示されている番号を入力し、[次へ]を選択します。
+1. サインインしたままにするように求められたら、「いいえ」をクリックできます。
 
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
+1. `Microsoft Azure` へようこそ」ポップアップウィンドウが表示された場合は、`Maybe Later`をクリックしてツアーをスキップしてください。
 
 ## Support Contact
 
-The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
+CloudLabsのサポートチームは、24時間365日、電子メールとライブチャットで対応しており、いつでもシームレスな支援を保証します。私たちは、学習者とインストラクターの両方に特化した専用のサポートチャネルを提供し、すべてのニーズに迅速かつ効率的に対応できるようにします。
 
-Learner Support Contacts:
+学習者サポートの連絡先:
 
-- Email Support: [cloudlabs-support@spektrasystems.com](mailto:cloudlabs-support@spektrasystems.com)
-- Live Chat Support: https://cloudlabs.ai/labs-support
+- メールサポート: [cloudlabs-support@spektrasystems.com](mailto:cloudlabs-support@spektrasystems.com)
+- ライブチャットサポート: https://cloudlabs.ai/labs-support
 
-Click **Next** from the bottom right corner to embark on your Lab journey!
+右下の「次へ」をクリックして、ラボの旅に出かけましょう。
 
 ![Start Your Azure Journey](./media/agg6.png)
 
-Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
+これで、強力なテクノロジーの世界を探索する準備が整いました。途中で質問がある場合は、お気軽にお問い合わせください。ワークショップをお楽しみください!
