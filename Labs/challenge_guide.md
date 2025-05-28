@@ -1,163 +1,166 @@
-# Challenge - Multi-Agent Systems
+# 도전과제 - 다중 에이전트 시스템
 
-## Introduction
+## 소개
 
-Multi-Agent Systems (MAS) consist of multiple autonomous agents, each with distinct goals, behaviors, and areas of responsibility. These agents operate independently, making decisions based on their local knowledge and environment. However, they can also communicate and share information with one another, either cooperating or competing depending on their objectives. MAS is typically used in scenarios where tasks are distributed across multiple entities and the system benefits from decentralization. Common applications include traffic management, robotic teams, distributed AI, and networked systems where coordination is required without relying on a central controller.
+MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 가진 여러 자율 에이전트로 구성됩니다. 이러한 에이전트는 독립적으로 운영되며 현지 지식과 환경에 따라 결정을 내립니다. 그러나 그들은 또한 목표에 따라 협력하거나 경쟁하면서 서로 소통하고 정보를 공유할 수 있습니다. MAS는 일반적으로 작업이 여러 엔터티에 분산되어 있고 시스템이 분산화의 이점을 누리는 시나리오에서 사용됩니다. 일반적인 애플리케이션에는 교통 관리, 로봇 팀, 분산된 AI 및 중앙 컨트롤러에 의존하지 않고 조정이 필요한 네트워크 시스템이 포함됩니다.
 
-In this challenge, you will create a Multi-Agent System that accepts a user’s request and processes it through a collection of agents, each designed with a specific persona and area of expertise. The agents will individually analyze the request and contribute their responses based on their defined responsibilities. The final output will be a consolidated collection of answers from all agents, collaboratively addressing the user’s query in a way that reflects the unique perspective of each persona.
+이 챌린지에서는 사용자의 요청을 수락하고 각각 특정 페르소나와 전문 분야로 설계된 에이전트 컬렉션을 통해 처리하는 다중 에이전트 시스템을 만듭니다. 상담원은 개별적으로 요청을 분석하고 정의된 책임에 따라 응답을 제공합니다. 최종 출력은 모든 상담원의 답변을 통합한 모음으로, 각 페르소나의 고유한 관점을 반영하는 방식으로 사용자의 쿼리를 공동으로 해결합니다.
 
 
-## Challenge Objectives:
+## 챌린지 목표:
 
-1. **Azure OpenAI Service Deployment:**
+1. **Azure OpenAI 서비스 배포:**
 
-    - Set up an Azure OpenAI Service instance with SKU size Standard `S0`.
+    - SKU 크기 **Standard S0**로 Azure OpenAI 서비스 인스턴스를 설정하세요.
 
-        > **Note:** Ensure the region is set to **East US**.
+        > **참고:** 지역은 반드시 **East US**로 설정하세요.
 
-    - Deploy it in resource group prefixed with `openaiagents`.
+    - `openaiagents` 접두사가 붙은 리소스 그룹에 배포하세요.
 
-    - Obtain the Azure OpenAI Key and Endpoint. 
+    - Azure OpenAI 키와 엔드포인트를 가져오세요.
 
-1. **Deploy Azure OpenAI Models:**
+1. **Azure OpenAI 모델 배포:**
    
-    - Azure OpenAI provides a web-based portal named **Azure AI Foundry Portal** that you can use to deploy, manage, and explore models. You'll start your exploration of Azure OpenAI by using Azure AI Foundry to deploy a model.
+    - Azure OpenAI에서는 **Azure AI Foundry 포털**이라는 웹 기반 포털을 제공하여 모델을 배포, 관리, 탐색할 수 있습니다. Azure AI Foundry를 사용하여 모델을 배포하는 것으로 시작하세요.
     
-    - Launch Azure AI Foundry Portal from the overview pane and deploy an Azure OpenAI Model, i.e., `gpt-4o`.
+    - 개요 창에서 Azure AI Foundry 포털을 실행하고, `gpt-4o` 모델을 배포하세요.
 
-        >- **Note:** Make sure the deployments are named **gpt-4o**.
-        >- **Note:** Ensure the Deployment Type is set to **Global Standard** and use **2024-11-20** for the model version.
+        >- **참고:** 배포 이름은 반드시 **gpt-4o**로 지정하세요.
+        >- **참고:** 배포 유형은 **Global Standard**로 설정하고, 모델 버전은 **2024-11-20**을 사용하세요.
 
-    - Fetch the **Deployment name** and the **API version** of the model.
+    - **배포 이름**과 **API 버전**을 가져오세요.
 
-        >- **Hint:** API version can be fetched from the Target URI.
+        >- **힌트:** API 버전은 Target URI에서 확인할 수 있습니다.
 
 
-## Task 1 - Azure AI Foundry Model Deployment & Environment Configuration
+## Task 1 - Azure AI Foundry 모델 배포 및 환경 구성
 
-1. Update the `.env` file with the Azure AI Foundry deployment details:
+1. Azure AI Foundry 배포 정보를 사용하여 `.env` 파일을 다음과 같이 업데이트하세요:
 
     ```
-    AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=Replace with your deployment name
-    AZURE_OPENAI_ENDPOINT=Replace with your endpoint URL
-    AZURE_OPENAI_API_KEY=Replace with your API key
-    AZURE_OPENAI_API_VERSION=Replace with your API version
+    AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=본인의 배포 이름으로 교체
+    AZURE_OPENAI_ENDPOINT=엔드포인트 URL로 교체
+    AZURE_OPENAI_API_KEY=API 키로 교체
+    AZURE_OPENAI_API_VERSION=API 버전으로 교체
     ```
 
----
 
-## Task 2 - Define Agent Personas and Configure Multi-Agent Chat
+## 작업 2 - 에이전트 페르소나 정의 및 다중 에이전트 채팅 구성
 
-1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
+1. `multi_agent.py` 파일을 엽니다. 이 파일에서 이번 과제에 필요한 모든 코드를 구현하게 됩니다.
 
-1. Create personas for the three agents with the following instructions:
+1. 다음 지침에 따라 세 명의 에이전트에 대한 페르소나를 생성합니다:
 
-    - **Business Analyst Persona**
+    - **Business Analyst 페르소나**
 
         ```
         You are a Business Analyst which will take the requirements from the user (also known as a 'customer') and create a project plan for creating the requested app. The Business Analyst understands the user requirements and creates detailed documents with requirements and costing. The documents should be usable by the SoftwareEngineer as a reference for implementing the required features, and by the Product Owner for reference to determine if the application delivered by the Software Engineer meets all of the user's requirements.
         ```
 
-    - **Software Engineer Persona**
+    - **소프트웨어 엔지니어 페르소나**
 
         ```
         You are a Software Engineer, and your goal is create a web app using HTML and JavaScript by taking into consideration all the requirements given by the Business Analyst. The application should implement all the requested features. Deliver the code to the Product Owner for review when completed. You can also ask questions of the BusinessAnalyst to clarify any requirements that are unclear.
         ```
 
-    - **Product Owner Persona**
+    - **제품 소유자 페르소나**
 
         ```
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-1. Create a `ChatCompletionAgent` for each of the above personas. Each agent should have:
-    - Instructions (the persona prompt)
-    - A unique Name (letters only, no spaces or special characters)
-    - A reference to a `Kernel` object
+1. 위에서 정의한 각 페르소나에 대해 `ChatCompletionAgent`를 생성합니다. 각 에이전트는 다음을 포함해야 합니다:
+    - Instructions (페르소나 프롬프트)
+    - 고유한 Name (영문자만 사용, 공백이나 특수문자 불가)
+    - `Kernel` 객체에 대한 참조
 
-1. Create an `AgentGroupChat` object to tie together the three agents. Pass:
-    - An array of the three agents
-    - `ExecutionSettings` with a `TerminationStrategy` set to an instance of `ApprovalTerminationStrategy`
-1. Implement the `should_agent_terminate` method in the `ApprovalTerminationStrategy` class. The agents should terminate when the Users returns "APPROVED" in the chat history.
+1. 세 개의 에이전트를 함께 연결하기 위해 `AgentGroupChat` 객체를 생성합니다. 다음을 전달합니다:
+    - 세 개의 에이전트가 담긴 배열
+    - `ExecutionSettings`와 `TerminationStrategy`를 `ApprovalTerminationStrategy`의 인스턴스로 설정
 
-## Task 3 - Triggering Git Push on User Approval
+1. `ApprovalTerminationStrategy` 클래스에서 `should_agent_terminate` 메서드를 구현합니다. 사용자 채팅 기록에 "APPROVED"가 반환되었을 때 에이전트가 종료되도록 설정합니다.
 
-Add logic so that when the user sends "APPROVED" in the chat, a Bash script is triggered to push the code written by the Software Engineer agent to a Git repository.
 
-1. After implementing the `should_agent_terminate` method to detect "APPROVED", add a callback or post-processing step that executes when this condition is met.
-2. Extract the HTML code provided by the Software Engineer agent from the chat history.
-3. Save the extracted code to a file (e.g., `index.html`).
-4. Create a Bash script (e.g., `push_to_git.sh`) that stages, commits, and pushes the file to your desired Git repository:
-5. In your Python code, use the `subprocess` module to call this script when "APPROVED" is detected:
-6. Ensure your environment has the necessary Git credentials configured for non-interactive pushes.
+## 작업 3 - 사용자 승인 시 Git 푸시 트리거
 
-This automation ensures that once the Product Owner (or user) sends "APPROVED", the latest code is automatically pushed to your Git repository.
+사용자가 채팅에서 "APPROVED"를 보낼 때 소프트웨어 엔지니어 에이전트가 작성한 코드를 Git 리포지토리로 푸시하는 Bash 스크립트가 트리거되도록 로직을 추가합니다.
 
-## Task 4 - Run the Multi-Agent Conversation and Validate Workflow
+1. "APPROVED"를 감지하는 `should_agent_terminate` 메소드를 구현한 후 이 조건이 충족될 때 실행되는 콜백 또는 사후 처리 단계를 추가합니다.
+2. 채팅 기록에서 소프트웨어 엔지니어 에이전트가 제공한 HTML 코드를 추출합니다.
+3. 추출된 코드를 파일(예: index.html)에 저장합니다.
+4. 파일을 스테이징, 커밋 및 원하는 Git 리포지토리로 푸시하는 Bash 스크립트(예: push_to_git.sh)를 만듭니다.
+5. Python 코드에서 `subprocess` 모듈을 사용하여 "APPROVED"가 감지될 때 이 스크립트를 호출합니다.
+6. 환경에 비대화형 푸시에 대해 구성된 필요한 Git 자격 증명이 있는지 확인합니다.
 
-1. Implement the code to send a user message to the agent group using `add_chat_message` on the `AgentGroupChat` object. The message should include:
-    - `AuthorRole.User` as the author
-    - The chat message contents from the user's input
+이 자동화를 통해 제품 소유자(또는 사용자)가 "APPROVED"를 전송하면 최신 코드가 Git 리포지토리에 자동으로 푸시됩니다.
 
-1. Iterate through the responses from the `AgentGroupChat` using an asynchronous loop, and print each message as it arrives:
+## 작업 4 - 다중 에이전트 대화 실행 및 워크플로 유효성 검사
+
+1. 사용자 메시지를 `AgentGroupChat` 객체에 전달하기 위해 `add_chat_message` 코드를 구현합니다. 메시지에는 다음을 포함해야 합니다:
+    - 작성자(author)로 `AuthorRole.User`
+    - 사용자 입력에서 가져온 채팅 메시지 내용
+
+1. `AgentGroupChat`의 응답을 비동기 반복문을 사용하여 순회하고, 각 메시지가 도착할 때마다 출력합니다:
 
     ```python
     async for content in chat.invoke():
         print(f"# {content.role} - {content.name or '*'}: '{content.content}'")
     ```
 
-1. Run your application and provide a request to build a calculator app. Observe how the Business Analyst, Software Engineer, and Product Owner collaborate to plan, build, and approve the solution.
+1. 애플리케이션을 실행하고 계산기 앱을 만들어달라는 요청을 전달합니다. Business Analyst, Software Engineer, Product Owner가 협업하여 어떻게 계획하고, 개발하고, 솔루션을 승인하는지 확인해보세요.
 
-## Task 5 - Deploy the app to Azure
-### Deploying the App to Azure Using Container Registry and Azure App Service
 
-To host your app online using Azure, follow these steps to containerize your application, push it to Azure Container Registry (ACR), and deploy it using Azure App Service:
+## 작업 5 - Azure에 앱 배포
+Container Registry 및 Azure App Service를 사용하여 Azure에 앱 배포
 
-1. Open a terminal and sign in to the Azure Developer CLI using the following command:
+Azure를 사용하여 온라인으로 앱을 호스트하려면 다음 단계에 따라 애플리케이션을 컨테이너화하고, ACR(Azure Container Registry)에 푸시하고, Azure App Service를 사용하여 배포합니다.
+
+1. 터미널을 열고 다음 명령을 사용하여 Azure Developer CLI에 로그인합니다.
 
     ```bash
     azd auth login
     ```
 
-1. Deploy the required resources to Azure by running:
+1. 다음을 실행하여 필요한 리소스를 Azure에 배포합니다.
 
     ```bash
     azd up
     ```
 
-1. When running the **azd up** command, you'll be asked to provide configuration details interactively. Provide the following values when prompted:
+1. azd up 명령을 실행할 때 구성 세부 정보를 대화형으로 제공하라는 메시지가 표시됩니다. 메시지가 표시되면 다음 값을 제공합니다.
 
-   - **Unique Environment Name**: Enter **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)**.
-   - **Azure Subscription to use**: Choose the default subscription **(2)** that appears and press **Enter**.
-   - **Location Infrastructure Parameter**: Select **East US 2** **(3)** from the options and press **Enter**.
-   - **ResourceGroupName Infrastructure Parameter**: Type **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)** and press **Enter**.
-   - **Resource Group to use**: Select **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** from the options and press **Enter**.
+   - **고유 환경 이름**: **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)** 입력하세요.  
+   - **사용할 Azure 구독**: 기본 구독 **(2)** 을 선택하고 **Enter** 키를 누르세요.  
+   - **위치 인프라 매개변수**: 옵션에서 **East US 2** **(3)** 를 선택하고 **Enter** 키를 누르세요.  
+   - **ResourceGroupName 인프라 매개변수**: **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)** 입력하세요.  
+   - **사용할 리소스 그룹**: 옵션에서 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** 를 선택하고 **Enter** 키를 누르세요.  
 
-1. Open the Azure portal and navigate to the resource group **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>**.
-2. Locate the deployed container app resource.
-3. Copy the endpoint URL of the container app.
-4. Access the web app by visiting this endpoint in your browser and verify that the application functions as expected.
-## Success Criteria
+1. Azure 포털을 열고 리소스 그룹 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** 으로 이동합니다.  
+1. 배포된 컨테이너 앱 리소스를 찾습니다.  
+1. 컨테이너 앱의 엔드포인트 URL을 복사합니다.  
+1. 이 엔드포인트를 브라우저에서 열어 웹 앱에 접속하고, 애플리케이션이 정상적으로 작동하는지 확인합니다.  
 
-- You have implemented the Multi-Agent Chat system that produces:
-    - Generation of complete source code in HTML and JavaScript for the requested application
-    - Thorough code review and approval process by User
-    - Automated deployment of the application to Azure
-    - Automated code push to a Git repository upon user approval
 
----
+## 성공 기준
 
-## Bonus
+- 다중 에이전트 채팅 시스템을 구현하여 다음을 수행합니다:  
+    - 요청된 애플리케이션에 대한 완전한 HTML 및 JavaScript 소스 코드 생성  
+    - 사용자에 의한 철저한 코드 검토 및 승인 과정  
+    - 애플리케이션의 Azure 자동 배포  
+    - 사용자 승인 시 Git 저장소로 자동 코드 푸시  
 
-- Copy the code from the chat history markdown into matching files on your file system.
-- Save HTML content as `index.html` and launch it in your web browser.
-- Test if the application functions as the AI described.
-- Enhance the app by asking the AI to make it responsive or add new features.
-- Experiment with modifying personas to improve results or functionality.
 
----
 
-## Learning Resources
+## 보너스
+
+- 채팅 기록의 마크다운에서 코드를 복사하여 파일 시스템의 해당 파일에 붙여넣기 합니다.  
+- HTML 내용을 **index.html** 파일로 저장하고 웹 브라우저에서 실행합니다.  
+- 애플리케이션이 AI가 설명한 대로 작동하는지 테스트합니다.  
+- AI에게 반응형 디자인을 적용하거나 새로운 기능을 추가하도록 요청하여 앱을 향상시킵니다.  
+- 페르소나를 수정하여 결과나 기능을 개선하는 실험을 해봅니다.  
+
+
+## 학습 자료
 
 - [Agent Group Chat with Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-chat?pivots=programming-language-python)
 - [MetaGPT](https://github.com/geekan/MetaGPT)
@@ -165,8 +168,8 @@ To host your app online using Azure, follow these steps to containerize your app
 - [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 - [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
----
 
-## Conclusion
 
-This challenge demonstrated how to build and coordinate a Multi-Agent System using Azure AI Foundry and Semantic Kernel. By designing distinct personas for Business Analyst, Software Engineer, and Product Owner, and configuring a group chat environment with a termination strategy, you created a collaborative AI workflow capable of gathering requirements, developing code, and performing code reviews. The task structure allows for scalable, decentralized handling of complex problems using autonomous, interactive agents.
+## 결론
+
+이 챌린지에서는 Azure AI Foundry 및 Semantic Kernel을 사용하여 다중 에이전트 시스템을 빌드하고 조정하는 방법을 보여 주었습니다. 비즈니스 분석가, 소프트웨어 엔지니어 및 제품 소유자를 위한 고유한 페르소나를 디자인하고 종료 전략으로 그룹 채팅 환경을 구성하여 요구 사항을 수집하고, 코드를 개발하고, 코드 검토를 수행할 수 있는 협업 AI 워크플로를 만들었습니다. 작업 구조는 자율적인 대화형 에이전트를 사용하여 복잡한 문제를 확장 가능하고 분산적으로 처리할 수 있도록 합니다.
