@@ -162,7 +162,7 @@
 
 <validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
 
-## Success Criteria
+## 成功標準
 
 - 你已成功實作多代理聊天系統，具備以下功能：
     - 生成完整的 HTML 和 JavaScript 應用程式原始碼。
@@ -170,7 +170,7 @@
     - 完成應用程式自動化部署至 Azure。
     - 使用者核准後，自動將程式碼推送至 Git 儲存庫。
 
-## 額外挑戰 (Bonus)
+## 額外挑戰
 
 - 將聊天歷史中的 Markdown 格式程式碼複製並存成對應的檔案。
 - 將 HTML 內容存為 `index.html`，並在瀏覽器中開啟測試。
