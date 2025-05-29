@@ -43,7 +43,7 @@
 
 若要調整環境頁面的縮放比例，請點擊位於計時器旁邊的 **A↕ : 100%** 圖示。
 
-![](./media/agg2.png)
+![](./media/Agg2.png)
 
 ## 虛擬機器與實驗室指南
 
@@ -53,20 +53,20 @@
 
 為了更清楚了解你的實驗室資源與憑證，請前往 **Environment** 標籤頁。
 
-![Explore Lab Resources](./media/agg3.png)
+![Explore Lab Resources](./media/Agg3.png)
 
 
 ## 使用分割視窗功能
 
 為了方便起見，你可以從右上角選擇 **Split Window** 按鈕，將實驗室指南在獨立視窗中開啟。
 
-![Use the Split Window Feature](./media/agg4.png)
+![Use the Split Window Feature](./media/Agg4.png)
 
 ## 管理你的虛擬機器
 
 你可以隨時從 **Resources (1)** 標籤頁中根據需求 **啟動、停止或重新啟動 (2)** 你的虛擬機器。你的體驗掌握在自己手中！
 
-![Manage Your Virtual Machine](./media/agg5.png)
+![Manage Your Virtual Machine](./media/Agg5.png)
 
 > **注意：** 請確保腳本持續運行，並且在進入環境後不被終止。
 
@@ -124,6 +124,6 @@ CloudLabs 支援團隊全年無休，24 小時隨時透過電子郵件與線上�
 
 請從右下角點選 **Next**，開始你的實驗室旅程！
 
-![Start Your Azure Journey](./media/agg6.png)
+![Start Your Azure Journey](./media/Agg6.png)
 
 現在你已準備好探索強大的科技世界，有任何問題隨時歡迎聯繫我們。祝你工作坊愉快！
