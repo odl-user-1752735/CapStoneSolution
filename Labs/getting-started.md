@@ -41,13 +41,13 @@ Bem-vindo ao seu Workshop Azure Agentic AI. Vamos começar a tirar o máximo pro
 
 Quando estiver pronto para começar, sua máquina virtual e o **guia do laboratório** estarão disponíveis diretamente no seu navegador web.
 
-![Acesse sua VM e o Guia do Laboratório](./media/agg1.png)
+![Acesse sua VM e o Guia do Laboratório](./media/Agg1.png)
 
 ## Zoom In/Zoom Out do Guia do Laboratório
 
 Para ajustar o nível de zoom na página do ambiente, clique no ícone **A↕ : 100%** localizado ao lado do temporizador no ambiente do laboratório.
 
-![](./media/agg2.png)
+![](./media/Agg2.png)
 
 ## Máquina Virtual & Guia do Laboratório
 
@@ -57,19 +57,19 @@ Sua máquina virtual será sua ferramenta principal durante todo o workshop. O g
 
 Para compreender melhor os recursos e credenciais do seu laboratório, navegue até a aba **Environment**.
 
-![Explore os Recursos do Laboratório](./media/agg3.png)
+![Explore os Recursos do Laboratório](./media/Agg3.png)
 
 ## Utilizando o Recurso de Janela Dividida
 
 Para maior conveniência, você pode abrir o guia do laboratório em uma janela separada selecionando o botão **Split Window** no canto superior direito.
 
-![Use o Recurso de Janela Dividida](./media/agg4.png)
+![Use o Recurso de Janela Dividida](./media/Agg4.png)
 
 ## Gerenciando sua Máquina Virtual
 
 Sinta-se à vontade para **iniciar, parar ou reiniciar (2)** sua máquina virtual conforme necessário na aba **Resources (1)**. A experiência está em suas mãos!
 
-![Gerencie sua Máquina Virtual](./media/agg5.png)
+![Gerencie sua Máquina Virtual](./media/Agg5.png)
 
 > **Observação:** Por favor, certifique-se de que o script continue rodando e não seja encerrado após acessar o ambiente.
 
@@ -131,6 +131,6 @@ Contatos de Suporte para Aprendizes:
 
 Clique em **Next** no canto inferior direito para iniciar sua jornada no Lab!
 
-![Start Your Azure Journey](./media/agg6.png)
+![Start Your Azure Journey](./media/Agg6.png)
 
 Agora você está pronto para explorar o poderoso mundo da tecnologia. Fique à vontade para entrar em contato se tiver alguma dúvida durante o caminho. Aproveite seu workshop!
