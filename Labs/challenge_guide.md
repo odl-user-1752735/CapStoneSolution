@@ -6,8 +6,7 @@ MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 
 
 이 챌린지에서는 사용자의 요청을 수락하고 각각 특정 페르소나와 전문 분야로 설계된 에이전트 컬렉션을 통해 처리하는 다중 에이전트 시스템을 만듭니다. 상담원은 개별적으로 요청을 분석하고 정의된 책임에 따라 응답을 제공합니다. 최종 출력은 모든 상담원의 답변을 통합한 모음으로, 각 페르소나의 고유한 관점을 반영하는 방식으로 사용자의 쿼리를 공동으로 해결합니다.
 
-
-## 챌린지 목표:
+## 작업 1 - Azure AI Foundry 모델 배포 및 환경 구성
 
 1. **Azure OpenAI 서비스 배포:**
 
@@ -32,9 +31,6 @@ MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 
 
         >- **힌트:** API 버전은 Target URI에서 확인할 수 있습니다.
 
-
-## Task 1 - Azure AI Foundry 모델 배포 및 환경 구성
-
 1. Azure AI Foundry 배포 정보를 사용하여 `.env` 파일을 다음과 같이 업데이트하세요:
 
     ```
@@ -44,8 +40,14 @@ MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 
     AZURE_OPENAI_API_VERSION=API 버전으로 교체
     ```
 
+> **축하합니다** 작업을 완료하셨습니다! 이제 검증할 시간입니다. 다음 단계에 따라 진행하세요:
+> - 성공 메시지가 표시되면 다음 작업으로 진행할 수 있습니다.
+> - 그렇지 않으면 오류 메시지를 주의 깊게 읽고 실습 가이드의 지침에 따라 단계를 다시 시도하세요.
+> - 도움이 필요하시면 언제든지 cloudlabs-support@spektrasystems.com 으로 연락 주세요. 24시간 연중무휴로 지원합니다.
 
-## 작업 2 - 에이전트 페르소나 정의 및 다중 에이전트 채팅 구성
+<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
+
+## 작업 2 - 다중 에이전트 워크플로우 구성 및 승인 시 코드 자동 푸시 설정
 
 1. `multi_agent.py` 파일을 엽니다. 이 파일에서 이번 과제에 필요한 모든 코드를 구현하게 됩니다.
 
@@ -69,32 +71,35 @@ MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-1. 위에서 정의한 각 페르소나에 대해 `ChatCompletionAgent`를 생성합니다. 각 에이전트는 다음을 포함해야 합니다:
+3. 위에서 정의한 각 페르소나에 대해 `ChatCompletionAgent`를 생성합니다. 각 에이전트는 다음을 포함해야 합니다:
     - Instructions (페르소나 프롬프트)
     - 고유한 Name (영문자만 사용, 공백이나 특수문자 불가)
     - `Kernel` 객체에 대한 참조
 
-1. 세 개의 에이전트를 함께 연결하기 위해 `AgentGroupChat` 객체를 생성합니다. 다음을 전달합니다:
+4. 세 개의 에이전트를 함께 연결하기 위해 `AgentGroupChat` 객체를 생성합니다. 다음을 전달합니다:
     - 세 개의 에이전트가 담긴 배열
     - `ExecutionSettings`와 `TerminationStrategy`를 `ApprovalTerminationStrategy`의 인스턴스로 설정
 
-1. `ApprovalTerminationStrategy` 클래스에서 `should_agent_terminate` 메서드를 구현합니다. 사용자 채팅 기록에 "APPROVED"가 반환되었을 때 에이전트가 종료되도록 설정합니다.
+5. `ApprovalTerminationStrategy` 클래스에서 `should_agent_terminate` 메서드를 구현합니다. 사용자 채팅 기록에 "APPROVED"가 반환되었을 때 에이전트가 종료되도록 설정합니다.
 
-
-## 작업 3 - 사용자 승인 시 Git 푸시 트리거
-
-사용자가 채팅에서 "APPROVED"를 보낼 때 소프트웨어 엔지니어 에이전트가 작성한 코드를 Git 리포지토리로 푸시하는 Bash 스크립트가 트리거되도록 로직을 추가합니다.
-
-1. "APPROVED"를 감지하는 `should_agent_terminate` 메소드를 구현한 후 이 조건이 충족될 때 실행되는 콜백 또는 사후 처리 단계를 추가합니다.
-2. 채팅 기록에서 소프트웨어 엔지니어 에이전트가 제공한 HTML 코드를 추출합니다.
-3. 추출된 코드를 파일(예: index.html)에 저장합니다.
-4. 파일을 스테이징, 커밋 및 원하는 Git 리포지토리로 푸시하는 Bash 스크립트(예: push_to_git.sh)를 만듭니다.
-5. Python 코드에서 `subprocess` 모듈을 사용하여 "APPROVED"가 감지될 때 이 스크립트를 호출합니다.
-6. 환경에 비대화형 푸시에 대해 구성된 필요한 Git 자격 증명이 있는지 확인합니다.
+6. "APPROVED"를 감지하는 `should_agent_terminate` 메소드를 구현한 후 이 조건이 충족될 때 실행되는 콜백 또는 사후 처리 단계를 추가합니다.
+7. 채팅 기록에서 소프트웨어 엔지니어 에이전트가 제공한 HTML 코드를 추출합니다.
+8. 추출된 코드를 파일(예: index.html)에 저장합니다.
+9. 파일을 스테이징, 커밋 및 원하는 Git 리포지토리로 푸시하는 Bash 스크립트(예: push_to_git.sh)를 만듭니다.
+10. Python 코드에서 `subprocess` 모듈을 사용하여 "APPROVED"가 감지될 때 이 스크립트를 호출합니다.
+11. 환경에 비대화형 푸시에 대해 구성된 필요한 Git 자격 증명이 있는지 확인합니다.
 
 이 자동화를 통해 제품 소유자(또는 사용자)가 "APPROVED"를 전송하면 최신 코드가 Git 리포지토리에 자동으로 푸시됩니다.
 
-## 작업 4 - 다중 에이전트 대화 실행 및 워크플로 유효성 검사
+> **축하합니다** 작업을 완료하셨습니다! 이제 검증할 차례입니다. 다음 단계를 따라주세요:
+> - 성공 메시지가 표시되면 다음 작업으로 진행할 수 있습니다.
+> - 그렇지 않은 경우, 오류 메시지를 주의 깊게 읽고 실습 가이드의 지침에 따라 해당 단계를 다시 시도하세요.
+> - 도움이 필요하시면 언제든지 cloudlabs-support@spektrasystems.com 으로 연락해 주세요. 24시간 연중무휴 지원합니다.
+
+<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+
+
+## 작업 3 - 다중 에이전트 대화 실행 및 워크플로우 검증
 
 1. 사용자 메시지를 `AgentGroupChat` 객체에 전달하기 위해 `add_chat_message` 코드를 구현합니다. 메시지에는 다음을 포함해야 합니다:
     - 작성자(author)로 `AuthorRole.User`
@@ -110,8 +115,7 @@ MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 
 1. 애플리케이션을 실행하고 계산기 앱을 만들어달라는 요청을 전달합니다. Business Analyst, Software Engineer, Product Owner가 협업하여 어떻게 계획하고, 개발하고, 솔루션을 승인하는지 확인해보세요.
 
 
-## 작업 5 - Azure에 앱 배포
-Container Registry 및 Azure App Service를 사용하여 Azure에 앱 배포
+## 작업 4 - 컨테이너 레지스트리와 Azure App Service를 사용하여 앱 배포
 
 Azure를 사용하여 온라인으로 앱을 호스트하려면 다음 단계에 따라 애플리케이션을 컨테이너화하고, ACR(Azure Container Registry)에 푸시하고, Azure App Service를 사용하여 배포합니다.
 
@@ -140,6 +144,12 @@ Azure를 사용하여 온라인으로 앱을 호스트하려면 다음 단계에
 1. 컨테이너 앱의 엔드포인트 URL을 복사합니다.  
 1. 이 엔드포인트를 브라우저에서 열어 웹 앱에 접속하고, 애플리케이션이 정상적으로 작동하는지 확인합니다.  
 
+> **축하합니다** 작업을 완료하셨습니다! 이제 검증할 시간입니다. 다음 단계들을 따라 주세요:
+> - 성공 메시지가 표시되면 다음 작업으로 진행할 수 있습니다.
+> - 그렇지 않은 경우, 오류 메시지를 주의 깊게 읽고 실습 가이드의 지침에 따라 해당 단계를 다시 시도하세요.
+> - 도움이 필요하시면 언제든지 cloudlabs-support@spektrasystems.com 으로 연락해 주세요. 24시간 365일 지원해 드립니다.
+
+<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
 
 ## 성공 기준
 
@@ -149,8 +159,6 @@ Azure를 사용하여 온라인으로 앱을 호스트하려면 다음 단계에
     - 애플리케이션의 Azure 자동 배포  
     - 사용자 승인 시 Git 저장소로 자동 코드 푸시  
 
-
-
 ## 보너스
 
 - 채팅 기록의 마크다운에서 코드를 복사하여 파일 시스템의 해당 파일에 붙여넣기 합니다.  
@@ -159,7 +167,6 @@ Azure를 사용하여 온라인으로 앱을 호스트하려면 다음 단계에
 - AI에게 반응형 디자인을 적용하거나 새로운 기능을 추가하도록 요청하여 앱을 향상시킵니다.  
 - 페르소나를 수정하여 결과나 기능을 개선하는 실험을 해봅니다.  
 
-
 ## 학습 자료
 
 - [Agent Group Chat with Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-chat?pivots=programming-language-python)
@@ -167,8 +174,6 @@ Azure를 사용하여 온라인으로 앱을 호스트하려면 다음 단계에
 - [AutoGen Multi-Agent Conversational Framework](https://microsoft.github.io/autogen/docs/Use-Cases/agent_chat/)
 - [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 - [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-
-
 
 ## 결론
 
