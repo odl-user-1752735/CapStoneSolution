@@ -50,7 +50,7 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
 <validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
 
 
-## Tarea 2 - Configurar Flujo de Trabajo Multi-Agente y Automatizar el Envío de Código tras la Aprobación
+## Tarea 2 - Configurar Flujo Multi-Agente y Automatizar Envío de Código
 
 1. Abre el archivo `multi_agent.py`. Aquí es donde implementarás todo el código necesario para este desafío.
 
