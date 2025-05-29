@@ -36,13 +36,13 @@ Bienvenido a tu Azure Agentic AI Workshop. Comencemos aprovechando al máximo es
 
 Una vez que estés listo para empezar, tu máquina virtual y la **lab guide** estarán a tu alcance desde tu navegador web.
 
-![Access Your VM and Lab Guide](./media/agg1.png)
+![Access Your VM and Lab Guide](./media/Agg1.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
 Para ajustar el nivel de zoom de la página del entorno, haz clic en el icono **A↕ : 100%** ubicado junto al temporizador en el entorno del laboratorio.
 
-![](./media/agg2.png)
+![](./media/Agg2.png)
 
 ## Virtual Machine & Lab Guide
 
@@ -52,19 +52,19 @@ Tu máquina virtual es tu herramienta de trabajo durante todo el workshop. La **
 
 Para entender mejor tus recursos y credenciales del laboratorio, navega a la pestaña **Environment**.
 
-![Explore Lab Resources](./media/agg3.png)
+![Explore Lab Resources](./media/Agg3.png)
 
 ## Utilizando la Función de Ventana Dividida
 
 Para mayor comodidad, puedes abrir la **lab guide** en una ventana separada seleccionando el botón **Split Window** en la esquina superior derecha.
 
-![Use the Split Window Feature](./media/agg4.png)
+![Use the Split Window Feature](./media/Agg4.png)
 
 ## Gestión de Tu Máquina Virtual
 
 Siéntete libre de **start, stop, or restart (2)** tu máquina virtual según sea necesario desde la pestaña **Resources (1)**. ¡Tu experiencia está en tus manos!
 
-![Manage Your Virtual Machine](./media/agg5.png)
+![Manage Your Virtual Machine](./media/Agg5.png)
 
 <!-- ## Extensión de la Duración del Laboratorio
 
@@ -136,6 +136,6 @@ Contactos de soporte para estudiantes:
 
 Haz clic en **Next** en la esquina inferior derecha para comenzar tu recorrido en el Lab.
 
-![Start Your Azure Journey](./media/agg6.png)
+![Start Your Azure Journey](./media/Agg6.png)
 
 Ahora estás listo para explorar el poderoso mundo de la tecnología. No dudes en comunicarte si tienes alguna pregunta en el camino. ¡Disfruta tu taller!
