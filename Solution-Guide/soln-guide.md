@@ -1,92 +1,90 @@
-## Solution Guide
-# Multi-Agent Systems - Solution Guide
+## Guía de Solución
+# Sistemas Multi-Agente - Guía de Solución
 
-## Introduction
+## Introducción
 
-Multi-Agent Systems (MAS) consist of multiple autonomous agents, each with distinct goals, behaviors, and areas of responsibility. These agents can interact with each other, either cooperating or competing, depending on the objectives they are designed to achieve. In MAS, each agent operates independently, making decisions based on its local knowledge and the environment, but they can communicate and share information to solve complex problems collectively.
+Los Sistemas Multi-Agente (MAS) consisten en múltiples agentes autónomos, cada uno con objetivos, comportamientos y áreas de responsabilidad distintas. Estos agentes operan de forma independiente, tomando decisiones basadas en su conocimiento local y entorno. Sin embargo, también pueden comunicarse y compartir información entre sí, ya sea cooperando o compitiendo dependiendo de sus objetivos. Los MAS se utilizan típicamente en escenarios donde las tareas están distribuidas entre múltiples entidades y el sistema se beneficia de la descentralización. Las aplicaciones comunes incluyen la gestión del tráfico, equipos robóticos, IA distribuida y sistemas en red donde se requiere coordinación sin depender de un controlador central.
 
-MAS is often used in scenarios where tasks are distributed across different entities, and the overall system benefits from decentralization. Examples include simulations of real-world systems like traffic management, robotic teams, distributed AI applications, or networked systems where agents need to coordinate actions without a central controller. MAS allows for flexibility, scalability, and adaptability in solving dynamic and complex problems where a single agent or centralized system might be less efficient or incapable of handling the complexity on its own.
+En este desafío, crearás un Multi-Agent System que acepta la solicitud de un usuario y la procesa a través de una colección de agentes, cada uno diseñado con una persona específica y área de especialización. Los agentes analizarán individualmente la solicitud y contribuirán con sus respuestas basándose en sus responsabilidades definidas. La salida final será una colección consolidada de respuestas de todos los agentes, abordando colaborativamente la consulta del usuario de una manera que refleje la perspectiva única de cada persona.
 
-In this challenge, you will create a multi-agent system that takes the user's request and feeds it to a collection of agents. Each agent will have its own persona and responsibility. The final response will be a collection of answers from all agents that together will satisfy the user's request based on each persona's area of expertise.
+## Tarea 1 - Implementación de Modelo de Azure AI Foundry y Configuración de Entorno
 
-## Task 1 - Azure AI Foundry Model Deployment & Environment Configuration
+1. Navega a `https://portal.azure.com` e inicia sesión con tus credenciales de Azure.
 
-1. Navigate to `https://portal.azure.com` and log in with your Azure credentials.
+    - **Correo electrónico/Nombre de usuario**: <inject key="AzureAdUserEmail"></inject>
+    - **Contraseña**: <inject key="AzureAdUserPassword"></inject>
 
-    - **Email/Username**: <inject key="AzureAdUserEmail"></inject>
-    - **Password**: <inject key="AzureAdUserPassword"></inject>
-
-1. Search and Select Open AI. 
+1. Busca y selecciona Open AI.
 
    ![](./Images/Image1.png)
 
-1. On the **Azure Open AI (1)** content page, click on **+ create(2)**.
+1. En la página de contenido de **Azure Open AI (1)**, haz clic en **+ crear (2)**.
 
    ![](./Images/Image2.png)
 
-1. Provide the following details and click on **Next**:
+1. Proporciona los siguientes detalles y haz clic en **Siguiente**:
 
-    - Subscription: Keep the default subscription **(1)**.
+    - Suscripción: Mantén la suscripción predeterminada **(1)**.
 
-    - Resource Group: Click on **Create new (2)**, provide the name as **openaiagents** and click on OK.
+    - Grupo de recursos: Haz clic en **Crear nuevo (2)**, proporciona el nombre como **openaiagents** y haz clic en Aceptar.
 
-    - Region: **East US 2 (3)**
+    - Región: **East US 2 (3)**
 
-    - Name: **OpenAI-<inject key="Deployment ID" enableCopy="false"/>** **(4)**
+    - Nombre: **OpenAI-<inject key="Deployment ID" enableCopy="false"/>** **(4)**
 
-    - Pricing Tier: **Standard SO (5)**
+    - Nivel de precios: **Standard SO (5)**
 
    ![](./Images/Image3.png)
 
-1. Click on Next twice and click on **Review + Submit**.
+1. Haz clic en **Siguiente** dos veces y luego haz clic en **Revisar + Enviar**.
 
-1. Review all the values and click on **Create**.
+1. Revisa todos los valores y haz clic en **Crear**.
 
-1. Once the deployment is complete, click on **Go to resource**
+1. Una vez que la implementación se haya completado, haz clic en **Ir al recurso**.
 
-1. In the Azure OpenAI resource pane, click on **Go to Azure AI Foundry portal**, it will navaigate to Azure AI Foundry portal.
+1. En el panel del recurso de Azure OpenAI, haz clic en **Ir al portal de Azure AI Foundry**, esto te llevará al portal de Azure AI Foundry.
 
    ![](./Images/Image4.png)
 
-1. On the left panel select **Deployments (1)**. Click on **+ Deploy Model (2)** and select **Deploy Base Model (3)**.
+1. En el panel izquierdo, selecciona **Implementaciones (1)**. Haz clic en **+ Implementar modelo (2)** y selecciona **Implementar modelo base (3)**.
 
    ![](./Images/Image5.png)
 
-1. Search for **gpt-4o (1)**, **select it (2)**, and click on **Confirm (3)**.
+1. Busca **gpt-4o (1)**, **selecciónalo (2)** y haz clic en **Confirmar (3)**.
 
    ![](./Images/Image6.png)
 
-1. Click on **Customize** and provide the following details to deploy a gpt-4o model:
+1. Haz clic en **Personalizar** y proporciona los siguientes detalles para implementar un modelo gpt-4o:
 
-    - Deployment name: **gpt4-o (1)**
-    - Deployment type: **Global Standard (2)**
-    - Model Version: **2024-11-20 (3)**
-    - Set the **Tokens per Minute Rate Limit** to **200k (4)**.
-    - Leave the other values to default and click on **Deploy (5)**.
+    - Nombre de la implementación: **gpt4-o (1)**
+    - Tipo de implementación: **Global Standard (2)**
+    - Versión del modelo: **2024-11-20 (3)**
+    - Establece el **Tokens per Minute Rate Limit** en **200k (4)**.
+    - Deja los demás valores como predeterminados y haz clic en **Implementar (5)**.
 
    ![](./Images/Image7a.png)
 
-1. Once the gpt-4o deployment gets completed, copy the **Target URI (1)** and **Key (2)**. **Paste** these values in a notepad for further use. 
+1. Una vez que se complete la implementación de gpt-4o, copia el **Target URI (1)** y la **Key (2)**. **Pega** estos valores en un bloc de notas para usarlos más adelante.
 
    ![](./Images/Image8.png)
 
-1. Open VS Code on your Lab VM. Click on **File (1)** and select **Open Folder (2)**.
+1. Abre VS Code en tu máquina virtual de laboratorio. Haz clic en **Archivo (1)** y selecciona **Abrir carpeta (2)**.
 
    ![](./Images/Image9.png)
 
-1. Navigate to the path `C:\LabFiles\` **(1)**, select **CAPSTONE-PROJECT (2)** and click on **Select Folder (3)**.
+1. Navega a la ruta `C:\LabFiles\` **(1)**, selecciona **CAPSTONE-PROJECT (2)** y haz clic en **Seleccionar carpeta (3)**.
 
    ![](./Images/Image10a.png)
 
-1. Select the **checkbox (1)** and click **Yes,I trust the authors(2)** to proceed.
+1. Marca la **casilla (1)** y haz clic en **Sí, confío en los autores (2)** para continuar.
 
    ![](./Images/Image11a.png)
 
-1. Expand the **src/ui** folder, rename the file from **Sample.env** to **.env**.
+1. Expande la carpeta **src/ui**, cambia el nombre del archivo de **Sample.env** a **.env**.
 
    ![](./Images/Image12a.png)
 
-1. Update the `.env` file with the Azure AI Foundry deployment details and save the file:
+1. Actualiza el archivo `.env` con los detalles de la implementación de Azure AI Foundry y guarda el archivo:
 
     ```
     AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=Replace with your deployment name
@@ -95,55 +93,56 @@ In this challenge, you will create a multi-agent system that takes the user's re
     ```
    ![](./Images/Image13a.png)
 
-## Task 2 - Create a GitHub Repository and Generate a PAT Token
 
-1. Sign in to GitHub at [https://github.com](https://github.com).  
+## Tarea 2 - Crear un Repositorio de GitHub y Generar un Token PAT
 
-1. Create a new repository named **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>** **(1)**. Set the repository visibility to **Public (2)**, then click **Create Repository (3)**.
+1. Inicia sesión en GitHub en [https://github.com](https://github.com).
+
+1. Crea un nuevo repositorio llamado **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>** **(1)**. Establece la visibilidad del repositorio en **Público (2)** y luego haz clic en **Crear repositorio (3)**.
 
    ![](./Images/Image16.png)
 
-1. Once the new repository is created, **copy the URL** of your repo and paste it into a notepad for future use.
- 
+1. Una vez creado el nuevo repositorio, **copia la URL** de tu repositorio y pégala en un bloc de notas para usarla más adelante.
+
    ![](./Images/Image25.png)
 
-1. Click your **profile picture (1)** at the top-right corner and select **Settings (2)** from the dropdown menu.
- 
+1. Haz clic en tu **foto de perfil (1)** en la esquina superior derecha y selecciona **Configuración (2)** en el menú desplegable.
+
    ![](./Images/Image17.png)
 
-1. In the left sidebar, click **<> Developer settings**.  
+1. En la barra lateral izquierda, haz clic en **<> Configuración de desarrollador**.
 
    ![](./Images/Image18.png)
 
-1. Expand **Personal access tokens** from the left panel. Select **Fine-grained tokens(1)** and click on **Generate new token (2)**.
+1. Expande **Personal access tokens** desde el panel izquierdo. Selecciona **Fine-grained tokens (1)** y haz clic en **Generar nuevo token (2)**.
 
    ![](./Images/Image19.png)
-  
-1. Enter **<inject key="Deployment ID" enableCopy="false"/>-PAT-RepoAccess** **(1)** as the name for your token. Set an expiration date to **30 days (2)**.  
+
+1. Ingresa **<inject key="Deployment ID" enableCopy="false"/>-PAT-RepoAccess** **(1)** como nombre para tu token. Establece la fecha de expiración en **30 días (2)**.
 
    ![](./Images/Image20.png)
 
-1. Scroll down and under **Repository Access**, click on **Only select repositories (1)**. Search for the **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/> repository** **(2)** and **select it (3)**.
+1. Desplázate hacia abajo y, en **Acceso al repositorio**, haz clic en **Solo seleccionar repositorios (1)**. Busca el repositorio **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/> (2)** y **selecciónalo (3)**.
 
-   ![](./Images/Image21.png)  
+   ![](./Images/Image21.png)
 
-1. Under **Permissions**, expand **Repository Permissions (1)**. Provide **Read and Write (3)** access for **Contents (2)** under Repository permissions.
+1. En **Permisos**, expande **Permisos de repositorio (1)**. Otorga acceso de **Lectura y Escritura (3)** para **Contents (2)** en los permisos del repositorio.
 
-   ![](./Images/Image22.png)  
+   ![](./Images/Image22.png)
 
-1. Scroll down to the bottom of the page, click **Generate token (1)**, and in the popup, review the permissions and click **Generate token (2)**.
+1. Desplázate hasta la parte inferior de la página, haz clic en **Generar token (1)** y en la ventana emergente, revisa los permisos y haz clic en **Generar token (2)**.
 
-   ![](./Images/Image23.png)  
+   ![](./Images/Image23.png)
 
-1. **Copy (1)** the generated token and **paste** it into a notepad for future use.
+1. **Copia (1)** el token generado y **pégalo** en un bloc de notas para usarlo más adelante.
 
    ![](./Images/Image24.png)
-   
-## Task 3 - Define Agent Personas and Configure Multi-Agent Chat
 
-1. Open the `multi_agent.py` file. This is where you will implement all necessary code for this challenge.
-   
-1. Replace the code in the **multi_agent.py** file with the code from the link below and save the file.
+## Tarea 3 - Definir las Personalidades de los Agentes y Configurar el Chat Multi-Agente
+
+1. Abre el archivo `multi_agent.py`. Aquí es donde implementarás todo el código necesario para este desafío.
+
+1. Reemplaza el código en el archivo **multi_agent.py** con el código del siguiente enlace y guarda el archivo.
 
     ```
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/multi_agent.py
@@ -151,7 +150,7 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ![](./Images/Image14a.png)
 
-1. Create a file named `push_to_github.sh` under the `src/ui` directory. Paste the code from the link below and save the file.
+1. Crea un archivo llamado `push_to_github.sh` dentro del directorio `src/ui`. Pega el código del siguiente enlace y guarda el archivo.
 
     ```
     https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Capstone-Project/refs/heads/soln-guide/src/ui/push_to_github.sh
@@ -159,28 +158,30 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ![](./Images/Image15.png)
 
-1. Update the following env variables in `.env` file with the values you copied in Task 2 and save the file.
+1. Actualiza las siguientes variables de entorno en el archivo `.env` con los valores que copiaste en la Tarea 2 y guarda el archivo.
+
     ```
-    GITHUB_REPO_URL=Replace with your Github Repo
-    GITHUB_PAT=Replace with your Github pat token
-    GIT_USER_EMAIL=Replace with your Github email
-    GITHUB_USERNAME=Replace with your Github username
+    GITHUB_REPO_URL=Reemplaza con tu repositorio de Github
+    GITHUB_PAT=Reemplaza con tu token PAT de Github
+    GIT_USER_EMAIL=Reemplaza con tu correo electrónico de Github
+    GITHUB_USERNAME=Reemplaza con tu nombre de usuario de Github
     ```
+
     ![](./Images/Image27.png)
 
-1. In the .env file, click on **CRLF (1)** in the bottom Status Bar and change it to **LF (2)** by selecting it. Save the file after making this change.
+1. En el archivo `.env`, haz clic en **CRLF (1)** en la barra de estado inferior y cámbialo a **LF (2)** seleccionándolo. Guarda el archivo después de hacer este cambio.
 
     ![](./Images/Image35.png)
 
-1. Verify that **LF** is selected in the push_to_github.sh file as well.
+1. Verifica que **LF** también esté seleccionado en el archivo `push_to_github.sh`.
 
     ![](./Images/Image36.png)
 
-1. Click on the **ellipses (1)**. Select **Terminal (2)** and choose **New Terminal (3)**.
+1. Haz clic en los **tres puntos (1)**. Selecciona **Terminal (2)** y elige **Nuevo Terminal (3)**.
 
     ![](./Images/Image26.png)
 
-1.  Run the following command:-
+1. Ejecuta el siguiente comando:
 
     ```
     azd auth login
@@ -188,86 +189,86 @@ In this challenge, you will create a multi-agent system that takes the user's re
 
     ![](./Images/Image28.png)
 
-1. Sign in using the following credentials:-
-    - **Email/Username**: <inject key="AzureAdUserEmail"></inject>
-    - **Password**: <inject key="AzureAdUserPassword"></inject>
+1. Inicia sesión usando las siguientes credenciales:
+    - **Correo electrónico/Nombre de usuario**: <inject key="AzureAdUserEmail"></inject>
+    - **Contraseña**: <inject key="AzureAdUserPassword"></inject>
 
-1. Run the following command to provision the web app and required resources to azure:-
+1. Ejecuta el siguiente comando para aprovisionar la aplicación web y los recursos necesarios en Azure:
 
     ```
     azd up
     ```
-1. When running the **azd up** command, you'll be asked to provide configuration details interactively. Provide the following values when prompted:
 
-   - **Unique Environment Name**: Enter **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)**.
-   - **Azure Subscription to use**: Choose the default subscription **(2)** that appears and press **Enter**.
-   - **Location Infrastructure Parameter**: Select **East US 2** **(3)** from the options and press **Enter**.
-   - **ResourceGroupName Infrastructure Parameter**: Type **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)** and press **Enter**.
-   - **Resource Group to use**: Select **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** from the options and press **Enter**.
+1. Al ejecutar el comando **azd up**, se te pedirá que proporciones detalles de configuración de forma interactiva. Proporciona los siguientes valores cuando se te soliciten:
 
+   - **Nombre Único del Entorno**: Ingresa **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(1)**.
+   - **Suscripción de Azure a usar**: Elige la suscripción predeterminada **(2)** que aparece y presiona **Enter**.
+   - **Parámetro de Infraestructura Location**: Selecciona **East US 2** **(3)** de las opciones y presiona **Enter**.
+   - **Parámetro de Infraestructura ResourceGroupName**: Escribe **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)** y presiona **Enter**.
+   - **Grupo de recursos a usar**: Selecciona **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** de las opciones y presiona **Enter**.
 
    ![](./Images/Image38.png)
 
-   - **Note:** Wait for 5 minutes until the command runs completely. 
+   - **Nota:** Espera aproximadamente 5 minutos hasta que el comando termine de ejecutarse completamente.
 
-## Task 4 - Multi-Agent Code Generation and Repository Integration
+## Tarea 4 - Generación de Código Multi-Agente e Integración con el Repositorio
 
-1. Navigate to the azure portal, and select the newly created Resource group named **rg-CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>**.
+1. Navega al portal de Azure y selecciona el grupo de recursos recién creado llamado **rg-CapstoneEnv<inject key="Deployment ID" enableCopy="false"/>**.
 
-1. Open the container app with prefix **dev-ui-**.
+1. Abre la aplicación contenedor con el prefijo **dev-ui-**.
 
     ![](./Images/Image30.png)
 
-1. Click on the **Application URL** present on the Overview page of the Container app.
+1. Haz clic en la **URL de la Aplicación** que se encuentra en la página de Resumen de la aplicación contenedor.
 
     ![](./Images/Image31.png)
 
-1. The Streamlit chat application will open. Try providing the **below prompt (1)** in the chat and click on **send**.
+1. Se abrirá la aplicación de chat Streamlit. Intenta proporcionar el **siguiente mensaje (1)** en el chat y haz clic en **enviar**.
 
     ```
     Create code for simple calculator
     ```
-   - **Note:** Wait until the agents collaborate and provide a reply.
+   - **Nota:** Espera hasta que los agentes colaboren y proporcionen una respuesta.
 
     ![](./Images/Image32.png)
 
-1. Once it runs and provides the code and other details, type **approved (1)** and select **send (2)** to approve the code. At the end of the chat, you can observe that the code is being pushed to the repository after approval.
+1. Una vez que se ejecute y proporcione el código y otros detalles, escribe **approved (1)** y selecciona **enviar (2)** para aprobar el código. Al final del chat, podrás observar que el código se está enviando al repositorio después de la aprobación.
 
     ![](./Images/Image33.png)
 
     ![](./Images/Image34.png)
 
-1. Navigate to the repository **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>** and verify that the `generated_app.html` file has been created, containing the code for your simple calculator.
+1. Navega al repositorio **Capstone-Project-<inject key="Deployment ID" enableCopy="false"/>** y verifica que se haya creado el archivo `generated_app.html`, que contiene el código para tu calculadora simple.
 
     ![](./Images/Image37.png)
 
-## Success Criteria
+## Criterios de Éxito
 
-- You have implemented the Multi-Agent Chat system that produces:
-    - Generation of complete source code in HTML and JavaScript for the requested application
-    - Thorough code review and approval process by User
-    - Automated deployment of the application to Azure
-    - Automated code push to a Git repository upon user approval
-
-
-## Bonus
-
-- Copy the code from the chat history markdown into matching files on your file system.
-- Save HTML content as `index.html` and launch it in your web browser.
-- Test if the application functions as the AI described.
-- Enhance the app by asking the AI to make it responsive or add new features.
-- Experiment with modifying personas to improve results or functionality.
+- Has implementado el sistema de chat Multi-Agente que produce:
+    - Generación de código fuente completo en HTML y JavaScript para la aplicación solicitada
+    - Proceso exhaustivo de revisión y aprobación de código por parte del Usuario
+    - Despliegue automatizado de la aplicación en Azure
+    - Envío automatizado de código a un repositorio Git tras la aprobación del usuario
 
 
-## Learning Resources
+## Bono
 
-- [Agent Group Chat with Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-chat?pivots=programming-language-python)
+- Copia el código del historial del chat en formato markdown a los archivos correspondientes en tu sistema de archivos.
+- Guarda el contenido HTML como `index.html` y ábrelo en tu navegador web.
+- Prueba si la aplicación funciona según lo descrito por la IA.
+- Mejora la aplicación pidiendo a la IA que la haga responsiva o que agregue nuevas funcionalidades.
+- Experimenta modificando las personalidades para mejorar resultados o funcionalidades.
+
+
+## Recursos de Aprendizaje
+
+- [Agent Group Chat con Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-chat?pivots=programming-language-python)
 - [MetaGPT](https://github.com/geekan/MetaGPT)
 - [AutoGen Multi-Agent Conversational Framework](https://microsoft.github.io/autogen/docs/Use-Cases/agent_chat/)
-- [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
+- [AutoGen con Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 
-## Conclusion
+## Conclusión
 
-This challenge demonstrated how to build and coordinate a Multi-Agent System using Azure AI Foundry and Semantic Kernel. By designing distinct personas for Business Analyst, Software Engineer, and Product Owner, and configuring a group chat environment with a termination strategy, you created a collaborative AI workflow capable of gathering requirements, developing code, and performing code reviews. The task structure allows for scalable, decentralized handling of complex problems using autonomous, interactive agents.
+Este desafío demostró cómo construir y coordinar un Sistema Multi-Agente usando Azure AI Foundry y Semantic Kernel. Al diseñar personalidades distintas para Analista de Negocios, Ingeniero de Software y Propietario del Producto, y configurar un entorno de chat grupal con una estrategia de terminación, creaste un flujo de trabajo colaborativo de IA capaz de recopilar requerimientos, desarrollar código y realizar revisiones de código. La estructura de la tarea permite un manejo escalable y descentralizado de problemas complejos usando agentes autónomos e interactivos.
 
-# You have successfully completed the Lab !!
+# ¡¡Has completado el Laboratorio con éxito!!
