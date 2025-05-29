@@ -88,7 +88,7 @@ Azure Agentic AI ワークショップへようこそ、このエクスペリエ
 
    - **メールアドレス/ユーザー名:** <inject key="AzureAdUserEmail"></inject>
 
-     ![Enter Your Username](./media/gt-5.png)
+   ![Enter Your Username](./media/gt-5.png)
 
 3. 次に、パスワードを入力します。
 
