@@ -63,21 +63,8 @@ Azure Agentic AI ワークショップへようこそ、このエクスペリエ
 ## 仮想マシンの管理
 
 必要に応じて、[リソース] (1) タブから、仮想マシンを自由に開始、停止、または再起動 (2) してください。あなたの経験はあなたの手の中にあります!
+
 ![Manage Your Virtual Machine](./media/agg5.png)
-
-<!-- ## Lab Duration Extension
-
-1. To extend the duration of the lab, kindly click the **Hourglass** icon in the top right corner of the lab environment.
-
-    ![Manage Your Virtual Machine](./media/media/gext.png)
-
-    >**Note:** You will get the **Hourglass** icon when 10 minutes are remaining in the lab.
-
-2. Click **OK** to extend your lab duration.
-
-   ![Manage Your Virtual Machine](./media/media/gext2.png)
-
-3. If you have not extended the duration prior to when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed. -->
 
 > **手記:** スクリプトが引き続き実行され、環境にアクセスした後に終了しないことを確認してください。
 
