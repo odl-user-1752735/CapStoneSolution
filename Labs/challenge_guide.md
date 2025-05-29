@@ -6,7 +6,7 @@ Os Sistemas Multiagentes (MAS) consistem em vários agentes autônomos, cada um 
 
 Neste desafio, você criará um Sistema Multiagente que aceita a solicitação de um usuário e a processa por meio de uma coleção de agentes, cada um projetado com uma persona específica e área de especialização. Os agentes analisarão individualmente o pedido e contribuirão com as suas respostas com base nas suas responsabilidades definidas. O resultado final será uma coleção consolidada de respostas de todos os agentes, abordando colaborativamente a consulta do usuário de uma forma que reflita a perspetiva única de cada persona.
 
-## Objetivos do Desafio:
+## Tarefa 1 - Implantação do Modelo Azure AI Foundry e Configuração do Ambiente
 
 1. **Implantação do Serviço Azure OpenAI:**
 
@@ -31,9 +31,6 @@ Neste desafio, você criará um Sistema Multiagente que aceita a solicitação d
 
         >- **Dica:** A versão da API pode ser obtida a partir do URI de Destino.
 
-
-## Tarefa 1 - Implantação do Modelo Azure AI Foundry & Configuração do Ambiente
-
 1. Atualize o arquivo `.env` com os detalhes da implantação do Azure AI Foundry:
 
     ```
@@ -42,9 +39,15 @@ Neste desafio, você criará um Sistema Multiagente que aceita a solicitação d
     AZURE_OPENAI_API_KEY=Replace with your API key
     AZURE_OPENAI_API_VERSION=Replace with your API version
     ```
+    
+> **Parabéns** por completar a tarefa! Agora, é hora de validá-la. Aqui estão os passos:
+> - Se você receber uma mensagem de sucesso, pode prosseguir para a próxima tarefa.
+> - Se não, leia cuidadosamente a mensagem de erro e tente novamente o passo, seguindo as instruções do guia do laboratório.
+> - Se precisar de ajuda, entre em contato conosco pelo email cloudlabs-support@spektrasystems.com. Estamos disponíveis 24 horas por dia, 7 dias por semana para ajudar você.
+  
+<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
 
-
-## Task 2 - Define Agent Personas and Configure Multi-Agent Chat
+## Tarefa 2 - Configurar Fluxo de Trabalho Multi-Agente e Automatizar o Envio de Código Após Aprovação
 
 1. Abra o arquivo `multi_agent.py`. É aqui que você vai implementar todo o código necessário para este desafio.
 
@@ -80,22 +83,23 @@ Neste desafio, você criará um Sistema Multiagente que aceita a solicitação d
 
 1. Implemente o método `should_agent_terminate` na classe `ApprovalTerminationStrategy`. Os agentes devem terminar quando o Usuário retornar "APPROVED" no histórico do chat.
 
-
-## Tarefa 3 - Disparar Git Push após Aprovação do Usuário
-
-Adicione lógica para que, quando o usuário enviar "APPROVED" no chat, um script Bash seja acionado para enviar o código escrito pelo agente Software Engineer para um repositório Git.
-
 1. Após implementar o método `should_agent_terminate` para detectar "APPROVED", adicione um callback ou etapa de pós-processamento que execute quando esta condição for satisfeita.
-2. Extraia o código HTML fornecido pelo agente Software Engineer do histórico do chat.
-3. Salve o código extraído em um arquivo (por exemplo, `index.html`).
-4. Crie um script Bash (por exemplo, `push_to_git.sh`) que faça stage, commit e push do arquivo para o repositório Git desejado:
-5. No seu código Python, utilize o módulo `subprocess` para chamar este script quando "APPROVED" for detectado:
-6. Garanta que seu ambiente possua as credenciais Git necessárias configuradas para pushes não interativos.
+1. Extraia o código HTML fornecido pelo agente Software Engineer do histórico do chat.
+1. Salve o código extraído em um arquivo (por exemplo, `index.html`).
+1. Crie um script Bash (por exemplo, `push_to_git.sh`) que faça stage, commit e push do arquivo para o repositório Git desejado:
+1. No seu código Python, utilize o módulo `subprocess` para chamar este script quando "APPROVED" for detectado:
+1. Garanta que seu ambiente possua as credenciais Git necessárias configuradas para pushes não interativos.
 
 Esta automação assegura que, uma vez que o Product Owner (ou usuário) envie "APPROVED", o código mais recente seja automaticamente enviado para o seu repositório Git.
 
+> **Parabéns** por completar a tarefa! Agora, é hora de validá-la. Aqui estão os passos:
+> - Se você receber uma mensagem de sucesso, pode prosseguir para a próxima tarefa.
+> - Se não, leia cuidadosamente a mensagem de erro e tente novamente o passo, seguindo as instruções do guia do laboratório.
+> - Se precisar de ajuda, entre em contato conosco pelo email cloudlabs-support@spektrasystems.com. Estamos disponíveis 24 horas por dia, 7 dias por semana para ajudar você.
 
-## Tarefa 4 - Executar a Conversa Multi-Agente e Validar o Fluxo de Trabalho
+<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+
+## Tarefa 3 - Executar a Conversa Multi-Agente e Validar o Fluxo de Trabalho
 
 1. Implemente o código para enviar uma mensagem do usuário ao grupo de agentes usando `add_chat_message` no objeto `AgentGroupChat`. A mensagem deve incluir:
     - `AuthorRole.User` como autor
@@ -110,9 +114,7 @@ Esta automação assegura que, uma vez que o Product Owner (ou usuário) envie "
 
 1. Execute sua aplicação e envie uma solicitação para construir uma aplicação de calculadora. Observe como o Business Analyst, Software Engineer e Product Owner colaboram para planejar, construir e aprovar a solução.
 
-
-## Tarefa 5 - Implantar a aplicação no Azure  
-### Implantação da Aplicação no Azure Usando Container Registry e Azure App Service
+## Tarefa 4 - Implantar o Aplicativo no Azure Usando o Registro de Contêiner e o Serviço de Aplicativo do Azure
 
 Para hospedar sua aplicação online usando o Azure, siga estes passos para conteinerizar sua aplicação, enviá-la ao Azure Container Registry (ACR) e implantá-la usando o Azure App Service:
 
@@ -141,6 +143,12 @@ Para hospedar sua aplicação online usando o Azure, siga estes passos para cont
 3. Copie a URL do endpoint do container app.
 4. Acesse a aplicação web visitando esse endpoint no seu navegador e verifique se a aplicação funciona conforme esperado.
 
+> **Parabéns** por completar a tarefa! Agora, é hora de validá-la. Aqui estão os passos:
+> - Se você receber uma mensagem de sucesso, pode prosseguir para a próxima tarefa.
+> - Se não, leia cuidadosamente a mensagem de erro e tente novamente o passo, seguindo as instruções do guia do laboratório.
+> - Se precisar de ajuda, entre em contato conosco pelo email cloudlabs-support@spektrasystems.com. Estamos disponíveis 24 horas por dia, 7 dias por semana para ajudar você.
+
+<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
 
 ## Critérios de Sucesso
 
@@ -150,9 +158,6 @@ Para hospedar sua aplicação online usando o Azure, siga estes passos para cont
     - Implantação automatizada da aplicação no Azure
     - Envio automatizado do código para um repositório Git após aprovação do usuário
 
-
-
-
 ## Bónus
 
 - Copie o código do histórico do chat em markdown para os ficheiros correspondentes no seu sistema de ficheiros.
@@ -160,7 +165,6 @@ Para hospedar sua aplicação online usando o Azure, siga estes passos para cont
 - Teste se a aplicação funciona conforme descrito pela IA.
 - Melhore a aplicação pedindo à IA para torná-la responsiva ou adicionar novas funcionalidades.
 - Experimente modificar as personas para melhorar os resultados ou a funcionalidade.
-
 
 ## Recursos de aprendizagem
 
