@@ -42,13 +42,13 @@ Azure Agentic AI 워크숍에 오신 것을 환영합니다. 이 환경을 최�
 
 시작할 준비가 되면 가상 머신과 랩 가이드가 웹 브라우저 내에서 바로 사용할 수 있습니다.
 
-![Access Your VM and Lab Guide](./media/agg1.png)
+![Access Your VM and Lab Guide](./media/Agg1.png)
 
 ## 랩 가이드 Zoom In/Zoom Out
 
 환경 페이지의 확대/축소 수준을 조정하려면 랩 환경의 타이머 옆에 있는 A↕: 100% 아이콘을 클릭합니다.
 
-![](./media/agg2.png)
+![](./media/Agg2.png)
 
 ## Virtual Machine & Lab 가이드
 
@@ -58,19 +58,19 @@ Azure Agentic AI 워크숍에 오신 것을 환영합니다. 이 환경을 최�
 
 랩 리소스 및 자격 증명을 더 잘 이해하려면 환경 탭으로 이동합니다.
 
-![Explore Lab Resources](./media/agg3.png)
+![Explore Lab Resources](./media/Agg3.png)
 
 ## 분할 창 기능 활용
 
 편의를 위해 오른쪽 위 모서리에서 분할 창 단추를 선택하여 별도의 창에서 랩 가이드를 열 수 있습니다.
 
-![Use the Split Window Feature](./media/agg4.png)
+![Use the Split Window Feature](./media/Agg4.png)
 
 ## 가상 머신 관리
 
 **Resources (1)** 탭에서 필요에 따라 가상 머신을 **자유롭게 시작, 중지 또는 다시 시작(2)** 할 수 있습니다. 당신의 경험은 당신의 손에 달려 있습니다!
 
-![Manage Your Virtual Machine](./media/agg5.png)
+![Manage Your Virtual Machine](./media/Agg5.png)
 
 <!-- ## Lab Duration Extension
 
@@ -142,6 +142,6 @@ CloudLabs 지원 팀은 이메일과 라이브 채팅을 통해 연중무휴 24/
 
 오른쪽 아래 모서리에서 다음을 클릭하여 실습 여정을 시작하세요!
 
-![Start Your Azure Journey](./media/agg6.png)
+![Start Your Azure Journey](./media/Agg6.png)
 
 이제 강력한 기술 세계를 탐험할 준비가 되었습니다. 도중에 질문이 있는 경우 언제든지 문의하십시오. 워크샵을 즐기십시오!
