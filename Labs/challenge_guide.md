@@ -7,7 +7,8 @@ Los Sistemas Multi-Agente (MAS) consisten en múltiples agentes autónomos, cada
 En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un usuario y la procesa a través de una colección de agentes, cada uno diseñado con una persona específica y área de especialización. Los agentes analizarán individualmente la solicitud y contribuirán con sus respuestas basándose en sus responsabilidades definidas. La salida final será una colección consolidada de respuestas de todos los agentes, abordando colaborativamente la consulta del usuario de una manera que refleje la perspectiva única de cada persona.
 
 
-## Objetivos del Desafío:
+## Tarea 1 - Implementación del Modelo de Azure AI Foundry y Configuración del Entorno
+
 
 1. **Despliegue del Servicio Azure OpenAI:**
 
@@ -33,9 +34,6 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
 
         >- **Pista:** La versión API puede obtenerse desde el URI de destino.
 
-
-## Tarea 1 - Despliegue del Modelo Azure AI Foundry y Configuración del Entorno
-
 1. Actualiza el archivo `.env` con los detalles del despliegue de Azure AI Foundry:
 
     ```
@@ -44,9 +42,15 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
     AZURE_OPENAI_API_KEY=Reemplaza con tu clave API
     AZURE_OPENAI_API_VERSION=Reemplaza con la versión de tu API
     ```
+> **¡Felicidades** por completar la tarea! Ahora es momento de validarla. Aquí están los pasos:
+> - Si recibes un mensaje de éxito, puedes continuar con la siguiente tarea.
+> - Si no, lee cuidadosamente el mensaje de error y vuelve a intentar el paso, siguiendo las instrucciones de la guía de laboratorio.
+> - Si necesitas ayuda, por favor contáctanos en cloudlabs-support@spektrasystems.com. Estamos disponibles 24/7 para ayudarte.
+
+<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
 
 
-## Tarea 2 - Definir las Personalidades de los Agentes y Configurar el Chat Multi-Agente
+## Tarea 2 - Configurar Flujo de Trabajo Multi-Agente y Automatizar el Envío de Código tras la Aprobación
 
 1. Abre el archivo `multi_agent.py`. Aquí es donde implementarás todo el código necesario para este desafío.
 
@@ -70,32 +74,40 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-1. Crea un `ChatCompletionAgent` para cada una de las personas mencionadas anteriormente. Cada agente debe tener:
+3. Crea un `ChatCompletionAgent` para cada una de las personas mencionadas anteriormente. Cada agente debe tener:
     - Instrucciones (el prompt de la persona)
     - Un Nombre único (solo letras, sin espacios ni caracteres especiales)
     - Una referencia a un objeto `Kernel`
 
-1. Crea un objeto `AgentGroupChat` para enlazar los tres agentes. Pasa:
+4. Crea un objeto `AgentGroupChat` para enlazar los tres agentes. Pasa:
     - Un arreglo con los tres agentes
     - `ExecutionSettings` con una `TerminationStrategy` configurada como una instancia de `ApprovalTerminationStrategy`
 
-1. Implementa el método `should_agent_terminate` en la clase `ApprovalTerminationStrategy`. Los agentes deben terminar cuando el Usuario devuelva "APPROVED" en el historial del chat.
+5. Implementa el método `should_agent_terminate` en la clase `ApprovalTerminationStrategy`. Los agentes deben terminar cuando el Usuario devuelva "APPROVED" en el historial del chat.
+
+6. Después de implementar el método `should_agent_terminate` para detectar **"APPROVED"**, agrega una devolución de llamada o un paso de post-procesamiento que se ejecute cuando se cumpla esta condición.
+
+7. Extrae el código HTML proporcionado por el agente Software Engineer desde el historial del chat.
+
+8. Guarda el código extraído en un archivo (por ejemplo, `index.html`).
+
+9. Crea un script Bash (`push_to_github.sh`) que agregue, realice commit y envíe el archivo a tu repositorio Git deseado.
+
+10. En tu código Python, utiliza el módulo `subprocess` para llamar a este script cuando se detecte **"APPROVED"**.
+
+11. Asegúrate de que tu entorno tenga configuradas las credenciales Git necesarias para realizar envíos no interactivos.
+
+Esta automatización garantiza que, una vez que el usuario envíe "APPROVED", el código más reciente se envíe automáticamente a tu repositorio Git.
+
+> **¡Felicidades** por completar la tarea! Ahora es momento de validarla. Aquí tienes los pasos:
+> - Si recibes un mensaje de éxito, puedes continuar con la siguiente tarea.
+> - Si no, lee cuidadosamente el mensaje de error y vuelve a intentar el paso, siguiendo las instrucciones de la guía de laboratorio.
+> - Si necesitas ayuda, por favor contáctanos en cloudlabs-support@spektrasystems.com. Estamos disponibles 24/7 para apoyarte.
+
+<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
 
 
-## Tarea 3 - Activar Git Push tras la Aprobación del Usuario
-
-Agrega lógica para que cuando el usuario envíe "APPROVED" en el chat, se active un script Bash que haga push del código escrito por el agente Software Engineer a un repositorio Git.
-
-1. Después de implementar el método `should_agent_terminate` para detectar "APPROVED", añade un callback o paso de post-procesamiento que se ejecute cuando se cumpla esta condición.
-2. Extrae el código HTML proporcionado por el agente Software Engineer del historial del chat.
-3. Guarda el código extraído en un archivo (por ejemplo, `index.html`).
-4. Crea un script Bash (por ejemplo, `push_to_git.sh`) que haga staging, commit y push del archivo al repositorio Git deseado:
-5. En tu código Python, usa el módulo `subprocess` para llamar a este script cuando se detecte "APPROVED":
-6. Asegúrate de que tu entorno tenga las credenciales Git necesarias configuradas para realizar push sin interacción.
-
-Esta automatización asegura que una vez que el Product Owner (o usuario) envíe "APPROVED", el código más reciente se suba automáticamente a tu repositorio Git.
-
-## Tarea 4 - Ejecutar la Conversación Multi-Agente y Validar el Flujo de Trabajo
+## Tarea 3 - Ejecutar la Conversación Multi-Agente y Validar el Flujo de Trabajo
 
 1. Implementa el código para enviar un mensaje del usuario al grupo de agentes usando `add_chat_message` sobre el objeto `AgentGroupChat`. El mensaje debe incluir:
     - `AuthorRole.User` como autor
@@ -110,10 +122,7 @@ Esta automatización asegura que una vez que el Product Owner (o usuario) envíe
 
 3. Ejecuta tu aplicación y proporciona una solicitud para construir una aplicación calculadora. Observa cómo el Business Analyst, Software Engineer y Product Owner colaboran para planear, construir y aprobar la solución.
 
-
-## Tarea 5 - Desplegar la aplicación en Azure
-
-### Desplegando la aplicación en Azure usando Container Registry y Azure App Service
+## Tarea 4 - Implementar la Aplicación en Azure Usando Container Registry y Azure App Service
 
 Para alojar tu aplicación en línea usando Azure, sigue estos pasos para contenerizar tu aplicación, enviarla a Azure Container Registry (ACR) y desplegarla usando Azure App Service:
 
@@ -140,8 +149,14 @@ Para alojar tu aplicación en línea usando Azure, sigue estos pasos para conten
 1. Abre el portal de Azure y navega al grupo de recursos **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>**.  
 2. Localiza el recurso de la aplicación de contenedor desplegada.  
 3. Copia la URL del endpoint de la aplicación de contenedor.  
-4. Accede a la aplicación web visitando este endpoint en tu navegador y verifica que la aplicación funcione según lo esperado.  
+4. Accede a la aplicación web visitando este endpoint en tu navegador y verifica que la aplicación funcione según lo esperado. 
+ 
+> **¡Felicidades** por completar la tarea! Ahora es momento de validarla. Aquí están los pasos:
+> - Si recibes un mensaje de éxito, puedes continuar con la siguiente tarea.
+> - Si no, lee cuidadosamente el mensaje de error y vuelve a intentar el paso, siguiendo las instrucciones en la guía del laboratorio.
+> - Si necesitas ayuda, por favor contáctanos en cloudlabs-support@spektrasystems.com. Estamos disponibles 24/7 para asistirte.
 
+<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
 
 ## Criterios de Éxito
 
@@ -152,8 +167,6 @@ Para alojar tu aplicación en línea usando Azure, sigue estos pasos para conten
     - Push automatizado del código a un repositorio Git tras la aprobación del usuario.
 
 
----
-
 ## Bonus
 
 - Copia el código del historial del chat en archivos correspondientes en tu sistema de archivos.
@@ -163,8 +176,6 @@ Para alojar tu aplicación en línea usando Azure, sigue estos pasos para conten
 - Experimenta modificando las personalidades de los agentes para mejorar resultados o funcionalidades.
 
 
----
-
 ## Recursos de aprendizaje
 
 - [Agent Group Chat with Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-chat?pivots=programming-language-python)
@@ -173,7 +184,6 @@ Para alojar tu aplicación en línea usando Azure, sigue estos pasos para conten
 - [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 - [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
----
 
 ## Conclusión
 
