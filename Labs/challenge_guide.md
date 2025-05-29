@@ -114,7 +114,7 @@ Esta automação assegura que, uma vez que o Product Owner (ou usuário) envie "
 
 1. Execute sua aplicação e envie uma solicitação para construir uma aplicação de calculadora. Observe como o Business Analyst, Software Engineer e Product Owner colaboram para planejar, construir e aprovar a solução.
 
-## Tarefa 4 - Implantar o Aplicativo no Azure Usando o Registro de Contêiner e o Serviço de Aplicativo do Azure
+## Tarefa 4 - Implantar App no Azure com Registro de Contêiner e App Service
 
 Para hospedar sua aplicação online usando o Azure, siga estes passos para conteinerizar sua aplicação, enviá-la ao Azure Container Registry (ACR) e implantá-la usando o Azure App Service:
 
