@@ -40,13 +40,19 @@
     AZURE_OPENAI_API_KEY=Replace with your API key
     AZURE_OPENAI_API_VERSION=Replace with your API version
     ```
+> **おめでとうございます**、タスクの完了です！次は検証のステップです。以下の手順に従ってください。
+> - 成功メッセージが表示された場合、次のタスクに進んでください。
+> - そうでない場合は、エラーメッセージをよく確認し、ラボガイドの手順に従ってもう一度試してください。
+> - サポートが必要な場合は、cloudlabs-support@spektrasystems.com までご連絡ください。24時間365日サポートしています。
+
+<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
 
 
-## タスク 2 - エージェントのペルソナの定義とマルチエージェント チャットの構成
+## タスク 2 - マルチエージェントワークフローの構成と承認後のコード自動プッシュの実装
 
 1. `multi_agent.py` ファイルを開きます。ここで、このチャレンジに必要なすべてのコードを実装します。
 
-1. 次の手順で、3 人のエージェントのペルソナを作成します。
+2. 次の手順で、3 人のエージェントのペルソナを作成します。
 
     - **ビジネスアナリストのペルソナ**
 
@@ -66,30 +72,39 @@
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-1. 上記の各ペルソナに対して `ChatCompletionAgent` を作成します。各エージェントには、次のものが必要です。
+3. 上記の各ペルソナに対して `ChatCompletionAgent` を作成します。各エージェントには、次のものが必要です。
     - 指示 (ペルソナ プロンプト)
     - 意の名前 (文字のみ、スペースや特殊文字は使用不可)
     - `Kernel` オブジェクトへの参照
 
-1. `AgentGroupChat` オブジェクトを作成して、3 人のエージェントを結び付けます。通る：
+4. `AgentGroupChat` オブジェクトを作成して、3 人のエージェントを結び付けます。通る：
     - 3 つのエージェントの配列
     - `ExecutionSettings` と `TerminationStrategy` のインスタンスに設定された `TerminationStrategy`
-1. `should_agent_terminate` メソッドを `ApprovalTerminationStrategy` クラスに実装します。エージェントは、ユーザーがチャット履歴で `APPROVED` を返したときに終了する必要があります。
 
-## タスク 3 - ユーザー承認時の Git プッシュのトリガー
+5. `should_agent_terminate` メソッドを `ApprovalTerminationStrategy` クラスに実装します。エージェントは、ユーザーがチャット履歴で `APPROVED` を返したときに終了する必要があります。
 
-ユーザーがチャットで「APPROVED」を送信すると、Bashスクリプトがトリガーされ、ソフトウェアエンジニアエージェントが記述したコードをGitリポジトリにプッシュするロジックを追加します。
+6. **"APPROVED"** を検出する `should_agent_terminate` メソッドを実装した後、その条件が満たされたときに実行されるコールバックまたは後処理ステップを追加します。
 
-1. `APPROVED` を検出する `should_agent_terminate` メソッドを実装した後、この条件が満たされたときに実行されるコールバックまたは後処理ステップを追加します。
-2. ソフトウェアエンジニアエージェントから提供されたHTMLコードをチャット履歴から抽出します。
-3. 抽出したコードをファイル(index.htmlなど)に保存します。
-4. Bashスクリプト(push_to_git.shなど)を作成し、ファイルをステージング、コミット、目的のGitリポジトリにプッシュします。
-5. Python コードで、subprocess モジュールを使用して、"APPROVED" が検出されたときにこのスクリプトを呼び出します。
-6. お使いの環境で、非対話型プッシュに必要な Git 資格情報が構成されていることを確認します。
+7. ソフトウェアエンジニアエージェントがチャット履歴内で提供した HTML コードを抽出します。
 
-この自動化により、ユーザーが `APPROVED` を送信すると、最新のコードが自動的にGitリポジトリにプッシュされます。
+8. 抽出したコードをファイル（例：`index.html`）として保存します。
 
-## タスク 4 - マルチエージェントの会話の実行とワークフローの検証
+9. Bash スクリプト（`push_to_github.sh`）を作成し、そのファイルをステージ、コミットし、指定の Git リポジトリへプッシュします。
+
+10. Python コード内で `subprocess` モジュールを使用し、**"APPROVED"** が検出されたときにこのスクリプトを実行します。
+
+11. 環境に、対話なしで Git プッシュができるよう適切な Git 認証情報が構成されていることを確認します。
+
+この自動化により、ユーザーが **"APPROVED"** を送信すると、最新のコードが自動的に Git リポジトリへプッシュされます。
+
+> **タスク完了おめでとうございます！** 次に検証を行いましょう。以下の手順に従ってください:
+> - 成功メッセージが表示された場合、次のタスクへ進んでください。
+> - 表示されたエラーメッセージをよく確認し、ラボガイドの手順に沿って再実行してください。
+> - サポートが必要な場合は、いつでも cloudlabs-support@spektrasystems.com までご連絡ください。24時間365日対応いたします。
+
+<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+
+## タスク 3 - マルチエージェントの会話を実行し、ワークフローを検証する
 
 1. `AgentGroupChat` オブジェクトの `add_chat_message` を使用して、エージェント グループにユーザー メッセージを送信するコードを実装します。メッセージには、次のものを含める必要があります。
     - 著者としての `AuthorRole.User`
@@ -104,8 +119,7 @@
 
 1. アプリケーションを実行し、電卓アプリの構築要求を提供します。ビジネス アナリスト、ソフトウェア エンジニア、およびプロダクト オーナーが協力してソリューションを計画、構築、承認する方法を観察します。
 
-## タスク 5 - タスク 5 - アプリを Azure にデプロイする
-### Container Registry と Azure App Service を使用した Azure へのアプリのデプロイ
+## タスク 4 - コンテナ レジストリと Azure App Service を使用してアプリをデプロイする
 
 Azure を使用してアプリをオンラインでホストするには、次の手順に従ってアプリケーションをコンテナー化し、Azure Container Registry (ACR) にプッシュして、Azure App Service を使用してデプロイします。
 
@@ -130,9 +144,17 @@ Azure を使用してアプリをオンラインでホストするには、次�
    - **Resource Group to use**: Select **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)** from the options and press **Enter**.
 
 1. Azure portal を開き、リソース グループ **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** に移動します。.
-2. デプロイされたコンテナ アプリ リソースを見つけます。
-3. コンテナアプリのエンドポイントURLをコピーします。
-4. ブラウザでこのエンドポイントにアクセスして Web アプリにアクセスし、アプリケーションが期待どおりに機能することを確認します。
+1. デプロイされたコンテナ アプリ リソースを見つけます。
+1. コンテナアプリのエンドポイントURLをコピーします。
+1. ブラウザでこのエンドポイントにアクセスして Web アプリにアクセスし、アプリケーションが期待どおりに機能することを確認します。
+
+> **おめでとうございます！** このタスクを完了しました。次は検証の時間です。以下の手順に従ってください。
+> - 成功メッセージが表示された場合は、次のタスクに進んでください。
+> - エラーメッセージが表示された場合は、メッセージをよく確認し、ラボガイドの手順に従って再実行してください。
+> - サポートが必要な場合は、いつでも cloudlabs-support@spektrasystems.com までご連絡ください。24時間365日サポートいたします。
+
+<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
+
 
 ## 成功基準
 
@@ -142,7 +164,6 @@ Azure を使用してアプリをオンラインでホストするには、次�
     - Azure へのアプリケーションの自動デプロイ
     - ユーザーの承認時に Git リポジトリにコードを自動的にプッシュ
 
----
 
 ## ボーナス
 
@@ -152,7 +173,6 @@ Azure を使用してアプリをオンラインでホストするには、次�
 - AI に応答性を持たせたり、新機能を追加したりするように依頼して、アプリを強化します。
 - ペルソナを変更して、結果や機能を改善してみてください。
 
----
 
 ## 学習リソース
 
@@ -162,7 +182,6 @@ Azure を使用してアプリをオンラインでホストするには、次�
 - [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 - [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
----
 
 ## 結論
 
