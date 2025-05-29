@@ -6,8 +6,7 @@
 
 在此挑戰中，你將建立一個多代理系統，該系統接收使用者的請求並透過一組各具特定角色與專長領域的代理來處理。各代理會獨立分析請求，並根據其責任範圍提供回應。最終輸出將是所有代理回應的綜合集合，協同回答使用者的問題，並反映每個角色獨特的觀點。
 
-
-## 挑戰目標：
+## 任務1 - Azure AI Foundry 模型部署與環境設定
 
 1. **Azure OpenAI 服務部署：**
 
@@ -19,7 +18,7 @@
 
     - 取得 Azure OpenAI 金鑰與端點（Endpoint）。
 
-2. **部署 Azure OpenAI 模型：**
+1. **部署 Azure OpenAI 模型：**
 
     - Azure OpenAI 提供一個名為 **Azure AI Foundry Portal** 的網頁入口，供你部署、管理與探索模型。你將從使用 Azure AI Foundry 部署模型開始探索 Azure OpenAI。
 
@@ -32,9 +31,6 @@
 
         >- **提示：** API 版本可從目標 URI 中擷取。
 
-
-## 任務 1 - Azure AI Foundry 模型部署與環境設定
-
 1. 更新 `.env` 檔案，填入 Azure AI Foundry 部署資訊：
 
     ```
@@ -43,8 +39,15 @@
     AZURE_OPENAI_API_KEY=Replace with your API key
     AZURE_OPENAI_API_VERSION=Replace with your API version
     ```
+> **恭喜** 完成此任務！現在是時候驗證結果了，請按照以下步驟操作：
+>
+> - 如果您收到成功訊息，可以繼續進行下一個任務。
+> - 如果沒有，請仔細閱讀錯誤訊息，依照實驗指南中的指示重新嘗試該步驟。
+> - 如果您需要任何協助，請隨時透過 cloudlabs-support@spektrasystems.com 與我們聯繫，我們提供 24/7 全天候支援服務。
 
-## 任務 2 - 定義代理人角色並設定多代理人聊天
+<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
+
+## 任務 2 - 設定多代理人工作流程並在核准後自動推送程式碼
 
 1. 打開 `multi_agent.py` 檔案。在此檔案中你將實作本挑戰所需的所有程式碼。
 
@@ -73,24 +76,19 @@
     - 唯一名稱（僅限英文字母，無空白或特殊字元）
     - 指向一個 `Kernel` 物件的參考
 
-2. 建立一個 `AgentGroupChat` 物件，將三個代理人串接起來。傳入：
+1. 建立一個 `AgentGroupChat` 物件，將三個代理人串接起來。傳入：
     - 三個代理人的陣列
     - `ExecutionSettings`，其中 `TerminationStrategy` 設為 `ApprovalTerminationStrategy` 的實例
 
-3. 在 `ApprovalTerminationStrategy` 類別中實作 `should_agent_terminate` 方法。當使用者在聊天歷史中回傳 "APPROVED" 時，代理人應該終止運行。
-
-
-## 任務 3 - 使用者核准後觸發 Git 推送
-
-加入邏輯，使當使用者在聊天中輸入 "APPROVED" 時，觸發一個 Bash 腳本，將軟體工程師代理人所撰寫的程式碼推送到 Git 儲存庫。
+1. 在 `ApprovalTerminationStrategy` 類別中實作 `should_agent_terminate` 方法。當使用者在聊天歷史中回傳 "APPROVED" 時，代理人應該終止運行。
 
 1. 在實作 `should_agent_terminate` 方法以偵測 "APPROVED" 後，新增一個回呼或後處理步驟，在條件達成時執行。
 
-2. 從聊天歷史中擷取軟體工程師代理人提供的 HTML 程式碼。
+1. 從聊天歷史中擷取軟體工程師代理人提供的 HTML 程式碼。
 
-3. 將擷取出的程式碼保存至檔案（例如 `index.html`）。
+1. 將擷取出的程式碼保存至檔案（例如 `index.html`）。
 
-4. 建立一個 Bash 腳本（例如 `push_to_git.sh`），用以將檔案加入暫存區、提交並推送到指定的 Git 儲存庫：
+1. 建立一個 Bash 腳本（例如 `push_to_git.sh`），用以將檔案加入暫存區、提交並推送到指定的 Git 儲存庫：
 
     ```bash
     #!/bin/bash
@@ -99,14 +97,21 @@
     git push origin main
     ```
 
-5. 在 Python 程式碼中，使用 `subprocess` 模組呼叫此腳本，當偵測到 "APPROVED" 時執行。
+1. 在 Python 程式碼中，使用 `subprocess` 模組呼叫此腳本，當偵測到 "APPROVED" 時執行。
 
-6. 確保執行環境已配置必要的 Git 憑證，以支援非互動式推送。
+1. 確保執行環境已配置必要的 Git 憑證，以支援非互動式推送。
 
-此自動化流程確保當產品負責人（或使用者）傳送 "APPROVED" 後，最新程式碼能自動推送至你的 Git 儲存庫。
+   此自動化流程確保當產品負責人（或使用者）傳送 "APPROVED" 後，最新程式碼能自動推送至你的 Git 儲存庫。
 
+> **恭喜** 完成此任務！現在是時候驗證結果了，請按照以下步驟操作：
+>
+> - 如果您收到成功訊息，可以繼續進行下一個任務。
+> - 如果沒有，請仔細閱讀錯誤訊息，依照實驗指南中的指示重新嘗試該步驟。
+> - 如果您需要任何協助，請隨時透過 cloudlabs-support@spektrasystems.com 與我們聯繫，我們提供 24/7 全天候支援服務。
 
-## 任務 4 - 執行多代理人對話並驗證工作流程
+<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+
+## 任務 3 - 執行多代理人對話並驗證工作流程
 
 1. 實作程式碼，使用 `AgentGroupChat` 物件的 `add_chat_message` 方法將使用者訊息傳送給代理人群組。訊息應包含：
     - 作者角色為 `AuthorRole.User`
@@ -121,10 +126,7 @@
 
 3. 執行你的應用程式，並輸入一個建立計算機應用程式的請求。觀察商業分析師、軟體工程師與產品負責人如何協作規劃、開發並核准解決方案。
 
-
-## 任務 5 - 部署應用程式到 Azure
-
-### 使用容器登錄與 Azure App Service 部署應用程式
+## 任務 4 - 使用容器登錄庫和 Azure 應用服務部署應用程式到 Azure
 
 為了在線上託管你的應用程式，請依照以下步驟將應用程式容器化，推送至 Azure 容器登錄服務 (ACR)，並使用 Azure App Service 進行部署：
 
@@ -153,6 +155,12 @@
 4. 複製該容器應用程式的端點 URL。
 5. 在瀏覽器中開啟此端點，確認應用程式正常運作。
 
+> **恭喜您完成此任務！** 現在是時候驗證成果了。請按照以下步驟操作：
+> - 如果收到成功訊息，您可以繼續進行下一個任務。
+> - 如果沒有，請仔細閱讀錯誤訊息，依照實驗指南中的說明重新嘗試該步驟。
+> - 如果您需要任何協助，請隨時透過 cloudlabs-support@spektrasystems.com 與我們聯繫。我們提供 24/7 全天候支援服務。
+
+<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
 
 ## Success Criteria
 
@@ -162,8 +170,6 @@
     - 完成應用程式自動化部署至 Azure。
     - 使用者核准後，自動將程式碼推送至 Git 儲存庫。
 
----
-
 ## 額外挑戰 (Bonus)
 
 - 將聊天歷史中的 Markdown 格式程式碼複製並存成對應的檔案。
@@ -171,8 +177,6 @@
 - 檢查應用程式是否如 AI 所描述般正常運作。
 - 向 AI 要求讓應用程式具備響應式設計或加入新功能，提升應用體驗。
 - 嘗試調整不同代理人的角色設定，以優化結果或增加功能性。
-
----
 
 
 ## 学习资源
@@ -183,7 +187,6 @@
 - [AutoGen with Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 - [管理你的个人访问令牌](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
----
 
 ## 结论
 
