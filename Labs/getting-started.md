@@ -37,7 +37,7 @@
 
 當你準備好開始時，你的虛擬機器和 **Guide** 將會隨時在你的網頁瀏覽器中供你使用。
 
-![Access Your VM and Lab Guide](./media/VmImage.png)
+![Access Your VM and Lab Guide](./media/Agg1.png)
 
 ## 實驗室指南縮放功能
 
