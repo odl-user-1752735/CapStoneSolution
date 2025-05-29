@@ -7,7 +7,8 @@
 在这项挑战中，您将创建一个多代理系统，该系统接受用户的请求并通过一组代理进行处理，每个代理都根据特定的角色和专业领域进行设计。座席将单独分析请求，并根据他们定义的职责提供他们的响应。最终输出将是来自所有代理的答案的整合集合，以反映每个角色独特视角的方式协作解决用户的查询。
 
 
-## 挑战目标：
+## 任务 1 - Azure AI Foundry 模型部署与环境配置
+
 
 1. **部署 Azure OpenAI 服务：**
 
@@ -33,9 +34,6 @@
 
         >- **提示：** API 版本可以从目标 URI 中获取。
 
-
-## 任务 1 - Azure AI Foundry 模型部署与环境配置
-
 1. 使用 Azure AI Foundry 部署详情更新 `.env` 文件：
 
     ```
@@ -44,8 +42,14 @@
     AZURE_OPENAI_API_KEY=Azure OpenAI API 密钥
     AZURE_OPENAI_API_VERSION=Azure OpenAI API 版本
     ```
+> **恭喜** 完成此任务！现在是验证的时候了。以下是步骤：
+> - 如果收到成功消息，可以继续进行下一任务。
+> - 如果没有，请仔细阅读错误信息，按照实验指导中的说明重试该步骤。
+> - 如果需要帮助，请通过 cloudlabs-support@spektrasystems.com 联系我们。我们提供全天候 24/7 支持。
+  
+<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
 
-## 任务 2 - 定义代理角色并配置多代理聊天
+## 任务 2 - 配置多智能体工作流并在批准后自动推送代码
 
 1. 打开 `multi_agent.py` 文件。在这里你将实现本挑战所需的所有代码。
 
@@ -81,22 +85,23 @@
 
 1. 在 `ApprovalTerminationStrategy` 类中实现 `should_agent_terminate` 方法。当用户在聊天记录中返回 "APPROVED" 时，代理应终止运行。  
 
-
-## 任务 3 - 用户批准时触发 Git 推送
-
-添加逻辑，使当用户在聊天中发送 "APPROVED" 时，触发一个 Bash 脚本，将软件工程师代理编写的代码推送到 Git 仓库。
-
 1. 在实现 `should_agent_terminate` 方法以检测 "APPROVED" 后，添加一个回调或后处理步骤，在满足条件时执行。
-2. 从聊天记录中提取软件工程师代理提供的 HTML 代码。
-3. 将提取的代码保存到文件（例如 `index.html`）。
-4. 创建一个 Bash 脚本（例如 `push_to_git.sh`），该脚本将文件加入暂存区、提交并推送到目标 Git 仓库。
-5. 在 Python 代码中，使用 `subprocess` 模块调用此脚本，当检测到 "APPROVED" 时执行。
-6. 确保你的环境配置了必要的 Git 凭据，以支持非交互式推送。
+1. 从聊天记录中提取软件工程师代理提供的 HTML 代码。
+1. 将提取的代码保存到文件（例如 `index.html`）。
+1. 创建一个 Bash 脚本（例如 `push_to_git.sh`），该脚本将文件加入暂存区、提交并推送到目标 Git 仓库。
+1. 在 Python 代码中，使用 `subprocess` 模块调用此脚本，当检测到 "APPROVED" 时执行。
+1. 确保你的环境配置了必要的 Git 凭据，以支持非交互式推送。
 
 此自动化流程确保一旦产品负责人（或用户）发送 "APPROVED"，最新代码即可自动推送到你的 Git 仓库。
 
+> **恭喜** 完成此任务！现在是验证的时候了。以下是步骤：
+> - 如果收到成功消息，可以继续进行下一任务。
+> - 如果没有，请仔细阅读错误信息，按照实验指导中的说明重试该步骤。
+> - 如果需要帮助，请通过 cloudlabs-support@spektrasystems.com 联系我们。我们提供全天候 24/7 支持。
+  
+<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
 
-## 任务 4 - 运行多代理对话并验证工作流程
+## 任务3 - 运行多代理对话并验证工作流程
 
 1. 实现代码，将用户消息发送到代理组，使用 `AgentGroupChat` 对象的 `add_chat_message` 方法。消息应包含：
     - `AuthorRole.User` 作为作者
@@ -111,8 +116,7 @@
 
 3. 运行你的应用程序，提供构建计算器应用的请求。观察业务分析师、软件工程师和产品负责人如何协作进行规划、构建和审批解决方案。
 
-## 任务 5 - 将应用部署到 Azure
-### 使用容器注册表和 Azure 应用服务部署应用
+## 任务4 - 使用容器注册表和 Azure 应用服务将应用部署到 Azure
 
 要使用 Azure 在线托管你的应用，请按照以下步骤将应用容器化，推送到 Azure 容器注册表 (ACR)，并使用 Azure 应用服务进行部署：
 
@@ -122,7 +126,7 @@
     azd auth login
     ```
 
-2. 通过运行以下命令将所需资源部署到 Azure：
+1. 通过运行以下命令将所需资源部署到 Azure：
 
     ```bash
     azd up
@@ -136,10 +140,17 @@
    - **ResourceGroupName 基础设施参数**：输入 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(4)**，然后按 **Enter**。
    - **要使用的资源组**：从选项中选择 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>** **(5)**，然后按 **Enter**。
 
-2. 打开 Azure 门户，导航到资源组 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>**。
-3. 找到已部署的容器应用资源。
-4. 复制容器应用的端点 URL。
-5. 在浏览器中访问该端点，验证应用程序是否按预期运行。
+1. 打开 Azure 门户，导航到资源组 **CapstoneEnv-<inject key="Deployment ID" enableCopy="false"/>**。
+1. 找到已部署的容器应用资源。
+1. 复制容器应用的端点 URL。
+1. 在浏览器中访问该端点，验证应用程序是否按预期运行。
+
+> **恭喜** 完成此任务！现在是验证的时候了。以下是步骤：
+> - 如果收到成功消息，可以继续进行下一任务。
+> - 如果没有，请仔细阅读错误信息，按照实验指导中的说明重试该步骤。
+> - 如果需要帮助，请通过 cloudlabs-support@spektrasystems.com 联系我们。我们提供全天候 24/7 支持。
+  
+<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
 
 ## 成功标准
 
@@ -149,7 +160,6 @@
     - 自动将应用部署到 Azure
     - 在用户审批后自动将代码推送到 Git 仓库
 
----
 
 ## 额外加分项
 
@@ -159,7 +169,7 @@
 - 通过让 AI 添加响应式设计或新功能来增强应用。
 - 试验修改不同的角色设定以提升结果或功能。
 
----
+
 
 ## 学习资源
 
@@ -169,7 +179,6 @@
 - [AutoGen 与 Semantic Kernel 结合](https://devblogs.microsoft.com/semantic-kernel/autogen-agents-meet-semantic-kernel/)
 - [管理你的个人访问令牌](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
----
 
 ## 结论
 
