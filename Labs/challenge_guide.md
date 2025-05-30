@@ -52,9 +52,11 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
 
 ## Tarea 2 - Configurar Flujo Multi-Agente y Automatizar Envío de Código
 
+1. Abre **VS Code** en tu **Lab VM**. Luego, abre la carpeta **CAPSTONE-PROJECT** en **VS Code** desde la ruta **C:\LabFiles\\**
+
 1. Abre el archivo `multi_agent.py`. Aquí es donde implementarás todo el código necesario para este desafío.
 
-2. Crea las personalidades para los tres agentes con las siguientes instrucciones:
+1. Crea las personalidades para los tres agentes con las siguientes instrucciones:
 
     - **Persona de Analista de Negocios**
 
@@ -74,30 +76,30 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-3. Crea un `ChatCompletionAgent` para cada una de las personas mencionadas anteriormente. Cada agente debe tener:
+1. Crea un `ChatCompletionAgent` para cada una de las personas mencionadas anteriormente. Cada agente debe tener:
     - Instrucciones (el prompt de la persona)
     - Un Nombre único (solo letras, sin espacios ni caracteres especiales)
     - Una referencia a un objeto `Kernel`
 
-4. Crea un objeto `AgentGroupChat` para enlazar los tres agentes. Pasa:
+1. Crea un objeto `AgentGroupChat` para enlazar los tres agentes. Pasa:
     - Un arreglo con los tres agentes
     - `ExecutionSettings` con una `TerminationStrategy` configurada como una instancia de `ApprovalTerminationStrategy`
 
-5. Implementa el método `should_agent_terminate` en la clase `ApprovalTerminationStrategy`. Los agentes deben terminar cuando el Usuario devuelva "APPROVED" en el historial del chat.
+1. Implementa el método `should_agent_terminate` en la clase `ApprovalTerminationStrategy`. Los agentes deben terminar cuando el Usuario devuelva "APPROVED" en el historial del chat.
 
-6. Después de implementar el método `should_agent_terminate` para detectar **"APPROVED"**, agrega una devolución de llamada o un paso de post-procesamiento que se ejecute cuando se cumpla esta condición.
+1. Después de implementar el método `should_agent_terminate` para detectar **"APPROVED"**, agrega una devolución de llamada o un paso de post-procesamiento que se ejecute cuando se cumpla esta condición.
 
-7. Extrae el código HTML proporcionado por el agente Software Engineer desde el historial del chat.
+1. Extrae el código HTML proporcionado por el agente Software Engineer desde el historial del chat.
 
-8. Guarda el código extraído en un archivo (por ejemplo, `index.html`).
+1. Guarda el código extraído en un archivo (por ejemplo, `index.html`).
 
-9. Crea un script Bash (`push_to_github.sh`) que agregue, realice commit y envíe el archivo a tu repositorio Git deseado.
+1. Crea un script Bash (`push_to_github.sh`) que agregue, realice commit y envíe el archivo a tu repositorio Git deseado.
 
-10. En tu código Python, utiliza el módulo `subprocess` para llamar a este script cuando se detecte **"APPROVED"**.
+1. En tu código Python, utiliza el módulo `subprocess` para llamar a este script cuando se detecte **"APPROVED"**.
 
-11. Asegúrate de que tu entorno tenga configuradas las credenciales Git necesarias para realizar envíos no interactivos.
+1. Asegúrate de que tu entorno tenga configuradas las credenciales Git necesarias para realizar envíos no interactivos.
 
-Esta automatización garantiza que, una vez que el usuario envíe "APPROVED", el código más reciente se envíe automáticamente a tu repositorio Git.
+   Esta automatización garantiza que, una vez que el usuario envíe "APPROVED", el código más reciente se envíe automáticamente a tu repositorio Git.
 
 > **¡Felicidades** por completar la tarea! Ahora es momento de validarla. Aquí tienes los pasos:
 > - Si recibes un mensaje de éxito, puedes continuar con la siguiente tarea.
