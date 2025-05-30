@@ -92,7 +92,7 @@ Neste desafio, você criará um Sistema Multiagente que aceita a solicitação d
 1. No seu código Python, utilize o módulo `subprocess` para chamar este script quando "APPROVED" for detectado:
 1. Garanta que seu ambiente possua as credenciais Git necessárias configuradas para pushes não interativos.
 
-Esta automação assegura que, uma vez que o Product Owner (ou usuário) envie "APPROVED", o código mais recente seja automaticamente enviado para o seu repositório Git.
+   Esta automação assegura que, uma vez que o Product Owner (ou usuário) envie "APPROVED", o código mais recente seja automaticamente enviado para o seu repositório Git.
 
 > **Parabéns** por completar a tarefa! Agora, é hora de validá-la. Aqui estão os passos:
 > - Se você receber uma mensagem de sucesso, pode prosseguir para a próxima tarefa.
