@@ -49,6 +49,8 @@ Neste desafio, você criará um Sistema Multiagente que aceita a solicitação d
 
 ## Tarefa 2 - Configurar Fluxo de Trabalho Multi-Agente e Automatizar o Envio de Código Após Aprovação
 
+1. Abra o **VS Code** na sua **Lab VM**. Em seguida, abra a pasta **CAPSTONE-PROJECT** no **VS Code** a partir do caminho **C:\LabFiles\\**
+
 1. Abra o arquivo `multi_agent.py`. É aqui que você vai implementar todo o código necessário para este desafio.
 
 1. Crie personas para os três agentes com as seguintes instruções:
