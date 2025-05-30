@@ -50,9 +50,11 @@
 
 ## タスク 2 - マルチエージェントワークフローの構成と承認後のコード自動プッシュの実装
 
+1. ラボ仮想マシンで **VS Code** を開きます。その後、パス **C:\LabFiles\\** から **CAPSTONE-PROJECT** フォルダーを **VS Code** で開きます。
+
 1. `multi_agent.py` ファイルを開きます。ここで、このチャレンジに必要なすべてのコードを実装します。
 
-2. 次の手順で、3 人のエージェントのペルソナを作成します。
+1. 次の手順で、3 人のエージェントのペルソナを作成します。
 
     - **ビジネスアナリストのペルソナ**
 
@@ -72,30 +74,30 @@
         You are the Product Owner which will review the software engineer's code to ensure all user  requirements are completed. You are the guardian of quality, ensuring the final product meets all specifications. IMPORTANT: Verify that the Software Engineer has shared the HTML code using the format ```html [code] ```. This format is required for the code to be saved and pushed to GitHub. Once all client requirements are completed and the code is properly formatted, reply with 'READY FOR USER APPROVAL'. If there are missing features or formatting issues, you will need to send a request back to the SoftwareEngineer or BusinessAnalyst with details of the defect.
         ```
 
-3. 上記の各ペルソナに対して `ChatCompletionAgent` を作成します。各エージェントには、次のものが必要です。
+1. 上記の各ペルソナに対して `ChatCompletionAgent` を作成します。各エージェントには、次のものが必要です。
     - 指示 (ペルソナ プロンプト)
     - 意の名前 (文字のみ、スペースや特殊文字は使用不可)
     - `Kernel` オブジェクトへの参照
 
-4. `AgentGroupChat` オブジェクトを作成して、3 人のエージェントを結び付けます。通る：
+1. `AgentGroupChat` オブジェクトを作成して、3 人のエージェントを結び付けます。通る：
     - 3 つのエージェントの配列
     - `ExecutionSettings` と `TerminationStrategy` のインスタンスに設定された `TerminationStrategy`
 
-5. `should_agent_terminate` メソッドを `ApprovalTerminationStrategy` クラスに実装します。エージェントは、ユーザーがチャット履歴で `APPROVED` を返したときに終了する必要があります。
+1. `should_agent_terminate` メソッドを `ApprovalTerminationStrategy` クラスに実装します。エージェントは、ユーザーがチャット履歴で `APPROVED` を返したときに終了する必要があります。
 
-6. **"APPROVED"** を検出する `should_agent_terminate` メソッドを実装した後、その条件が満たされたときに実行されるコールバックまたは後処理ステップを追加します。
+1. **"APPROVED"** を検出する `should_agent_terminate` メソッドを実装した後、その条件が満たされたときに実行されるコールバックまたは後処理ステップを追加します。
 
 7. ソフトウェアエンジニアエージェントがチャット履歴内で提供した HTML コードを抽出します。
 
-8. 抽出したコードをファイル（例：`index.html`）として保存します。
+1. 抽出したコードをファイル（例：`index.html`）として保存します。
 
-9. Bash スクリプト（`push_to_github.sh`）を作成し、そのファイルをステージ、コミットし、指定の Git リポジトリへプッシュします。
+1. Bash スクリプト（`push_to_github.sh`）を作成し、そのファイルをステージ、コミットし、指定の Git リポジトリへプッシュします。
 
-10. Python コード内で `subprocess` モジュールを使用し、**"APPROVED"** が検出されたときにこのスクリプトを実行します。
+1. Python コード内で `subprocess` モジュールを使用し、**"APPROVED"** が検出されたときにこのスクリプトを実行します。
 
-11. 環境に、対話なしで Git プッシュができるよう適切な Git 認証情報が構成されていることを確認します。
+1. 環境に、対話なしで Git プッシュができるよう適切な Git 認証情報が構成されていることを確認します。
 
-この自動化により、ユーザーが **"APPROVED"** を送信すると、最新のコードが自動的に Git リポジトリへプッシュされます。
+   この自動化により、ユーザーが **"APPROVED"** を送信すると、最新のコードが自動的に Git リポジトリへプッシュされます。
 
 > **タスク完了おめでとうございます！** 次に検証を行いましょう。以下の手順に従ってください:
 > - 成功メッセージが表示された場合、次のタスクへ進んでください。
