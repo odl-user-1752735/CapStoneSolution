@@ -45,7 +45,7 @@ MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 
 > - 그렇지 않으면 오류 메시지를 주의 깊게 읽고 실습 가이드의 지침에 따라 단계를 다시 시도하세요.
 > - 도움이 필요하시면 언제든지 cloudlabs-support@spektrasystems.com 으로 연락 주세요. 24시간 연중무휴로 지원합니다.
 
-<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
+<validation step="0785507e-e2d1-445e-8120-2116c5c4ddfc" />
 
 ## 작업 2 - 다중 에이전트 워크플로우 구성 및 승인 시 코드 자동 푸시 설정
 
@@ -96,7 +96,7 @@ MAS(Multi-Agent System)는 각각 고유한 목표, 동작 및 책임 영역을 
 > - 그렇지 않은 경우, 오류 메시지를 주의 깊게 읽고 실습 가이드의 지침에 따라 해당 단계를 다시 시도하세요.
 > - 도움이 필요하시면 언제든지 cloudlabs-support@spektrasystems.com 으로 연락해 주세요. 24시간 연중무휴 지원합니다.
 
-<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+<validation step="5c335ab0-2d34-4343-abfb-a995c9f945db" />
 
 
 ## 작업 3 - 다중 에이전트 대화 실행 및 워크플로우 검증
@@ -149,7 +149,7 @@ Azure를 사용하여 온라인으로 앱을 호스트하려면 다음 단계에
 > - 그렇지 않은 경우, 오류 메시지를 주의 깊게 읽고 실습 가이드의 지침에 따라 해당 단계를 다시 시도하세요.
 > - 도움이 필요하시면 언제든지 cloudlabs-support@spektrasystems.com 으로 연락해 주세요. 24시간 365일 지원해 드립니다.
 
-<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
+<validation step="a59f082a-271a-40c7-8ff1-bd4c7b536c5d" />
 
 ## 성공 기준
 
