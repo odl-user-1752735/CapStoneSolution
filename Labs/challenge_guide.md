@@ -47,7 +47,7 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
 > - Si no, lee cuidadosamente el mensaje de error y vuelve a intentar el paso, siguiendo las instrucciones de la guía de laboratorio.
 > - Si necesitas ayuda, por favor contáctanos en cloudlabs-support@spektrasystems.com. Estamos disponibles 24/7 para ayudarte.
 
-<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
+<validation step="97cd6056-d397-42bd-b55c-3e84b5557d91" />
 
 
 ## Tarea 2 - Configurar Flujo Multi-Agente y Automatizar Envío de Código
@@ -106,7 +106,7 @@ En este desafío, crearás un `Multi-Agent System` que acepta la solicitud de un
 > - Si no, lee cuidadosamente el mensaje de error y vuelve a intentar el paso, siguiendo las instrucciones de la guía de laboratorio.
 > - Si necesitas ayuda, por favor contáctanos en cloudlabs-support@spektrasystems.com. Estamos disponibles 24/7 para apoyarte.
 
-<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+<validation step="983680bb-3327-4e75-9a35-752f3e0e9093" />
 
 
 ## Tarea 3 - Ejecutar la Conversación Multi-Agente y Validar el Flujo de Trabajo
@@ -158,7 +158,7 @@ Para alojar tu aplicación en línea usando Azure, sigue estos pasos para conten
 > - Si no, lee cuidadosamente el mensaje de error y vuelve a intentar el paso, siguiendo las instrucciones en la guía del laboratorio.
 > - Si necesitas ayuda, por favor contáctanos en cloudlabs-support@spektrasystems.com. Estamos disponibles 24/7 para asistirte.
 
-<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
+<validation step="da5edb58-8e1f-4828-9e44-b6169a24289d" />
 
 ## Criterios de Éxito
 
