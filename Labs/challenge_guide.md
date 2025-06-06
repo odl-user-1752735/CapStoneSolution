@@ -47,7 +47,7 @@
 > - 如果没有，请仔细阅读错误信息，按照实验指导中的说明重试该步骤。
 > - 如果需要帮助，请通过 cloudlabs-support@spektrasystems.com 联系我们。我们提供全天候 24/7 支持。
   
-<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
+<validation step="aec82833-a1ec-47c5-96bd-5453b504c139" />
 
 ## 任务 2 - 配置多智能体工作流并在批准后自动推送代码
 
@@ -101,7 +101,7 @@
 > - 如果没有，请仔细阅读错误信息，按照实验指导中的说明重试该步骤。
 > - 如果需要帮助，请通过 cloudlabs-support@spektrasystems.com 联系我们。我们提供全天候 24/7 支持。
   
-<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+<validation step="1b2ffbe3-7834-4b75-b925-d6a907385789" />
 
 ## 任务3 - 运行多代理对话并验证工作流程
 
@@ -152,7 +152,7 @@
 > - 如果没有，请仔细阅读错误信息，按照实验指导中的说明重试该步骤。
 > - 如果需要帮助，请通过 cloudlabs-support@spektrasystems.com 联系我们。我们提供全天候 24/7 支持。
   
-<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
+<validation step="06da7bc8-2a60-45f4-866c-cb4b9de80b5c" />
 
 ## 成功标准
 
