@@ -45,7 +45,7 @@
 > - 如果沒有，請仔細閱讀錯誤訊息，依照實驗指南中的指示重新嘗試該步驟。
 > - 如果您需要任何協助，請隨時透過 cloudlabs-support@spektrasystems.com 與我們聯繫，我們提供 24/7 全天候支援服務。
 
-<validation step="d6519c92-19e6-4dae-bdbe-3638f8d8db43" />
+<validation step="fd3e58c5-f047-4b86-8177-2489ee812527" />
 
 ## 任務 2 - 設定多代理人工作流程並在核准後自動推送程式碼
 
@@ -111,7 +111,7 @@
 > - 如果沒有，請仔細閱讀錯誤訊息，依照實驗指南中的指示重新嘗試該步驟。
 > - 如果您需要任何協助，請隨時透過 cloudlabs-support@spektrasystems.com 與我們聯繫，我們提供 24/7 全天候支援服務。
 
-<validation step="86730b76-da41-429e-9a9b-35b6ecd8bd79" />
+<validation step="3b86923d-f180-411e-b41d-de4ed650d29e" />
 
 ## 任務 3 - 執行多代理人對話並驗證工作流程
 
@@ -162,7 +162,7 @@
 > - 如果沒有，請仔細閱讀錯誤訊息，依照實驗指南中的說明重新嘗試該步驟。
 > - 如果您需要任何協助，請隨時透過 cloudlabs-support@spektrasystems.com 與我們聯繫。我們提供 24/7 全天候支援服務。
 
-<validation step="14625f2c-4adb-4d11-969d-74eb6be92a21" />
+<validation step="7ce1ccbb-408c-4528-9ee9-5e5e52b7ced9" />
 
 ## 成功標準
 
