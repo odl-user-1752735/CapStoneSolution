@@ -1,8 +1,6 @@
 # Import packages
-# Import packages
 import os
 import asyncio
-import logging
 from semantic_kernel.agents import AgentGroupChat, ChatCompletionAgent
 from semantic_kernel.agents.strategies.termination.termination_strategy import TerminationStrategy
 from semantic_kernel.agents.strategies.selection.kernel_function_selection_strategy import (
@@ -20,17 +18,13 @@ from dotenv import load_dotenv
 load_dotenv() # Loads the environment variables and credentials we need to setup the agent
 
 
-logging.basicConfig(level=logging.INFO)
-tracer = configure_oltp_grpc_tracing()
-logger = logging.getLogger(__name__)
-
 class ApprovalTerminationStrategy(TerminationStrategy):
     """A strategy for determining when an agent should terminate."""
  
     async def should_agent_terminate(self, agent, history):
         """Check if the agent should terminate."""
         # return NotImplementedError("Code to be implemented by the student")
-        return "approved" in history[-1].content.lower()
+        return "READY FOR USER APPROVAL" in history[-1].content.lower()
 
 
 # create personas
